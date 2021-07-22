@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!--indique au navigateur la langue utilisée-->
+<html lang="fr">
+
+<head>
+    <!--pour l'encodage, caracteres speciaux-->
+    <meta charset="utf-8" />
+    <!--lien vers le fichier css-->
+    <link rel="stylesheet" href=" petits_Plats_Style.css" />
+    <!--lien vers les icones font awesome-->
+    <script src="https://kit.fontawesome.com/08a19f859e.js" crossorigin="anonymous">
+    </script>
+    <!--lien vers les icones google-->
+    <link
+        href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+        rel="stylesheet" />
+    <!--lien vers le css du pluging videojs permettant de lire les videos si pas supporter par le navigateur  -->
+    <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
+    <!--pour devtool et compatibilité responsive-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--lien lightGalery-->
+    <link type="text/css" rel="stylesheet" href="node_modules/lightgallery/css/lightgallery-bundle.css" />
+
+    <title>Mettre un titre</title>
+    <!--titre de l'onglet-->
+</head>
+
+<body>
+<!-- appel lightgallery  -->
+<div id="lightgallery"></div>
+
+
+
+
+<!-- appel du fichier js ---->
+<script type="module" src=" .js"></script>
+    <!-- lightgallery plugins -->
+    <script src="node_modules/lightgallery/lightgallery.umd.js"></script>
+    <script src="node_modules/lightgallery/plugins/thumbnail/lg-thumbnail.umd.js"></script>
+    <script src="node_modules/lightgallery/plugins/zoom/lg-zoom.umd.js"></script>
+    <script src="node_modules/lightgallery/plugins/video/lg-video.min.js"></script>
+     <!-- video Js plugin -->
+    <script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>
+     <!-- email JS -->
+     <script src="node_modules/emailjs-com/dist/email.min.js"></script>
+    <script>(function () {
+            emailjs.init("user_7tR9LJzR8U8F0vQka347x");
+        })();
+
+    </script>
+</body>
+
+</html>
