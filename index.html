@@ -5,49 +5,62 @@
 <head>
     <!--pour l'encodage, caracteres speciaux-->
     <meta charset="utf-8" />
+    <!--lien bootstrap4-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!--lien vers le fichier css-->
-    <link rel="stylesheet" href=" petits_Plats_Style.css" />
+    <link rel="stylesheet" href="style/petits_Plats_Style.css" />
     <!--lien vers les icones font awesome-->
     <script src="https://kit.fontawesome.com/08a19f859e.js" crossorigin="anonymous">
     </script>
-    <!--lien vers les icones google-->
+    <!-- lien vers les icones google
     <link
         href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
-        rel="stylesheet" />
-    <!--lien vers le css du pluging videojs permettant de lire les videos si pas supporter par le navigateur  -->
-    <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
+        rel="stylesheet" /> -->
+    
     <!--pour devtool et compatibilité responsive-->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!--lien lightGalery-->
-    <link type="text/css" rel="stylesheet" href="node_modules/lightgallery/css/lightgallery-bundle.css" />
-
-    <title>Mettre un titre</title>
+    
+        <title>Les-Petits-Plats</title>
     <!--titre de l'onglet-->
 </head>
 
 <body>
-<!-- appel lightgallery  -->
-<div id="lightgallery"></div>
+   
+    <!--rechercher tous-->
+    <form class="example" action="/action_page.php">
+      <input type="text" placeholder="Search.." name="search">
+      <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
+     <!--Btn recherche -->
+    <button type="button" class="btn btn-primary btn-lg">Ingredients <i class="fa fa-angle-down"></i></button>
+    <button type="button" class="btn btn-primary btn-lg">Ingredients <i class="fa fa-angle-up"></i></button>
+    <button type="button" class="btn btn-success btn-lg">Appareil <i class="fa fa-angle-up"></i></button>
+    <button type="button" class="btn btn-success btn-lg">Appareil <i class="fa fa-angle-down"></i></button>
+    <button type="button" class="btn btn-danger btn-lg">Ustensiles <i class="fa fa-angle-up"></i></button>
+    <button type="button" class="btn btn-danger btn-lg">Ustensiles <i class="fa fa-angle-down"></i></button>
 
-
+    <button type="button" class="btn btn-primary btn-sm">coco <i class="fa fa-times-circle-o"></i></button>
+    <button type="button" class="btn btn-success btn-sm">mixeur <i class="fa fa-times-circle-o"></i></button>
+    <button type="button" class="btn btn-danger btn-sm">fouet <i class="fa fa-times-circle-o"></i></button>
+  
+    <div class="card" style="width: 380px;">
+        <img class="card-img-top" src="https://img-31.ccm2.net/lK0t3Q0I2lhHmo1mRvAiO-duZi8=/910x/smart/9a916f6efef5426fa54b8b67d57b3e12/ccmcms-hugo/12352828.jpg" alt="Card image cap">
+        <div class="card-body">
+            <div class="onePartieCard"> 
+                <div class="card-text"> Omelette.</div>
+                <div class="timing">  <i class="far fa-clock"></i><div>timing</div> </div>
+            </div>
+            <div class="secondPartieCard onePartieCard">
+             <div class="ingredients">liste des  ingrédients</div>
+             <div class="instruction">instructions</div>
+            </div> 
+        </div>
+      </div>
 
 
 <!-- appel du fichier js ---->
-<script type="module" src=" .js"></script>
-    <!-- lightgallery plugins -->
-    <script src="node_modules/lightgallery/lightgallery.umd.js"></script>
-    <script src="node_modules/lightgallery/plugins/thumbnail/lg-thumbnail.umd.js"></script>
-    <script src="node_modules/lightgallery/plugins/zoom/lg-zoom.umd.js"></script>
-    <script src="node_modules/lightgallery/plugins/video/lg-video.min.js"></script>
-     <!-- video Js plugin -->
-    <script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>
-     <!-- email JS -->
-     <script src="node_modules/emailjs-com/dist/email.min.js"></script>
-    <script>(function () {
-            emailjs.init("user_7tR9LJzR8U8F0vQka347x");
-        })();
-
-    </script>
+<script type="module" src="js/fichier.js"></script>
+    
 </body>
 
 </html>
