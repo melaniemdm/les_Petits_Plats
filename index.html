@@ -6,7 +6,7 @@
     <!--pour l'encodage, caracteres speciaux-->
     <meta charset="utf-8" />
     <!--lien bootstrap4-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://melaniemdm.github.io/oc_librairies/bootstrap-5.1.0-dist/css/bootstrap.min.css"  crossorigin="anonymous">
     <!--lien vers le fichier css-->
     <link rel="stylesheet" href="style/petits_Plats_Style.css" />
     <!--lien vers les icones font awesome-->
@@ -25,7 +25,7 @@
 </head>
 
 <body>
-   
+    
     <!--rechercher tous-->
     <form class="example" action="/action_page.php">
       <input type="text" placeholder="Search.." name="search">
@@ -43,24 +43,14 @@
     <button type="button" class="btn btn-success btn-sm">mixeur <i class="fa fa-times-circle-o"></i></button>
     <button type="button" class="btn btn-danger btn-sm">fouet <i class="fa fa-times-circle-o"></i></button>
   
-    <div class="card" style="width: 380px;">
-        <img class="card-img-top" src="https://img-31.ccm2.net/lK0t3Q0I2lhHmo1mRvAiO-duZi8=/910x/smart/9a916f6efef5426fa54b8b67d57b3e12/ccmcms-hugo/12352828.jpg" alt="Card image cap">
-        <div class="card-body">
-            <div class="onePartieCard"> 
-                <div class="card-text"> Omelette.</div>
-                <div class="timing">  <i class="far fa-clock"></i><div>timing</div> </div>
-            </div>
-            <div class="secondPartieCard onePartieCard">
-             <div class="ingredients">liste des  ingrédients</div>
-             <div class="instruction">instructions</div>
-            </div> 
-        </div>
-      </div>
-
+    <div class="cards row row-cols-3"></div>
+    
 
 <!-- appel du fichier js ---->
 <script type="module" src="js/fichier.js"></script>
-    
+
+<script type="module"> import{displayRecipes} from "./js/fichier.js"
+let useDisplayRecipes = await displayRecipes();  </script>        
 </body>
 
 </html>

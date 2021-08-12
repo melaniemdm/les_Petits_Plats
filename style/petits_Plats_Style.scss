@@ -37,23 +37,44 @@
   }
 
   //card recette
+  
+  .card{
+    width: 380px;
+    margin: 23px;
+    padding-left: 0;
+    padding-right: 0;
+  }
   .card-body{
       height: 190px;
+      background-color: blue;
   }
-  .onePartieCard{
-      display: flex;
-      justify-content: space-around;
-     margin-bottom: 10px;
+  .firstPartieCard{
+    display: grid;
+    grid-template-columns: 7fr 2fr;
+      font-size: 15px;
+      background-color: violet;
+      padding-bottom: 3px;
        }
-     
+     .secondPartieCard{
+       font-size: 11px;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+     }
   .timing{
-     
       display: flex;
       flex-direction: row;
-      justify-content: space-around;
+      justify-content: space-between;
       align-items: center;
       flex-wrap: nowrap;
   }
-  .far{
+ .far{
       padding-right: 6px;
+  }
+  
+  .ingredients{
+    background-color: red;
+  
+  }
+  .instruction{
+    background-color: yellow;
   }
