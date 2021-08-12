@@ -1,12 +1,28 @@
+//function affiche les recettes
 export async function displayRecipes(){
-var nodeCards = document.querySelector(".cards");
-for (let i = 0; i < 10; i++){
-    var sourceImg = "https://img-31.ccm2.net/lK0t3Q0I2lhHmo1mRvAiO-duZi8=/910x/smart/9a916f6efef5426fa54b8b67d57b3e12/ccmcms-hugo/12352828.jpg";
+// appel de la function from json
+var arrayFromJson =  await getRecipesFromJson(); 
 
-    var timing = 10;
-    var ingredients = `Poulet : 1
-    <br> Lait de coco : 400ml
-    <br>Coulis de tomate: 25cl`;
+var nodeCards = document.querySelector(".cards");
+for (let i = 0; i < arrayFromJson.length; i++){
+    var sourceImg = "https://img-31.ccm2.net/lK0t3Q0I2lhHmo1mRvAiO-duZi8=/910x/smart/9a916f6efef5426fa54b8b67d57b3e12/ccmcms-hugo/12352828.jpg";
+//affichage des ingredients
+    var timing = arrayFromJson[i].time;
+    var ingredients="<ul>";
+    for(let j = 0; j<arrayFromJson[i].ingredients.length; j++){
+    ingredients += "<li>" + arrayFromJson[i].ingredients[j].ingredient 
+    // ajout quantity 
+    if(arrayFromJson[i].ingredients[j].quantity){
+        ingredients  += ":" +" "+  arrayFromJson[i].ingredients[j].quantity  ;
+    }
+    //ajout de unit
+    if( arrayFromJson[i].ingredients[j].unit){
+    ingredients  +=  " "+ arrayFromJson[i].ingredients[j].unit   ;
+    }
+    ingredients  += "</li>"
+}
+ingredients += "</ul>" 
+
     var instruction=`Découper le poulet en morceaux, les faire dorer dans une cocotte avec de l'huile d'olive. Salez et poivrez. Une fois doré, laisser cuire en ajoutant de l'eau. Au bout de 30 minutes, ajouter le coulis de tomate, le lait de coco ainsi que le poivron et l'oignon découpés en morceaux. Laisser cuisiner 30 minutes de plus. Servir avec du riz`;
 nodeCards.innerHTML+= `<div class="card">
 <img class="card-img-top" src=`+sourceImg+` alt="Card image cap">
@@ -22,6 +38,15 @@ nodeCards.innerHTML+= `<div class="card">
     </div> 
 </div>
 </div>
-`}
+`
+}
 return 0;
 }
+/* fonction qui recupere le json*/
+async function getRecipesFromJson() {
+    let url = "http://127.0.0.1:5500/json/recipes.json";
+    let rep = await fetch(url, { method: "GET" });
+    let reponse = await rep.json();
+    let arrayRecipes = reponse["recipes"];
+      return arrayRecipes;
+    }

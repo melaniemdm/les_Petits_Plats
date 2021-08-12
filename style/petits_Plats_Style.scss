@@ -73,8 +73,12 @@
   
   .ingredients{
     background-color: red;
-  
+  & ul{
+list-style-type: none;
+padding:0;
   }
+  }
+
   .instruction{
     background-color: yellow;
   }

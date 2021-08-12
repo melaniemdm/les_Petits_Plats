@@ -78,6 +78,10 @@ form.example::after {
 .ingredients {
   background-color: red;
 }
+.ingredients ul {
+  list-style-type: none;
+  padding: 0;
+}
 
 .instruction {
   background-color: yellow;
