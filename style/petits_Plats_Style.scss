@@ -1,3 +1,14 @@
+/*-------------logo------------------*/
+.logo_lesPetitsPlats{
+  display: flex;
+  justify-content: center;
+align-items: center;
+& img{
+  width: 260px;
+  height: 120px;
+  
+}}
+/*---------------search------------*/
 * {
     box-sizing: border-box;
   }
@@ -36,13 +47,17 @@
     display: table;
   }
 
-  //card recette
+  /*---------------card recette--------*/
   
   .card{
     width: 380px;
+    height: 360px;
     margin: 23px;
     padding-left: 0;
     padding-right: 0;
+  }
+  .card-img-top{
+    height: 170px;
   }
   .card-body{
       height: 190px;
@@ -70,8 +85,7 @@
  .far{
       padding-right: 6px;
   }
-  
-  .ingredients{
+    .ingredients{
     background-color: red;
     font-size: 9px;
   & ul{
@@ -79,7 +93,6 @@ list-style-type: none;
 padding:0;
   }
   }
-
   .instruction{
     background-color: yellow;
     font-size: 9px;

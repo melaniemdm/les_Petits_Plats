@@ -5,7 +5,7 @@ var arrayFromJson =  await getRecipesFromJson();
 
 var nodeCards = document.querySelector(".cards");
 for (let i = 0; i < arrayFromJson.length; i++){
-    var sourceImg = "https://img-31.ccm2.net/lK0t3Q0I2lhHmo1mRvAiO-duZi8=/910x/smart/9a916f6efef5426fa54b8b67d57b3e12/ccmcms-hugo/12352828.jpg";
+    var sourceImg = "https://picsum.photos/id/"+ i+"/380/170";
 //affichage des ingredients
     var timing = arrayFromJson[i].time;
     var ingredients="<ul>";
