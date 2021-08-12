@@ -23,12 +23,13 @@ for (let i = 0; i < arrayFromJson.length; i++){
 }
 ingredients += "</ul>" 
 
-    var instruction=`Découper le poulet en morceaux, les faire dorer dans une cocotte avec de l'huile d'olive. Salez et poivrez. Une fois doré, laisser cuire en ajoutant de l'eau. Au bout de 30 minutes, ajouter le coulis de tomate, le lait de coco ainsi que le poivron et l'oignon découpés en morceaux. Laisser cuisiner 30 minutes de plus. Servir avec du riz`;
+    var instruction=arrayFromJson[i].description;
+    var titreRecette= arrayFromJson[i].name;
 nodeCards.innerHTML+= `<div class="card">
 <img class="card-img-top" src=`+sourceImg+` alt="Card image cap">
 <div class="card-body">
     <div class="firstPartieCard"> 
-        <div class="card-text"> Poulet coco réunionnais</div>
+        <div class="card-text"> `+titreRecette+`</div>
         <div class="timing">  <i class="far fa-clock"></i><div>`+timing +` min</div> </div>
     </div>
     <div class="secondPartieCard onePartieCard">
