@@ -43,7 +43,7 @@ nodeCards.innerHTML+= `<div class="card">
 }
 return 0;
 }
-/* fonction qui recupere le json*/
+/*---------- fonction qui recupere le json----------*/
 async function getRecipesFromJson() {
     let url = "http://127.0.0.1:5500/json/recipes.json";
     let rep = await fetch(url, { method: "GET" });
@@ -51,3 +51,17 @@ async function getRecipesFromJson() {
     let arrayRecipes = reponse["recipes"];
       return arrayRecipes;
     }
+ /*--------------- recharge les recipes---------*/   
+var nodeSearch = document.querySelector("#search");
+nodeSearch.addEventListener("click", rechargeRecipes);
+
+function rechargeRecipes(e){
+    //empeche le comportement par default du chargement
+    e.preventDefault();
+    e.stopImmediatePropagation();
+var nodeCards= document.querySelector(".cards");
+//vider la page
+nodeCards.innerHTML="";
+//affichage des cards grace à l'appel de la fonction
+displayRecipes()
+}
