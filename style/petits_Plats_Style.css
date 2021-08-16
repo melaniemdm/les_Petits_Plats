@@ -67,7 +67,7 @@ form.search::after {
 
 .card-body {
   height: 190px;
-  background-color: blue;
+  background-color: #e7e7e7;
   padding: 0;
   padding-left: 20px;
   padding-right: 20px;
@@ -79,7 +79,6 @@ form.search::after {
   display: grid;
   grid-template-columns: 85fr 35fr;
   font-size: 15px;
-  background-color: violet;
   padding-top: 25px;
   padding-bottom: 25px;
 }
@@ -102,7 +101,6 @@ form.search::after {
 }
 
 .ingredients {
-  background-color: red;
   font-family: "Open Sans", "Times New Roman", Times, serif;
   max-height: 120px;
   font-size: 11px;
@@ -113,7 +111,6 @@ form.search::after {
 }
 
 .instruction {
-  background-color: yellow;
   font-family: "roboto", "Times New Roman", Times, serif;
   max-height: 120px;
   padding-left: 20px;
