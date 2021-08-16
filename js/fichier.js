@@ -10,8 +10,7 @@ for (let i = 0; i < arrayFromJson.length; i++){
     var timing = arrayFromJson[i].time;
     var ingredients="<ul>";
     for(let j = 0; j<arrayFromJson[i].ingredients.length; j++){
-    ingredients += "<li>" + arrayFromJson[i].ingredients[j].ingredient 
-    // ajout quantity 
+    ingredients += "<li> <span class='nameIngredient'> "+ arrayFromJson[i].ingredients[j].ingredient + `</span>`    // ajout quantity 
     if(arrayFromJson[i].ingredients[j].quantity){
         ingredients  += ":" +" "+  arrayFromJson[i].ingredients[j].quantity  ;
     }
@@ -24,18 +23,20 @@ for (let i = 0; i < arrayFromJson.length; i++){
 ingredients += "</ul>" 
 
     var instruction=arrayFromJson[i].description;
+   
+
     var titreRecette= arrayFromJson[i].name;
 nodeCards.innerHTML+= `<div class="card">
 <img class="card-img-top" src=`+sourceImg+` alt="Card image cap">
 <div class="card-body">
     <div class="firstPartieCard"> 
-        <div class="card-text"> `+titreRecette+`</div>
-        <div class="timing">  <i class="far fa-clock"></i><div>`+timing +` min</div> </div>
+        <div class="recipesTitle"> `+titreRecette+`</div>
+        <div class="timing">  <i class="far fa-clock"> </i> &nbsp; `+timing +` min </div>
     </div>
     <div class="secondPartieCard onePartieCard">
      <div class="ingredients">`+ ingredients +`
      </div>
-     <div class="instruction">`+instruction+`</div>
+     <div class="instruction">`+troncInstruction(instruction)+`</div>
     </div> 
 </div>
 </div>
@@ -65,3 +66,14 @@ nodeCards.innerHTML="";
 //affichage des cards grace à l'appel de la fonction
 displayRecipes()
 }
+
+/*------- tronc du paragraphe-------*/
+function troncInstruction(text){
+var numberletter = 140;
+if (text.length > numberletter ){
+return text.substring(0,numberletter) +"...";
+}else{
+return text
+}
+};
+
