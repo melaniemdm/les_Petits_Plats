@@ -61,10 +61,14 @@ function rechargeRecipes(e){
     e.preventDefault();
     e.stopImmediatePropagation();
 var nodeCards= document.querySelector(".cards");
-//vider la page
-nodeCards.innerHTML="";
+//recupere la value de l'input
+var textOfSearch = document.querySelector("#inputSearch").value;
+if(textOfSearch.length>=3){
+   //vider la page
+nodeCards.innerHTML=""; 
 //affichage des cards grace à l'appel de la fonction
 displayRecipes()
+}
 }
 
 /*------- tronc du paragraphe-------*/
@@ -82,8 +86,11 @@ nodeInputSearch.addEventListener("keyup", startSearch);
 
 /*--------recuperation de la valeur de l'input-------*/
 function startSearch(event){
+    var nodeCards= document.querySelector(".cards");
        var textOfSearch = event.target.value;
        if(textOfSearch.length>=3){
+            //vider la page
+nodeCards.innerHTML=""; 
            //recharge la page
         displayRecipes()
     }
