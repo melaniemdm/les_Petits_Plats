@@ -77,3 +77,14 @@ return text
 }
 };
 
+var nodeInputSearch = document.querySelector("#inputSearch");
+nodeInputSearch.addEventListener("keyup", startSearch);
+
+/*--------recuperation de la valeur de l'input-------*/
+function startSearch(event){
+       var textOfSearch = event.target.value;
+       if(textOfSearch.length>=3){
+           //recharge la page
+        displayRecipes()
+    }
+};
