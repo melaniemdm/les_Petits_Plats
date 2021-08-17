@@ -95,7 +95,9 @@ function startSearch(event){
     sessionStorage.setItem("stringSearch", textOfSearch) 
            //recharge la page
     displayRecipes()
-        
+       
+    }else{
+        sessionStorage.setItem("stringSearch", "")   
     }
 };
 
