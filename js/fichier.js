@@ -87,11 +87,16 @@ nodeInputSearch.addEventListener("keyup", startSearch);
 /*--------recuperation de la valeur de l'input-------*/
 function startSearch(event){
     var nodeCards= document.querySelector(".cards");
-       var textOfSearch = event.target.value;
+    var textOfSearch = event.target.value;
        if(textOfSearch.length>=3){
             //vider la page
-nodeCards.innerHTML=""; 
+    nodeCards.innerHTML=""; 
+      //session storage
+    sessionStorage.setItem("stringSearch", textOfSearch) 
            //recharge la page
-        displayRecipes()
+    displayRecipes()
+        
     }
 };
+
+
