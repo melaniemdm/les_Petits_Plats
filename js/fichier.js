@@ -5,6 +5,18 @@ var arrayFromJson =  await getRecipesFromJson();
 
 var nodeCards = document.querySelector(".cards");
 for (let i = 0; i < arrayFromJson.length; i++){
+    //test si la session storage existe
+ var noSessionStorage =  false;   
+if(sessionStorage.getItem("stringSearch")){
+ //recupere la clé de la session storage et met la string en minuscule
+  var stringSearch = sessionStorage.getItem("stringSearch").toLowerCase();
+} else{
+    noSessionStorage =  true;   
+}
+    
+  //condition du search - met en minuscule la recherche et recherche dans une chaine de caractere - transforme l'array des ingredients en chaine de caractere
+if(noSessionStorage ===  true|| arrayFromJson[i].name.toLowerCase().includes(stringSearch)|| stringSearch === "" || arrayFromJson[i].description.toLowerCase().includes(stringSearch) || JSON.stringify(arrayFromJson[i].ingredients).toLowerCase().includes(stringSearch) ) {
+
     var sourceImg = "https://source.unsplash.com/collection/4466406/480x480?sig="+i+"&client_id=hXJZfm926ewJ7LxaoHzwVxiR7cyTnkdu3Vidn6Ojdew";
 //affichage des ingredients
     var timing = arrayFromJson[i].time;
@@ -41,7 +53,7 @@ nodeCards.innerHTML+= `<div class="card">
 </div>
 </div>
 `
-}
+}}
 return 0;
 }
 /*---------- fonction qui recupere le json----------*/
@@ -89,16 +101,17 @@ function startSearch(event){
     var nodeCards= document.querySelector(".cards");
     var textOfSearch = event.target.value;
        if(textOfSearch.length>=3){
-            //vider la page
-    nodeCards.innerHTML=""; 
+           
       //session storage
     sessionStorage.setItem("stringSearch", textOfSearch) 
-           //recharge la page
-    displayRecipes()
-       
+                 
     }else{
         sessionStorage.setItem("stringSearch", "")   
-    }
+           }
+    //vider la page dans tous les cas
+    nodeCards.innerHTML=""; 
+   //recharge la page dans tous les cas
+    displayRecipes()   
 };
 
 
