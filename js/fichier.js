@@ -54,6 +54,10 @@ nodeCards.innerHTML+= `<div class="card">
 </div>
 `
 }}
+//affichage du message d'erreur
+if( nodeCards.innerHTML==="" ){
+nodeCards.innerHTML+= 'Aucune recette ne correspond à votre critère.... vous pouvez chercher "tartes aux pommes", "poissons", etc.'
+}
 return 0;
 }
 /*---------- fonction qui recupere le json----------*/
