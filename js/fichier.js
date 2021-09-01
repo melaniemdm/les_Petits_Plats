@@ -10,28 +10,31 @@ var nodeCards = document.querySelector(".cards");
 JSON.stringify(arrayFromJson)
 //condition de recherche
 if(JSON.stringify(arrayFromJson).includes(document.querySelector("#inputSearch").value) ){
-    for (let i = 0; i < arrayFromJson.length; i++){
+    //filtre de l'array - appel de la condition du filtre
+    var filterArray = arrayFromJson.filter(checkSearchString);
+    //parcours le tableau
+    for (let i = 0; i < filterArray.length; i++){
         var sourceImg = "https://source.unsplash.com/collection/4466406/480x480?sig="+i+"&client_id=hXJZfm926ewJ7LxaoHzwVxiR7cyTnkdu3Vidn6Ojdew";
     //affichage des ingredients
-        var timing = arrayFromJson[i].time;
+        var timing = filterArray[i].time;
         var ingredients="<ul>";
-        for(let j = 0; j<arrayFromJson[i].ingredients.length; j++){
-        ingredients += "<li> <span class='nameIngredient'> "+ arrayFromJson[i].ingredients[j].ingredient + `</span>`    // ajout quantity 
-        if(arrayFromJson[i].ingredients[j].quantity){
-            ingredients  += ":" +" "+  arrayFromJson[i].ingredients[j].quantity  ;
+        for(let j = 0; j<filterArray[i].ingredients.length; j++){
+        ingredients += "<li> <span class='nameIngredient'> "+ filterArray[i].ingredients[j].ingredient + `</span>`    // ajout quantity 
+        if(filterArray[i].ingredients[j].quantity){
+            ingredients  += ":" +" "+  filterArray[i].ingredients[j].quantity  ;
         }
         //ajout de unit
-        if( arrayFromJson[i].ingredients[j].unit){
-        ingredients  +=  " "+ arrayFromJson[i].ingredients[j].unit   ;
+        if( filterArray[i].ingredients[j].unit){
+        ingredients  +=  " "+ filterArray[i].ingredients[j].unit   ;
         }
         ingredients  += "</li>"
     }
     ingredients += "</ul>" 
     
-        var instruction=arrayFromJson[i].description;
+        var instruction=filterArray[i].description;
        
     
-        var titreRecette= arrayFromJson[i].name;
+        var titreRecette= filterArray[i].name;
     nodeCards.innerHTML+= `<div class="card">
     <img class="card-img-top" src=`+sourceImg+` alt="Card image cap">
     <div class="card-body">
@@ -54,6 +57,12 @@ if(JSON.stringify(arrayFromJson).includes(document.querySelector("#inputSearch")
 }
 return 0;
 }
+/*-----------fonction condition du filtre de l'array----*/
+function checkSearchString(array){
+var nodeInputValue= document.querySelector("#inputSearch").value; 
+return (array.name.includes(nodeInputValue) || JSON.stringify(array.ingredients).includes(nodeInputValue) || array.description.includes(nodeInputValue))
+}
+
 /*---------- fonction qui recupere le json----------*/
 async function getRecipesFromJson() {
     let url = "http://127.0.0.1:5500/json/recipes.json";
