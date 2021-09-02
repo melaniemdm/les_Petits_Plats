@@ -4,12 +4,13 @@ export async function displayRecipes(){
 var arrayFromJson =  await getRecipesFromJson(); 
 
 var nodeCards = document.querySelector(".cards");
-
+// valeur de l'input search
+var valueSearch = document.querySelector("#inputSearch").value;
 
 //transforme le json en string
-JSON.stringify(arrayFromJson)
+var jsonString = JSON.stringify(arrayFromJson)
 //condition de recherche
-if(JSON.stringify(arrayFromJson).includes(document.querySelector("#inputSearch").value) ){
+if(jsonString.includes(valueSearch) ){
     //filtre de l'array - appel de la condition du filtre
     var filterArray = arrayFromJson.filter(checkSearchString);
     //parcours le tableau
