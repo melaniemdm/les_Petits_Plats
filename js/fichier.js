@@ -7,15 +7,15 @@ var nodeCards = document.querySelector(".cards");
 for (let i = 0; i < arrayFromJson.length; i++){
     //test si la session storage existe
  var noSessionStorage =  false;   
-if(sessionStorage.getItem("stringSearch")){
+if(sessionStorage.getItem("valueSearch")){
  //recupere la clé de la session storage et met la string en minuscule
-  var stringSearch = sessionStorage.getItem("stringSearch").toLowerCase();
+  var valueSearch = sessionStorage.getItem("valueSearch").toLowerCase();
 } else{
     noSessionStorage =  true;   
 }
     
   //condition du search - met en minuscule la recherche et recherche dans une chaine de caractere - transforme l'array des ingredients en chaine de caractere
-if(noSessionStorage ===  true|| arrayFromJson[i].name.toLowerCase().includes(stringSearch)|| stringSearch === "" || arrayFromJson[i].description.toLowerCase().includes(stringSearch) || JSON.stringify(arrayFromJson[i].ingredients).toLowerCase().includes(stringSearch) ) {
+if(noSessionStorage ===  true|| arrayFromJson[i].name.toLowerCase().includes(valueSearch)|| valueSearch === "" || arrayFromJson[i].description.toLowerCase().includes(valueSearch) || JSON.stringify(arrayFromJson[i].ingredients).toLowerCase().includes(valueSearch) ) {
 
     var sourceImg = "https://source.unsplash.com/collection/4466406/480x480?sig="+i+"&client_id=hXJZfm926ewJ7LxaoHzwVxiR7cyTnkdu3Vidn6Ojdew";
 //affichage des ingredients
@@ -107,10 +107,10 @@ function startSearch(event){
        if(textOfSearch.length>=3){
            
       //session storage
-    sessionStorage.setItem("stringSearch", textOfSearch) 
+    sessionStorage.setItem("valueSearch", textOfSearch) 
                  
     }else{
-        sessionStorage.setItem("stringSearch", "")   
+        sessionStorage.setItem("valueSearch", "")   
            }
     //vider la page dans tous les cas
     nodeCards.innerHTML=""; 
