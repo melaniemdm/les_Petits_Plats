@@ -78,6 +78,8 @@ form.search::after {
 
 .card-img-top {
   height: 170px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .card-body {
@@ -147,4 +149,4 @@ form.search::after {
 
 li {
   line-height: 1.2;
-}/*# sourceMappingURL=Petits_Plats_style.css.map */
+}/*# sourceMappingURL=petits_Plats_Style.css.map */
