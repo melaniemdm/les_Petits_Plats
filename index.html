@@ -34,12 +34,17 @@
       <button type="submit"><i id="search" class="fa fa-search"></i></button>
     </form>
      <!--Btn recherche -->
-    <button type="button" class="btn btn-primary btn-lg">Ingredients <i class="fa fa-angle-down"></i></button>
-    <button type="button" class="btn btn-primary btn-lg">Ingredients <i class="fa fa-angle-up"></i></button>
-    <button type="button" class="btn btn-success btn-lg">Appareil <i class="fa fa-angle-up"></i></button>
-    <button type="button" class="btn btn-success btn-lg">Appareil <i class="fa fa-angle-down"></i></button>
-    <button type="button" class="btn btn-danger btn-lg">Ustensiles <i class="fa fa-angle-up"></i></button>
-    <button type="button" class="btn btn-danger btn-lg">Ustensiles <i class="fa fa-angle-down"></i></button>
+    <button type="button" class="btn btn-primary btn-lg" id="displayIngredients" title="Ingredients">Ingredients <i class="fa fa-angle-down"></i></button>
+    <button type="button" class="btn btn-success btn-lg" id="displayAppareil" title="Appareil">Appareil <i class="fa fa-angle-down"></i></button>
+    <button type="button" class="btn btn-danger btn-lg" id="displayUstensiles" title="Ustensiles">Ustensiles <i class="fa fa-angle-down"></i></button>
+
+    <button type="button" class="btn btn-primary btn-lg" id="searchIngredients"> <input type="text" id="nameIngredients" name="searchIngredients" required
+        minlength="4" maxlength="50" size="10" placeholder="Recherche un ingrédient"><i class="fa fa-angle-up"></i></button>
+    <button type="button" class="btn btn-success btn-lg" id="searchAppareil" >  <input type="text" id="nameAppareil" name="searchAppareils" required
+        minlength="4" maxlength="50" size="10" placeholder="Recherche un appareil"> <i class="fa fa-angle-up"></i></button>
+    <button type="button" class="btn btn-danger btn-lg" id="searchUstensiles" >  <input type="text" id="nameUstensiles" name="searchUstensiles" required
+        minlength="4" maxlength="50" size="10" placeholder="Recherche un ustensiles"><i class="fa fa-angle-up"></i></button>
+   
 
     <button type="button" class="btn btn-primary btn-sm">coco <i class="fa fa-times-circle-o"></i></button>
     <button type="button" class="btn btn-success btn-sm">mixeur <i class="fa fa-times-circle-o"></i></button>

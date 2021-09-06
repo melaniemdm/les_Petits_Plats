@@ -62,6 +62,90 @@ form.search::after {
   margin-right: 15px;
 }
 
+#nameIngredients {
+  width: 250px;
+  text-decoration: none;
+  border: none;
+  background-color: #0d6efd;
+  transition-duration: 0.3s;
+}
+
+#searchIngredients:hover input {
+  background-color: #0b5ed7;
+  transition-duration: 0.3s;
+}
+
+#searchIngredients input::-moz-placeholder {
+  color: #0b5ed7;
+  filter: brightness(1.75);
+}
+
+#searchIngredients input:-ms-input-placeholder {
+  color: #0b5ed7;
+  filter: brightness(1.75);
+}
+
+#searchIngredients input::placeholder {
+  color: #0b5ed7;
+  filter: brightness(1.75);
+}
+
+#nameAppareil {
+  width: 250px;
+  text-decoration: none;
+  border: none;
+  background-color: #198754;
+  transition-duration: 0.3s;
+}
+
+#searchAppareil:hover input {
+  background-color: #157347;
+  transition-duration: 0.3s;
+}
+
+#searchAppareil input::-moz-placeholder {
+  color: #157347;
+  filter: brightness(1.75);
+}
+
+#searchAppareil input:-ms-input-placeholder {
+  color: #157347;
+  filter: brightness(1.75);
+}
+
+#searchAppareil input::placeholder {
+  color: #157347;
+  filter: brightness(1.75);
+}
+
+#nameUstensiles {
+  width: 250px;
+  text-decoration: none;
+  border: none;
+  background-color: #dc3545;
+  transition-duration: 0.3s;
+}
+
+#searchUstensiles:hover input {
+  background-color: #bb2d3b;
+  transition-duration: 0.3s;
+}
+
+#searchUstensiles input::-moz-placeholder {
+  color: #bb2d3b;
+  filter: brightness(1.75);
+}
+
+#searchUstensiles input:-ms-input-placeholder {
+  color: #bb2d3b;
+  filter: brightness(1.75);
+}
+
+#searchUstensiles input::placeholder {
+  color: #bb2d3b;
+  filter: brightness(1.75);
+}
+
 /*---------------card recette--------*/
 .cards {
   justify-content: center;
@@ -147,4 +231,4 @@ form.search::after {
 
 li {
   line-height: 1.2;
-}/*# sourceMappingURL=Petits_Plats_style.css.map */
+}/*# sourceMappingURL=petits_Plats_Style.css.map */
