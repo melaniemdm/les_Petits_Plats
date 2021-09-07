@@ -76,16 +76,21 @@ form.search::after {
   transition-duration: 0.3s;
 }
 
+#searchIngredients {
+  position: absolute;
+  top: 168px;
+  left: 10px;
+  z-index: 1;
+  width: 660px;
+}
 #searchIngredients input::-moz-placeholder {
   color: #0b5ed7;
   filter: brightness(1.75);
 }
-
 #searchIngredients input:-ms-input-placeholder {
   color: #0b5ed7;
   filter: brightness(1.75);
 }
-
 #searchIngredients input::placeholder {
   color: #0b5ed7;
   filter: brightness(1.75);
@@ -104,16 +109,21 @@ form.search::after {
   transition-duration: 0.3s;
 }
 
+#searchAppareil {
+  position: absolute;
+  top: 168px;
+  left: 190px;
+  z-index: 1;
+  width: 660px;
+}
 #searchAppareil input::-moz-placeholder {
   color: #157347;
   filter: brightness(1.75);
 }
-
 #searchAppareil input:-ms-input-placeholder {
   color: #157347;
   filter: brightness(1.75);
 }
-
 #searchAppareil input::placeholder {
   color: #157347;
   filter: brightness(1.75);
@@ -132,16 +142,21 @@ form.search::after {
   transition-duration: 0.3s;
 }
 
+#searchUstensiles {
+  position: absolute;
+  top: 168px;
+  left: 480px;
+  z-index: 1;
+  width: 660px;
+}
 #searchUstensiles input::-moz-placeholder {
   color: #bb2d3b;
   filter: brightness(1.75);
 }
-
 #searchUstensiles input:-ms-input-placeholder {
   color: #bb2d3b;
   filter: brightness(1.75);
 }
-
 #searchUstensiles input::placeholder {
   color: #bb2d3b;
   filter: brightness(1.75);
@@ -150,6 +165,10 @@ form.search::after {
 #listIngredients {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+}
+
+#listAppareil, #listIngredients, #listUstensiles {
+  font-size: 16px;
 }
 
 /*---------------card recette--------*/

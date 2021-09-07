@@ -174,18 +174,23 @@ var arrayFromJsonRecipes =  await getRecipesFromJson();
 for(let k = 0; k < arrayFromJsonRecipes.length; k++){
 
     var arrayFromJsonIngredient = arrayFromJsonRecipes[k].ingredients;
+    //boucle pour eviter les doublons des ingredients
     for(let l = 0; l < arrayFromJsonIngredient.length; l++){
         if(nodeListeIngredients.innerHTML.toLowerCase().includes(arrayFromJsonIngredient[l].ingredient.toLowerCase())=== false){ // si baleine inclus Baleine bleue ça return false car sensible à la casse 
       // si le sel est inclus dans la liste des ingredient - oui - on ne fait rien - non on affiche - quand la condition renvoie false
-      console.log(nodeListeIngredients.innerHTML)
-      console.log(arrayFromJsonIngredient[l].ingredient)
+      
          nodeListeIngredients.innerHTML+= `<div>`+arrayFromJsonIngredient[l].ingredient +`</div>`    
         }     
     }
+    //boucle pour eviter les doublons des ustensiles
     var arrayFromJsonUstensils = arrayFromJsonRecipes[k].ustensils;
-    for(let l = 0; l < arrayFromJsonUstensils.length; l++){
+   for(let l = 0; l < arrayFromJsonUstensils.length; l++){
+    if( nodeListeUstensiles.innerHTML.toLowerCase().includes(arrayFromJsonUstensils[l].toLowerCase())=== false){
         nodeListeUstensiles.innerHTML+= `<div>`+arrayFromJsonUstensils[l] +`</div>`  
     }
-    nodeListeAppareil.innerHTML+= `<div>` +arrayFromJsonRecipes[k].appliance +`</div>` 
+    }
+if( nodeListeAppareil.innerHTML.toLowerCase().includes(arrayFromJsonRecipes[k].appliance.toLowerCase())=== false){
+    nodeListeAppareil.innerHTML+= `<div>` +arrayFromJsonRecipes[k].appliance +`</div>`
+}
 }
 
