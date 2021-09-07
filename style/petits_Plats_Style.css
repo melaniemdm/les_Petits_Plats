@@ -58,6 +58,7 @@ form.search::after {
 
 /*---------------Btn--------*/
 .btn {
+  width: 300px;
   margin-left: 15px;
   margin-right: 15px;
 }
@@ -144,6 +145,11 @@ form.search::after {
 #searchUstensiles input::placeholder {
   color: #bb2d3b;
   filter: brightness(1.75);
+}
+
+#listIngredients {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 /*---------------card recette--------*/
