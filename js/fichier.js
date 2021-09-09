@@ -202,24 +202,39 @@ return 0
   var nodeInputSearchIngredient = document.querySelector("#nameIngredients")
   nodeInputSearchIngredient.addEventListener("keyup", updateListIngredients)
   
+  var nodeInputSearchUstensiles = document.querySelector("#nameUstensiles")
+  nodeInputSearchUstensiles.addEventListener("keyup", updateListIngredients)
+
   //mise a jour liste des ingredients
  async function updateListIngredients(){
       var nodeListeIngredientsAdvanced = document.querySelector("#listIngredients")
+      var nodeListeUstensilesAdvanced = document.querySelector("#listUstensiles")
       //vide la liste
       nodeListeIngredientsAdvanced.innerHTML= "";
+      nodeListeUstensilesAdvanced.innerHTML= "";
+      //recuperation du json
       var arrayFromJsonAdvanced =  await getRecipesFromJson();  
        var filterArrayAdvanced = arrayFromJsonAdvanced.filter(checkSearchString);
       
       for (let i = 0; i < filterArrayAdvanced.length; i++){
           //tableau des ingredients d'une recette de la premiere recherche
 var arrayIngredientsOfOneRecipes = filterArrayAdvanced[i].ingredients;
-
+var arrayUstensilesOfOneRecipes = filterArrayAdvanced[i].ustensils;
 for (let j = 0; j < arrayIngredientsOfOneRecipes.length; j++){
 //Condition recherche avancée
 if(arrayIngredientsOfOneRecipes[j].ingredient.toLowerCase().includes(nodeInputSearchIngredient.value.toLowerCase()) && nodeListeIngredientsAdvanced.innerHTML.toLowerCase().includes(arrayIngredientsOfOneRecipes[j].ingredient.toLowerCase())=== false){
     nodeListeIngredientsAdvanced.innerHTML+= `<div>` +arrayIngredientsOfOneRecipes[j].ingredient+`</div>`
-    
+   }
 }
-}
+for (let j = 0; j < arrayUstensilesOfOneRecipes.length; j++){
+    //Condition recherche avancée
+    if(arrayUstensilesOfOneRecipes[j].toLowerCase().includes(nodeInputSearchUstensiles.value.toLowerCase()) && nodeListeUstensilesAdvanced.innerHTML.toLowerCase().includes(arrayUstensilesOfOneRecipes[j].toLowerCase())=== false){
+        nodeListeUstensilesAdvanced.innerHTML+= `<div>` +arrayUstensilesOfOneRecipes[j]+`</div>`
+    }
+    }
+
+
+
+
    }
   }
