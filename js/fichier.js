@@ -11,11 +11,13 @@ var valueSearch = document.querySelector("#inputSearch").value;
 var jsonString = JSON.stringify(arrayFromJson)
 //condition de recherche
 if(jsonString.includes(valueSearch) ){
-    //filtre de l'array - appel de la condition du filtre
+    //filtre de l'array des recettes - appel de la condition du filtre - si true stock la recette
     var filterArray = arrayFromJson.filter(checkSearchString);
+    //appel fonction qui remplit les champs de la recherche avancée
+    filledAdvancedSearchFields(filterArray)
     //parcours le tableau
     for (let i = 0; i < filterArray.length; i++){
-        var sourceImg = "https://source.unsplash.com/collection/4466406/480x480?sig="+i+"&client_id=hXJZfm926ewJ7LxaoHzwVxiR7cyTnkdu3Vidn6Ojdew";
+     var sourceImg = "https://source.unsplash.com/collection/4466406/480x480?sig="+i+"&client_id=hXJZfm926ewJ7LxaoHzwVxiR7cyTnkdu3Vidn6Ojdew";
     //affichage des ingredients
         var timing = filterArray[i].time;
         var ingredients="<ul>";
@@ -58,12 +60,11 @@ if(jsonString.includes(valueSearch) ){
 }
 return 0;
 }
-/*-----------fonction condition du filtre de l'array----*/
-function checkSearchString(array){
+/*-----------fonction qui retourne true ou false si la valeur de la recherche est presente ou pas---*/
+function checkSearchString(element){
 var nodeInputValue= document.querySelector("#inputSearch").value; 
-return (array.name.includes(nodeInputValue) || JSON.stringify(array.ingredients).includes(nodeInputValue) || array.description.includes(nodeInputValue))
+return (element.name.includes(nodeInputValue.toLowerCase()) || JSON.stringify(element.ingredients).includes(nodeInputValue.toLowerCase()) || element.description.includes(nodeInputValue.toLowerCase()))
 }
-
 /*---------- fonction qui recupere le json----------*/
 async function getRecipesFromJson() {
     let url = "http://127.0.0.1:5500/json/recipes.json";
@@ -148,8 +149,8 @@ nodeSearchUstensiles.style.visibility ="hidden";
 function disappear(e){
     //ingredients - appareil - ustensiles
     var targetEventTitle = e.target.title;
-    var disappear = document.querySelector("#display" + targetEventTitle)
-    disappear.style.visibility ="hidden";
+    var nodeDisappear = document.querySelector("#display" + targetEventTitle)
+    nodeDisappear.style.visibility ="hidden";
   
     appear(targetEventTitle)
 }
@@ -159,18 +160,20 @@ function appear(targetEventTitle){
     var disappearSearchIngredients = document.querySelector("#search"+ targetEventTitle )
     disappearSearchIngredients.style.visibility ="visible";
    }
+//remplit les champs de recherche avancée
+async  function filledAdvancedSearchFields(arrayFromJsonRecipes){
 
-   //recherche avancée des ingrédients
-   var nodeListeIngredients = document.querySelector("#listIngredients");
- 
+//recherche avancée des ingrédients
+var nodeListeIngredients = document.querySelector("#listIngredients");
+nodeListeIngredients.innerHTML= ""
 //recherche avancée des appareil
 var nodeListeAppareil = document.querySelector("#listAppareil");
-
+nodeListeAppareil.innerHTML= ""
 //recherche avancée des ustensiles
 var nodeListeUstensiles = document.querySelector("#listUstensiles");
+nodeListeUstensiles.innerHTML= "";
 
-
-var arrayFromJsonRecipes =  await getRecipesFromJson(); 
+//var arrayFromJsonRecipes =  await getRecipesFromJson(); 
 for(let k = 0; k < arrayFromJsonRecipes.length; k++){
 
     var arrayFromJsonIngredient = arrayFromJsonRecipes[k].ingredients;
@@ -178,8 +181,7 @@ for(let k = 0; k < arrayFromJsonRecipes.length; k++){
     for(let l = 0; l < arrayFromJsonIngredient.length; l++){
         if(nodeListeIngredients.innerHTML.toLowerCase().includes(arrayFromJsonIngredient[l].ingredient.toLowerCase())=== false){ // si baleine inclus Baleine bleue ça return false car sensible à la casse 
       // si le sel est inclus dans la liste des ingredient - oui - on ne fait rien - non on affiche - quand la condition renvoie false
-      
-         nodeListeIngredients.innerHTML+= `<div>`+arrayFromJsonIngredient[l].ingredient +`</div>`    
+               nodeListeIngredients.innerHTML+= `<div>`+arrayFromJsonIngredient[l].ingredient +`</div>`    
         }     
     }
     //boucle pour eviter les doublons des ustensiles
@@ -192,5 +194,32 @@ for(let k = 0; k < arrayFromJsonRecipes.length; k++){
 if( nodeListeAppareil.innerHTML.toLowerCase().includes(arrayFromJsonRecipes[k].appliance.toLowerCase())=== false){
     nodeListeAppareil.innerHTML+= `<div>` +arrayFromJsonRecipes[k].appliance +`</div>`
 }
-}
 
+}
+return 0
+  } 
+
+  var nodeInputSearchIngredient = document.querySelector("#nameIngredients")
+  nodeInputSearchIngredient.addEventListener("keyup", updateListIngredients)
+  
+  //mise a jour liste des ingredients
+ async function updateListIngredients(){
+      var nodeListeIngredientsAdvanced = document.querySelector("#listIngredients")
+      //vide la liste
+      nodeListeIngredientsAdvanced.innerHTML= "";
+      var arrayFromJsonAdvanced =  await getRecipesFromJson();  
+       var filterArrayAdvanced = arrayFromJsonAdvanced.filter(checkSearchString);
+      
+      for (let i = 0; i < filterArrayAdvanced.length; i++){
+          //tableau des ingredients d'une recette de la premiere recherche
+var arrayIngredientsOfOneRecipes = filterArrayAdvanced[i].ingredients;
+
+for (let j = 0; j < arrayIngredientsOfOneRecipes.length; j++){
+//Condition recherche avancée
+if(arrayIngredientsOfOneRecipes[j].ingredient.toLowerCase().includes(nodeInputSearchIngredient.value.toLowerCase()) && nodeListeIngredientsAdvanced.innerHTML.toLowerCase().includes(arrayIngredientsOfOneRecipes[j].ingredient.toLowerCase())=== false){
+    nodeListeIngredientsAdvanced.innerHTML+= `<div>` +arrayIngredientsOfOneRecipes[j].ingredient+`</div>`
+    
+}
+}
+   }
+  }
