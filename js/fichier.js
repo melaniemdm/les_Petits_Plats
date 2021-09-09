@@ -5,10 +5,10 @@ var arrayFromJson =  await getRecipesFromJson();
 
 var nodeCards = document.querySelector(".cards");
 // valeur de l'input search
-var valueSearch = document.querySelector("#inputSearch").value;
+var valueSearch = document.querySelector("#inputSearch").value.toLowerCase();
 
 //transforme le json en string
-var jsonString = JSON.stringify(arrayFromJson)
+var jsonString = JSON.stringify(arrayFromJson).toLowerCase()
 //condition de recherche
 if(jsonString.includes(valueSearch) ){
     //filtre de l'array des recettes - appel de la condition du filtre - si true stock la recette
