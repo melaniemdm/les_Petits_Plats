@@ -181,21 +181,24 @@ for(let k = 0; k < arrayFromJsonRecipes.length; k++){
     for(let l = 0; l < arrayFromJsonIngredient.length; l++){
         if(nodeListeIngredients.innerHTML.toLowerCase().includes(arrayFromJsonIngredient[l].ingredient.toLowerCase())=== false){ // si baleine inclus Baleine bleue ça return false car sensible à la casse 
       // si le sel est inclus dans la liste des ingredient - oui - on ne fait rien - non on affiche - quand la condition renvoie false
-               nodeListeIngredients.innerHTML+= `<div>`+arrayFromJsonIngredient[l].ingredient +`</div>`    
+               nodeListeIngredients.innerHTML+= `<div class="ingredient">`+arrayFromJsonIngredient[l].ingredient +`</div>`    
         }     
     }
     //boucle pour eviter les doublons des ustensiles
     var arrayFromJsonUstensils = arrayFromJsonRecipes[k].ustensils;
    for(let l = 0; l < arrayFromJsonUstensils.length; l++){
     if( nodeListeUstensiles.innerHTML.toLowerCase().includes(arrayFromJsonUstensils[l].toLowerCase())=== false){
-        nodeListeUstensiles.innerHTML+= `<div>`+arrayFromJsonUstensils[l] +`</div>`  
+        nodeListeUstensiles.innerHTML+= `<div class="ustensils">`+arrayFromJsonUstensils[l] +`</div>`  
     }
     }
 if( nodeListeAppareil.innerHTML.toLowerCase().includes(arrayFromJsonRecipes[k].appliance.toLowerCase())=== false){
-    nodeListeAppareil.innerHTML+= `<div>` +arrayFromJsonRecipes[k].appliance +`</div>`
+    nodeListeAppareil.innerHTML+= `<div class="appliance">` +arrayFromJsonRecipes[k].appliance +`</div>`
 }
 
 }
+// recupere noeud pour event au click sur le mot
+var nodeIngredientDiv = document.querySelectorAll(".ingredient");
+nodeIngredientDiv.forEach(element=> element.addEventListener("click", getClikedIngredient))
 return 0
   } 
 
@@ -205,13 +208,20 @@ return 0
   var nodeInputSearchUstensiles = document.querySelector("#nameUstensiles")
   nodeInputSearchUstensiles.addEventListener("keyup", updateListIngredients)
 
+  var nodeInputSearchAppareil = document.querySelector("#nameAppareil")
+  nodeInputSearchAppareil.addEventListener("keyup", updateListIngredients)
+
+
   //mise a jour liste des ingredients
  async function updateListIngredients(){
       var nodeListeIngredientsAdvanced = document.querySelector("#listIngredients")
       var nodeListeUstensilesAdvanced = document.querySelector("#listUstensiles")
+      var nodeListeAppareilAdvanced = document.querySelector("#listAppareil")
+      
       //vide la liste
       nodeListeIngredientsAdvanced.innerHTML= "";
       nodeListeUstensilesAdvanced.innerHTML= "";
+      nodeListeAppareilAdvanced.innerHTML= "";
       //recuperation du json
       var arrayFromJsonAdvanced =  await getRecipesFromJson();  
        var filterArrayAdvanced = arrayFromJsonAdvanced.filter(checkSearchString);
@@ -220,21 +230,35 @@ return 0
           //tableau des ingredients d'une recette de la premiere recherche
 var arrayIngredientsOfOneRecipes = filterArrayAdvanced[i].ingredients;
 var arrayUstensilesOfOneRecipes = filterArrayAdvanced[i].ustensils;
+var arrayAppareilOfOneRecipes = filterArrayAdvanced[i].appliance;
+
 for (let j = 0; j < arrayIngredientsOfOneRecipes.length; j++){
 //Condition recherche avancée
 if(arrayIngredientsOfOneRecipes[j].ingredient.toLowerCase().includes(nodeInputSearchIngredient.value.toLowerCase()) && nodeListeIngredientsAdvanced.innerHTML.toLowerCase().includes(arrayIngredientsOfOneRecipes[j].ingredient.toLowerCase())=== false){
-    nodeListeIngredientsAdvanced.innerHTML+= `<div>` +arrayIngredientsOfOneRecipes[j].ingredient+`</div>`
+    nodeListeIngredientsAdvanced.innerHTML+= `<div class="ingredient">` +arrayIngredientsOfOneRecipes[j].ingredient+`</div>`
    }
 }
 for (let j = 0; j < arrayUstensilesOfOneRecipes.length; j++){
     //Condition recherche avancée
     if(arrayUstensilesOfOneRecipes[j].toLowerCase().includes(nodeInputSearchUstensiles.value.toLowerCase()) && nodeListeUstensilesAdvanced.innerHTML.toLowerCase().includes(arrayUstensilesOfOneRecipes[j].toLowerCase())=== false){
-        nodeListeUstensilesAdvanced.innerHTML+= `<div>` +arrayUstensilesOfOneRecipes[j]+`</div>`
+        nodeListeUstensilesAdvanced.innerHTML+= `<div class="ustensils">` +arrayUstensilesOfOneRecipes[j]+`</div>`
     }
     }
-
-
-
-
+    
+        //Condition recherche avancée
+        if(arrayAppareilOfOneRecipes.toLowerCase().includes(nodeInputSearchAppareil.value.toLowerCase()) && nodeListeAppareilAdvanced.innerHTML.toLowerCase().includes(arrayAppareilOfOneRecipes.toLowerCase())=== false){
+            nodeListeAppareilAdvanced.innerHTML+= `<div class="appliance">` +arrayAppareilOfOneRecipes+`</div>`
+        }
    }
+   // recupere noeud pour event au click sur le mot
+var nodeIngredientDiv = document.querySelectorAll(".ingredient");
+nodeIngredientDiv.forEach(element=> element.addEventListener("click", getClikedIngredient))
   }
+
+//recuperer mot cliké
+function getClikedIngredient(e){
+    e.preventDefault();
+    e.stopImmediatePropagation();
+var clikedIngredient = e.target.innerHTML;
+console.log(clikedIngredient)
+}
