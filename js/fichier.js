@@ -198,7 +198,11 @@ if( nodeListeAppareil.innerHTML.toLowerCase().includes(arrayFromJsonRecipes[k].a
 }
 // recupere noeud pour event au click sur le mot
 var nodeIngredientDiv = document.querySelectorAll(".ingredient");
-nodeIngredientDiv.forEach(element=> element.addEventListener("click", getClikedIngredient))
+nodeIngredientDiv.forEach(element=> element.addEventListener("click", getCliked))
+var nodeUstensilsDiv = document.querySelectorAll(".ustensils");
+nodeUstensilsDiv.forEach(element=> element.addEventListener("click", getCliked))
+var nodeAppliancesDiv = document.querySelectorAll(".appliance");
+nodeAppliancesDiv.forEach(element=> element.addEventListener("click", getCliked))
 return 0
   } 
 
@@ -252,13 +256,19 @@ for (let j = 0; j < arrayUstensilesOfOneRecipes.length; j++){
    }
    // recupere noeud pour event au click sur le mot
 var nodeIngredientDiv = document.querySelectorAll(".ingredient");
-nodeIngredientDiv.forEach(element=> element.addEventListener("click", getClikedIngredient))
+nodeIngredientDiv.forEach(element=> element.addEventListener("click", getCliked))
+var nodeUstensilsDiv = document.querySelectorAll(".ustensils");
+nodeUstensilsDiv.forEach(element=> element.addEventListener("click", getCliked))
+var nodeAppliancesDiv = document.querySelectorAll(".appliance");
+nodeAppliancesDiv.forEach(element=> element.addEventListener("click", getCliked))
   }
 
 //recuperer mot cliké
-function getClikedIngredient(e){
+function getCliked(e){
     e.preventDefault();
     e.stopImmediatePropagation();
-var clikedIngredient = e.target.innerHTML;
-console.log(clikedIngredient)
+    //cible de l'evenement cliké - mot cliké
+var clikedWord = e.target.innerHTML;
+console.log(clikedWord)
 }
+
