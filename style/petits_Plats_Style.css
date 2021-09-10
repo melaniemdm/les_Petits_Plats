@@ -256,4 +256,8 @@ form.search::after {
 
 li {
   line-height: 1.2;
+}
+
+#tagIngredient, #tagAppliance, #tagUstensiles {
+  visibility: hidden;
 }/*# sourceMappingURL=petits_Plats_Style.css.map */

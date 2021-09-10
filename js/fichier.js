@@ -103,6 +103,7 @@ return text
 };
 
 var nodeInputSearch = document.querySelector("#inputSearch");
+
 nodeInputSearch.addEventListener("keyup", startSearch);
 
 /*--------recuperation de la valeur de l'input-------*/
@@ -270,5 +271,40 @@ function getCliked(e){
     //cible de l'evenement cliké - mot cliké
 var clikedWord = e.target.innerHTML;
 console.log(clikedWord)
+//rend visible ou invisible le btn de seach ou display
+var nodeSearchIngredientsDisappear = document.querySelector("#searchIngredients")
+nodeSearchIngredientsDisappear.style.visibility="hidden";
+var nodeDisplayIngredientsDisappear = document.querySelector("#displayIngredients")
+nodeDisplayIngredientsDisappear.style.visibility="visible";
+
+var nodeSearchAppareilDisappear = document.querySelector("#searchAppareil")
+nodeSearchAppareilDisappear.style.visibility="hidden";
+var nodeDisplayAppareilDisappear = document.querySelector("#displayAppareil")
+nodeDisplayAppareilDisappear.style.visibility="visible";
+
+var nodeSearchUstensilsDisappear = document.querySelector("#searchUstensiles")
+nodeSearchUstensilsDisappear.style.visibility="hidden";
+var nodeDisplayAUstensilsDisappear = document.querySelector("#displayUstensiles")
+nodeDisplayAUstensilsDisappear.style.visibility="visible";
+
+
+//gestion des tags
+if(e.target.className === "ingredient"  ){
+var nodeTagIngredient = document.querySelector("#tagIngredient")
+nodeTagIngredient.style.visibility="visible";
+nodeTagIngredient.innerHTML+= clikedWord + ` <i class="fa fa-times-circle-o"></i>`
 }
+if(e.target.className === "appliance"  ){
+var nodeTagAppliance = document.querySelector("#tagAppliance")
+nodeTagAppliance.style.visibility="visible";
+nodeTagAppliance.innerHTML+= clikedWord + ` <i class="fa fa-times-circle-o"></i>`
+}
+if(e.target.className === "ustensils"  ){
+var nodeTagUstensils = document.querySelector("#tagUstensiles")
+nodeTagUstensils.style.visibility="visible";
+nodeTagUstensils.innerHTML+= clikedWord + ` <i class="fa fa-times-circle-o"></i>`
+}
+
+}
+
 
