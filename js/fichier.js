@@ -286,25 +286,27 @@ var nodeSearchUstensilsDisappear = document.querySelector("#searchUstensiles")
 nodeSearchUstensilsDisappear.style.visibility="hidden";
 var nodeDisplayAUstensilsDisappear = document.querySelector("#displayUstensiles")
 nodeDisplayAUstensilsDisappear.style.visibility="visible";
-
-
-//gestion des tags
-if(e.target.className === "ingredient"  ){
+//noeuds des tags
 var nodeTagIngredient = document.querySelector("#tagIngredient")
+var nodeTagAppliance = document.querySelector("#tagAppliance")
+var nodeTagUstensils = document.querySelector("#tagUstensiles")
+//condition de gestion des tags
+if((nodeTagIngredient.innerHTML.includes(clikedWord) || nodeTagAppliance.innerHTML.includes(clikedWord) || nodeTagUstensils.innerHTML.includes(clikedWord))=== false){
+    //gestion des tags
+if(e.target.className === "ingredient"  ){
+
 nodeTagIngredient.style.visibility="visible";
 nodeTagIngredient.innerHTML+= clikedWord + ` <i class="fa fa-times-circle-o"></i>`
 }
 if(e.target.className === "appliance"  ){
-var nodeTagAppliance = document.querySelector("#tagAppliance")
+
 nodeTagAppliance.style.visibility="visible";
 nodeTagAppliance.innerHTML+= clikedWord + ` <i class="fa fa-times-circle-o"></i>`
 }
 if(e.target.className === "ustensils"  ){
-var nodeTagUstensils = document.querySelector("#tagUstensiles")
+
 nodeTagUstensils.style.visibility="visible";
 nodeTagUstensils.innerHTML+= clikedWord + ` <i class="fa fa-times-circle-o"></i>`
 }
-
 }
-
-
+}
