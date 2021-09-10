@@ -1,5 +1,6 @@
 //function affiche les recettes
 export async function displayRecipes(){
+    
 // appel de la function from json
 var arrayFromJson =  await getRecipesFromJson(); 
 
@@ -62,8 +63,24 @@ return 0;
 }
 /*-----------fonction qui retourne true ou false si la valeur de la recherche est presente ou pas---*/
 function checkSearchString(element){
-var nodeInputValue= document.querySelector("#inputSearch").value; 
-return (element.name.includes(nodeInputValue.toLowerCase()) || JSON.stringify(element.ingredients).includes(nodeInputValue.toLowerCase()) || element.description.includes(nodeInputValue.toLowerCase()))
+var nodeInputValue= document.querySelector("#inputSearch").value;
+// variable qui stock la reponse la premiere recherche
+var firstSearch =(element.name.includes(nodeInputValue.toLowerCase()) || JSON.stringify(element.ingredients).toLowerCase().includes(nodeInputValue.toLowerCase()) || element.description.includes(nodeInputValue.toLowerCase()));
+//noeuds des tags
+var nodeTagIngredient = document.querySelector("#tagIngredient")
+var nodeTagAppliance = document.querySelector("#tagAppliance")
+var nodeTagUstensils = document.querySelector("#tagUstensiles")
+//consition qi noeud tag est vide
+if (nodeTagIngredient.innerHTML==="" && nodeTagAppliance.innerHTML==="" && nodeTagUstensils.innerHTML===""){
+var secondSearch = true;
+
+}else{
+    
+    var secondSearch = JSON.stringify(element.ingredients).toLowerCase().includes(nodeTagIngredient.innerHTML.split(" <i")[0].toLowerCase())
+}
+
+return (firstSearch && secondSearch) 
+
 }
 /*---------- fonction qui recupere le json----------*/
 async function getRecipesFromJson() {
@@ -309,4 +326,9 @@ nodeTagUstensils.style.visibility="visible";
 nodeTagUstensils.innerHTML+= clikedWord + ` <i class="fa fa-times-circle-o"></i>`
 }
 }
+var nodeCards = document.querySelector(".cards")
+nodeCards.innerHTML="";
+displayRecipes()
 }
+
+
