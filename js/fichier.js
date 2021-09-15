@@ -3,64 +3,83 @@ export async function displayRecipes(){
     
 // appel de la function from json
 var arrayFromJson =  await getRecipesFromJson(); 
-
 var nodeCards = document.querySelector(".cards");
-// valeur de l'input search
-var valueSearch = document.querySelector("#inputSearch").value.toLowerCase();
 
-//transforme le json en string
-var jsonString = JSON.stringify(arrayFromJson).toLowerCase()
 //condition de recherche
-if(jsonString.includes(valueSearch) ){
+if(isResearchInRecipes(arrayFromJson)){
     //filtre de l'array des recettes - appel de la condition du filtre - si true stock la recette
     var filterArray = arrayFromJson.filter(checkSearchString);
     //appel fonction qui remplit les champs de la recherche avancée
     filledAdvancedSearchFields(filterArray)
-    //parcours le tableau
-    for (let i = 0; i < filterArray.length; i++){
-     var sourceImg = "https://source.unsplash.com/collection/4466406/480x480?sig="+i+"&client_id=hXJZfm926ewJ7LxaoHzwVxiR7cyTnkdu3Vidn6Ojdew";
-    //affichage des ingredients
-        var timing = filterArray[i].time;
-        var ingredients="<ul>";
-        for(let j = 0; j<filterArray[i].ingredients.length; j++){
-        ingredients += "<li> <span class='nameIngredient'> "+ filterArray[i].ingredients[j].ingredient + `</span>`    // ajout quantity 
-        if(filterArray[i].ingredients[j].quantity){
-            ingredients  += ":" +" "+  filterArray[i].ingredients[j].quantity  ;
-        }
-        //ajout de unit
-        if( filterArray[i].ingredients[j].unit){
-        ingredients  +=  " "+ filterArray[i].ingredients[j].unit   ;
-        }
-        ingredients  += "</li>"
-    }
-    ingredients += "</ul>" 
-    
-        var instruction=filterArray[i].description;
-       
-    
-        var titreRecette= filterArray[i].name;
-    nodeCards.innerHTML+= `<div class="card">
-    <img class="card-img-top" src=`+sourceImg+` alt="Card image cap">
-    <div class="card-body">
-        <div class="firstPartieCard"> 
-            <div class="recipesTitle"> `+titreRecette+`</div>
-            <div class="timing">  <i class="far fa-clock"> </i> &nbsp; `+timing +` min </div>
-        </div>
-        <div class="secondPartieCard onePartieCard">
-         <div class="ingredients">`+ ingredients +`
-         </div>
-         <div class="instruction">`+troncInstruction(instruction)+`</div>
-        </div> 
-    </div>
-    </div>
-    `
-    }
+    //method qui parcours chaque recette
+    filterArray.forEach(function(recipe){
+     // appel de fonction de construction pour afficher la card d'une recette
+     var recipeCardHtml = buildRecipeCardHtml(recipe);
+    nodeCards.innerHTML+=  recipeCardHtml;
+    }  )
 
 }else{
     nodeCards.innerHTML+= 'Aucune recette ne correspond à votre critère.... vous pouvez chercher "tartes aux pommes", "poissons", etc.'
 }
 return 0;
 }
+// construction de la card d'une recette
+function buildRecipeCardHtml(recipe){
+  //arrondi un nmbre au hasard entre 0 et 1 * 1000
+  var number = Math.floor(Math.random() * 1000) ;
+  var sourceImg = "https://source.unsplash.com/collection/4466406/480x480?sig="+ number +"&client_id=hXJZfm926ewJ7LxaoHzwVxiR7cyTnkdu3Vidn6Ojdew";
+         var timing = recipe.time;
+     //appel de la fonction qui construit l'affichage des ingredients
+  var ingredients =  buildDisplayOfIngredients(recipe)
+
+     var instruction=recipe.description;
+     var titreRecette= recipe.name;
+var cardHtml = `<div class="card">
+<img class="card-img-top" src=`+sourceImg+` alt="Card image cap">
+<div class="card-body">
+    <div class="firstPartieCard"> 
+        <div class="recipesTitle"> `+titreRecette+`</div>
+        <div class="timing">  <i class="far fa-clock"> </i> &nbsp; `+timing +` min </div>
+    </div>
+    <div class="secondPartieCard onePartieCard">
+     <div class="ingredients">`+ ingredients +`
+     </div>
+     <div class="instruction">`+troncInstruction(instruction)+`</div>
+    </div> 
+</div>
+</div>
+`
+return cardHtml
+}
+
+function buildDisplayOfIngredients (recipe){
+    //construction de l'affichage des ingredients   
+    var ingredients="<ul>";
+    for(let j = 0; j<recipe.ingredients.length; j++){
+    ingredients += "<li> <span class='nameIngredient'> "+ recipe.ingredients[j].ingredient + `</span>`    // ajout quantity 
+    if(recipe.ingredients[j].quantity){
+        ingredients  += ":" +" "+  recipe.ingredients[j].quantity  ;
+    }
+    //ajout de unit
+    if( recipe.ingredients[j].unit){
+    ingredients  +=  " "+ recipe.ingredients[j].unit   ;
+    }
+    ingredients  += "</li>"
+}
+ingredients += "</ul>" 
+
+return ingredients
+}
+
+//renvoie true ou false en regardant  - si la valeur cherché est incluse dans les recettes
+function isResearchInRecipes (arrayFromJson){
+    // valeur de l'input search
+var valueSearch = document.querySelector("#inputSearch").value.toLowerCase();
+//transforme le json en string
+var jsonString = JSON.stringify(arrayFromJson).toLowerCase()
+return jsonString.includes(valueSearch);  
+} 
+
 /*-----------fonction qui retourne true ou false si la valeur de la recherche est presente ou pas---*/
 function checkSearchString(element){
 var nodeInputValue= document.querySelector("#inputSearch").value;
