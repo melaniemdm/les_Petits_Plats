@@ -158,17 +158,18 @@ return cardHtml
 //construction de l'affichage des ingredients 
 function buildDisplayOfIngredients (recipe){
     var ingredients="<ul>";
-    for(let j = 0; j<recipe.ingredients.length; j++){
-    ingredients += "<li> <span class='nameIngredient'> "+ recipe.ingredients[j].ingredient + `</span>`    // ajout quantity 
-    if(recipe.ingredients[j].quantity){
-        ingredients  += ":" +" "+  recipe.ingredients[j].quantity  ;
+//boucle
+    recipe.ingredients.forEach(function(ingredient){
+    ingredients += "<li> <span class='nameIngredient'> "+ ingredient.ingredient + `</span>`    // ajout quantity 
+    if(ingredient.quantity){
+        ingredients  += ":" +" "+  ingredient.quantity  ;
     }
     //ajout de unit
-    if( recipe.ingredients[j].unit){
-    ingredients  +=  " "+ recipe.ingredients[j].unit   ;
+    if( ingredient.unit){
+    ingredients  +=  " "+ingredient.unit   ;
     }
     ingredients  += "</li>"
-}
+})
 ingredients += "</ul>" 
 
 return ingredients
