@@ -17,7 +17,8 @@ if(isResearchInRecipes(arrayFromJson)){
      var recipeCardHtml = buildRecipeCardHtml(recipe);
     nodeCards.innerHTML+=  recipeCardHtml;
     }  )
-
+    //appel fonction pour selectionner la card de la recette
+    addEventCardRecipe()
 }else{
     nodeCards.innerHTML+= 'Aucune recette ne correspond à votre critère.... vous pouvez chercher "tartes aux pommes", "poissons", etc.'
 }
@@ -56,13 +57,11 @@ function checkSearchString(recipe){
     var secondSearch = true;
     }else{
        var secondSearch =  true;
-        var listTag = nodeTagIngredient.innerHTML.split(' <i class="fa fa-times-circle-o" aria-hidden="true"></i>')
+        var listTag = nodeTagIngredient.innerHTML.split('<i class="fa fa-times-circle-o" aria-hidden="true"></i>')
+        //supprime le dernier element de la liste - supp ligne vide
         listTag.pop();
-        console.log(listTag)
         listTag.forEach(function(tag){
-            console.log(tag)
     secondSearch = (secondSearch && JSON.stringify(recipe.ingredients).toLowerCase().includes(tag.trim().toLowerCase()))
-    console.log(secondSearch)
 })
         
     }
@@ -138,12 +137,12 @@ function buildRecipeCardHtml(recipe){
   var ingredients =  buildDisplayOfIngredients(recipe)
 
      var instruction=recipe.description;
-     var titreRecette= recipe.name;
-var cardHtml = `<div class="card">
+     var titleRecette= recipe.name;
+var cardHtml = `<div class="card" title ="`+titleRecette +`">
 <img class="card-img-top" src=`+sourceImg+` alt="Card image cap">
 <div class="card-body">
     <div class="firstPartieCard"> 
-        <div class="recipesTitle"> `+titreRecette+`</div>
+        <div class="recipesTitle"> `+titleRecette+`</div>
         <div class="timing">  <i class="far fa-clock"> </i> &nbsp; `+timing +` min </div>
     </div>
     <div class="secondPartieCard onePartieCard">
@@ -383,4 +382,17 @@ var nodeTagAppliance = document.querySelector("#tagAppliance")
 var nodeTagUstensils = document.querySelector("#tagUstensiles")
     return ((nodeTagIngredient.innerHTML.includes(clikedWord) || nodeTagAppliance.innerHTML.includes(clikedWord) || nodeTagUstensils.innerHTML.includes(clikedWord))=== false)
 }
- 
+
+function addEventCardRecipe(){
+  var nodecard = document.querySelectorAll(".card");
+nodecard.forEach(recipe => recipe.addEventListener("click", selectRecipe));
+
+}
+function selectRecipe(e){
+    var node = e.target;
+    while(node.className!= "card"){
+node = node.parentNode;
+    }
+    var titleRecette = node.title;
+    console.log("cette recette est selectionnée :" + titleRecette)
+} 
