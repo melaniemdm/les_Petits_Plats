@@ -43,10 +43,10 @@ return jsonString.includes(valueSearch);
 } 
 
 /*-----------fonction qui retourne true ou false si la valeur de la recherche est presente ou pas---*/
-function checkSearchString(element){
+function checkSearchString(recipe){
     var nodeInputValue= document.querySelector("#inputSearch").value;
     // variable qui stock la reponse la premiere recherche
-    var firstSearch = (element.name.includes(nodeInputValue.toLowerCase()) || JSON.stringify(element.ingredients).toLowerCase().includes(nodeInputValue.toLowerCase()) || element.description.includes(nodeInputValue.toLowerCase()));
+    var firstSearch = (recipe.name.includes(nodeInputValue.toLowerCase()) || JSON.stringify(recipe.ingredients).toLowerCase().includes(nodeInputValue.toLowerCase()) || recipe.description.includes(nodeInputValue.toLowerCase()));
     //noeuds des tags
     var nodeTagIngredient = document.querySelector("#tagIngredient")
     var nodeTagAppliance = document.querySelector("#tagAppliance")
@@ -55,7 +55,16 @@ function checkSearchString(element){
     if (nodeTagIngredient.innerHTML==="" && nodeTagAppliance.innerHTML==="" && nodeTagUstensils.innerHTML===""){
     var secondSearch = true;
     }else{
-        var secondSearch = JSON.stringify(element.ingredients).toLowerCase().includes(nodeTagIngredient.innerHTML.split(" <i")[0].toLowerCase())
+       var secondSearch =  true;
+        var listTag = nodeTagIngredient.innerHTML.split(' <i class="fa fa-times-circle-o" aria-hidden="true"></i>')
+        listTag.pop();
+        console.log(listTag)
+        listTag.forEach(function(tag){
+            console.log(tag)
+    secondSearch = (secondSearch && JSON.stringify(recipe.ingredients).toLowerCase().includes(tag.trim().toLowerCase()))
+    console.log(secondSearch)
+})
+        
     }
     return (firstSearch && secondSearch) 
     }
@@ -226,8 +235,9 @@ function disappear(e){
     //ingredients - appareil - ustensiles
     var targetEventTitle = e.target.title;
     var nodeDisappear = document.querySelector("#display" + targetEventTitle)
-    nodeDisappear.style.visibility ="hidden";
-  
+    if(nodeDisappear){
+    nodeDisappear.style.visibility ="hidden";    
+    }
     appear(targetEventTitle)
 }
 //fonction qui fait apparaitre la recherche avancée
@@ -322,7 +332,7 @@ var nodeTagIngredient = document.querySelector("#tagIngredient")
 var nodeTagAppliance = document.querySelector("#tagAppliance")
 var nodeTagUstensils = document.querySelector("#tagUstensiles")
 //condition de gestion des tags
-if(isClickedWordInList(clikedWord)){
+if(isClickedWordNotInList(clikedWord)){
     //gestion des tags
 if(e.target.className === "ingredient"  ){
 
@@ -366,10 +376,11 @@ function closeListUstensils(){
     nodeDisplayAUstensilsDisappear.style.visibility="visible";
 }
 //regarde si le mot cliké a deja été ajouté dans la liste des tags
-function isClickedWordInList( clikedWord){
+function isClickedWordNotInList( clikedWord){
     //noeuds des tags
 var nodeTagIngredient = document.querySelector("#tagIngredient")
 var nodeTagAppliance = document.querySelector("#tagAppliance")
 var nodeTagUstensils = document.querySelector("#tagUstensiles")
     return ((nodeTagIngredient.innerHTML.includes(clikedWord) || nodeTagAppliance.innerHTML.includes(clikedWord) || nodeTagUstensils.innerHTML.includes(clikedWord))=== false)
 }
+ 
