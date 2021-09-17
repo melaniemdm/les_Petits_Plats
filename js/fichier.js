@@ -11,6 +11,8 @@ if(isResearchInRecipes(arrayFromJson)){
     var filterArray = arrayFromJson.filter(checkSearchString);
     //appel fonction qui remplit les champs de la recherche avancée
     filledAdvancedSearchFields(filterArray)
+    //appel function qui ajout l'event pour fermer le tag
+    addEventCloseTag()
     //method qui parcours chaque recette
     filterArray.forEach(function(recipe){
      // appel de fonction de construction pour afficher la card d'une recette
@@ -57,25 +59,51 @@ function checkSearchString(recipe){
     var secondSearch = true;
     }else{
        var secondSearch =  true;
-        var listTagIngredient = nodeTagIngredient.innerHTML.split('<i class="fa fa-times-circle-o" aria-hidden="true"></i>')
-        var listTagAppliance = nodeTagAppliance.innerHTML.split('<i class="fa fa-times-circle-o" aria-hidden="true"></i>')
-        var listTagUstensils = nodeTagUstensils.innerHTML.split('<i class="fa fa-times-circle-o" aria-hidden="true"></i>')
+       var iconCloseTag = `<i class="fa fa-times-circle-o" aria-hidden="true"></i>`;
+
+        var listTagIngredient = nodeTagIngredient.innerHTML.split(iconCloseTag)
+              var listTagAppliance = nodeTagAppliance.innerHTML.split(iconCloseTag)
+        var listTagUstensils = nodeTagUstensils.innerHTML.split(iconCloseTag)
          //supprime le dernier element de la liste - supp ligne vide
         listTagIngredient.pop();
-        listTagIngredient.forEach(function(tag){
-    secondSearch = (secondSearch && JSON.stringify(recipe.ingredients).toLowerCase().includes(tag.trim().toLowerCase()))
+     
+listTagIngredient.forEach(function(tag){
+            //appel de la fonction qui recupere l'ingredient
+        tag = getIngredient(tag)
+        secondSearch = (secondSearch && JSON.stringify(recipe.ingredients).toLowerCase().includes(tag.trim().toLowerCase()))
 })
 listTagAppliance.pop();
 listTagAppliance.forEach(function(tag){
+    tag = getAppliance(tag);
     secondSearch = (secondSearch && JSON.stringify(recipe.appliance).toLowerCase().includes(tag.trim().toLowerCase()))
 })
 listTagUstensils.pop();
 listTagUstensils.forEach(function(tag){
+    tag = getUstensil(tag);
     secondSearch = (secondSearch && JSON.stringify(recipe.ustensils).toLowerCase().includes(tag.trim().toLowerCase()))
 })
     }
     return (firstSearch && secondSearch) 
     }
+//function qui recupere l'ingredient
+function getAppliance(tag){
+return splitTagSearchAvanced (tag)
+}
+//function qui recupere l'ingredient
+function getIngredient(tag){
+    return splitTagSearchAvanced (tag)
+    }
+//function qui recupere l'ingredient
+function getUstensil(tag){
+    return splitTagSearchAvanced (tag)
+    }
+
+//fonction qui split le code qui mermet de recuperer l'ingredient  ou l'ustensil ou l'appareil
+    function splitTagSearchAvanced (tag){
+ tag = tag.split('<div class="cardTag">')[1] 
+ tag = tag.split('<div class="close">')[0]  
+ return tag;
+    }    
 
     //remplit les champs de recherche avancée
 async  function filledAdvancedSearchFields(arrayFromJson){
@@ -346,17 +374,17 @@ if(isClickedWordNotInList(clikedWord)){
 if(e.target.className === "ingredient"  ){
 
 nodeTagIngredient.style.visibility="visible";
-nodeTagIngredient.innerHTML+= clikedWord + ` <i class="fa fa-times-circle-o"></i>`
+nodeTagIngredient.innerHTML+= `<div class="cardTag">` + clikedWord + `<div class="close"> <i class="fa fa-times-circle-o"></i></div></div>`
 }
 if(e.target.className === "appliance"  ){
 
 nodeTagAppliance.style.visibility="visible";
-nodeTagAppliance.innerHTML+= clikedWord + ` <i class="fa fa-times-circle-o"></i>`
+nodeTagAppliance.innerHTML+= `<div class="cardTag">` + clikedWord + `<div class="close"> <i class="fa fa-times-circle-o"></i></div></div>`
 }
 if(e.target.className === "ustensils"  ){
 
 nodeTagUstensils.style.visibility="visible";
-nodeTagUstensils.innerHTML+= clikedWord + ` <i class="fa fa-times-circle-o"></i>`
+nodeTagUstensils.innerHTML+= `<div class="cardTag">` + clikedWord + `<div class="close"> <i class="fa fa-times-circle-o"></i></div></div>`
 }
 }
 var nodeCards = document.querySelector(".cards")
@@ -405,4 +433,18 @@ node = node.parentNode;
     //affiche ler nom de la recette selectionnée
     var titleRecette = node.title;
     console.log("cette recette est selectionnée :" + titleRecette)
-} 
+}
+
+//close du tag
+function addEventCloseTag(){
+var nodeClose = document.querySelectorAll(".close");
+nodeClose.forEach(icon =>icon.addEventListener("click", closeTag));
+}
+function closeTag(e){
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    var nodeCloseTag = e.target.parentNode.parentNode;
+    nodeCloseTag.parentNode.removeChild(nodeCloseTag)
+    //permet de recharger la page
+    displayRecipes()
+}

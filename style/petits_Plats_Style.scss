@@ -220,4 +220,10 @@ padding:0;
 
   #tagIngredient, #tagAppliance, #tagUstensiles{
     visibility: hidden;
+   
   }
+.cardTag{
+  display: flex;
+  justify-content: space-around;
+}
+  

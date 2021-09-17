@@ -260,4 +260,9 @@ li {
 
 #tagIngredient, #tagAppliance, #tagUstensiles {
   visibility: hidden;
+}
+
+.cardTag {
+  display: flex;
+  justify-content: space-around;
 }/*# sourceMappingURL=petits_Plats_Style.css.map */
