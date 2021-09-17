@@ -57,13 +57,22 @@ function checkSearchString(recipe){
     var secondSearch = true;
     }else{
        var secondSearch =  true;
-        var listTag = nodeTagIngredient.innerHTML.split('<i class="fa fa-times-circle-o" aria-hidden="true"></i>')
-        //supprime le dernier element de la liste - supp ligne vide
-        listTag.pop();
-        listTag.forEach(function(tag){
+        var listTagIngredient = nodeTagIngredient.innerHTML.split('<i class="fa fa-times-circle-o" aria-hidden="true"></i>')
+        var listTagAppliance = nodeTagAppliance.innerHTML.split('<i class="fa fa-times-circle-o" aria-hidden="true"></i>')
+        var listTagUstensils = nodeTagUstensils.innerHTML.split('<i class="fa fa-times-circle-o" aria-hidden="true"></i>')
+         //supprime le dernier element de la liste - supp ligne vide
+        listTagIngredient.pop();
+        listTagIngredient.forEach(function(tag){
     secondSearch = (secondSearch && JSON.stringify(recipe.ingredients).toLowerCase().includes(tag.trim().toLowerCase()))
 })
-        
+listTagAppliance.pop();
+listTagAppliance.forEach(function(tag){
+    secondSearch = (secondSearch && JSON.stringify(recipe.appliance).toLowerCase().includes(tag.trim().toLowerCase()))
+})
+listTagUstensils.pop();
+listTagUstensils.forEach(function(tag){
+    secondSearch = (secondSearch && JSON.stringify(recipe.ustensils).toLowerCase().includes(tag.trim().toLowerCase()))
+})
     }
     return (firstSearch && secondSearch) 
     }
@@ -387,13 +396,13 @@ var nodeTagUstensils = document.querySelector("#tagUstensiles")
 function addEventCardRecipe(){
   var nodecard = document.querySelectorAll(".card");
 nodecard.forEach(recipe => recipe.addEventListener("click", selectRecipe));
-
 }
 function selectRecipe(e){
     var node = e.target;
     while(node.className!= "card"){
 node = node.parentNode;
     }
+    //affiche ler nom de la recette selectionnée
     var titleRecette = node.title;
     console.log("cette recette est selectionnée :" + titleRecette)
 } 
