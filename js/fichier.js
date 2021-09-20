@@ -66,20 +66,21 @@ function checkSearchString(recipe){
         var listTagUstensils = nodeTagUstensils.innerHTML.split(iconCloseTag)
          //supprime le dernier element de la liste - supp ligne vide
         listTagIngredient.pop();
- for(let i; i< listTagIngredient.length ;i++){
+ for(let i=0; i< listTagIngredient.length ;i++){
             //appel de la fonction qui recupere l'ingredient
-        tag = getIngredient(tag)
-        secondSearch = (secondSearch && JSON.stringify(recipe.listTagIngredient[i]).toLowerCase().includes(tag.trim().toLowerCase()))
+      let tag = getIngredient(listTagIngredient[i])
+        
+        secondSearch = (secondSearch && JSON.stringify(recipe.ingredients).toLowerCase().includes(tag.trim().toLowerCase()))
 }
 listTagAppliance.pop();
-for(let i; i<listTagAppliance.length ;i++){
-    tag = getAppliance(tag);
-    secondSearch = (secondSearch && JSON.stringify(recipe.listTagAppliance[i]).toLowerCase().includes(tag.trim().toLowerCase()))
+for(let i=0; i<listTagAppliance.length ;i++){
+  let tag = getAppliance(listTagAppliance[i]);
+    secondSearch = (secondSearch && JSON.stringify(recipe.appliance).toLowerCase().includes(tag.trim().toLowerCase()))
 }
 listTagUstensils.pop();
-for(let i; i<listTagUstensils.length ;i++){
-    tag = getUstensil(tag);
-    secondSearch = (secondSearch && JSON.stringify(recipe.listTagUstensils[i]).toLowerCase().includes(tag.trim().toLowerCase()))
+for(let i=0; i<listTagUstensils.length ;i++){
+   let tag = getUstensil(listTagUstensils[i]);
+    secondSearch = (secondSearch && JSON.stringify(recipe.ustensils).toLowerCase().includes(tag.trim().toLowerCase()))
 }
     }
     return (firstSearch && secondSearch) 
