@@ -33,17 +33,26 @@
       <input type="text" placeholder="Search.." name="search" id="inputSearch">
       <button type="submit"><i id="search" class="fa fa-search"></i></button>
     </form>
-     <!--Btn recherche -->
-    <button type="button" class="btn btn-primary btn-lg">Ingredients <i class="fa fa-angle-down"></i></button>
-    <button type="button" class="btn btn-primary btn-lg">Ingredients <i class="fa fa-angle-up"></i></button>
-    <button type="button" class="btn btn-success btn-lg">Appareil <i class="fa fa-angle-up"></i></button>
-    <button type="button" class="btn btn-success btn-lg">Appareil <i class="fa fa-angle-down"></i></button>
-    <button type="button" class="btn btn-danger btn-lg">Ustensiles <i class="fa fa-angle-up"></i></button>
-    <button type="button" class="btn btn-danger btn-lg">Ustensiles <i class="fa fa-angle-down"></i></button>
+       <!--Btn recherche -->
+    <button type="button" class="btn btn-primary btn-lg" id="displayIngredients" title="Ingredients">Ingredients <i class="fa fa-angle-down"></i></button>
+    <button type="button" class="btn btn-success btn-lg" id="displayAppareil" title="Appareil">Appareil <i class="fa fa-angle-down"></i></button>
+    <button type="button" class="btn btn-danger btn-lg" id="displayUstensiles" title="Ustensiles">Ustensiles <i class="fa fa-angle-down"></i></button>
 
-    <button type="button" class="btn btn-primary btn-sm">coco <i class="fa fa-times-circle-o"></i></button>
-    <button type="button" class="btn btn-success btn-sm">mixeur <i class="fa fa-times-circle-o"></i></button>
-    <button type="button" class="btn btn-danger btn-sm">fouet <i class="fa fa-times-circle-o"></i></button>
+    <button type="button" class="btn btn-primary btn-lg" id="searchIngredients"> <input type="text" id="nameIngredients" name="searchIngredients" required
+        minlength="4" maxlength="50" size="10" placeholder="Recherche un ingrédient"><i class="fa fa-angle-up"></i>
+        <div id="listIngredients"> </div></button>
+        <button type="button" class="btn btn-success btn-lg" id="searchAppareil" title="Appareil"><input type="text" id="nameAppareil" name="searchAppareil" required
+            minlength="4" maxlength="50" size="10" placeholder="Recherche un ingrédient"><i class="fa fa-angle-up"></i>
+            <div id="listAppareil"> </div></button>
+
+    <button type="button" class="btn btn-danger btn-lg" id="searchUstensiles" >  <input type="text" id="nameUstensiles" name="searchUstensiles" required
+        minlength="4" maxlength="50" size="10" placeholder="Recherche un ustensiles"><i class="fa fa-angle-up"></i>
+        <div id="listUstensiles"> </div></button>
+   
+
+    <button type="button" class="btn btn-primary btn-sm" id="tagIngredient"></button>
+    <button type="button" class="btn btn-success btn-sm" id="tagAppliance" ></button>
+    <button type="button" class="btn btn-danger btn-sm" id="tagUstensiles"></button>
   
     <div class="cards row row-cols-12 "></div>
     
