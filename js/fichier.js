@@ -14,11 +14,11 @@ if(isResearchInRecipes(arrayFromJson)){
     //appel function qui ajout l'event pour fermer le tag
     addEventCloseTag()
     //method qui parcours chaque recette
-    filterArray.forEach(function(recipe){
-     // appel de fonction de construction pour afficher la card d'une recette
-     var recipeCardHtml = buildRecipeCardHtml(recipe);
+    for(let i = 0; i < filterArray.length;i++ ){
+       // appel de fonction de construction pour afficher la card d'une recette
+     var recipeCardHtml = buildRecipeCardHtml(filterArray[i]);
     nodeCards.innerHTML+=  recipeCardHtml;
-    }  )
+    }  
     //appel fonction pour selectionner la card de la recette
     addEventCardRecipe()
 }else{
@@ -66,22 +66,21 @@ function checkSearchString(recipe){
         var listTagUstensils = nodeTagUstensils.innerHTML.split(iconCloseTag)
          //supprime le dernier element de la liste - supp ligne vide
         listTagIngredient.pop();
-     
-listTagIngredient.forEach(function(tag){
+ for(let i; i< listTagIngredient.length ;i++){
             //appel de la fonction qui recupere l'ingredient
         tag = getIngredient(tag)
-        secondSearch = (secondSearch && JSON.stringify(recipe.ingredients).toLowerCase().includes(tag.trim().toLowerCase()))
-})
+        secondSearch = (secondSearch && JSON.stringify(recipe.listTagIngredient[i]).toLowerCase().includes(tag.trim().toLowerCase()))
+}
 listTagAppliance.pop();
-listTagAppliance.forEach(function(tag){
+for(let i; i<listTagAppliance.length ;i++){
     tag = getAppliance(tag);
-    secondSearch = (secondSearch && JSON.stringify(recipe.appliance).toLowerCase().includes(tag.trim().toLowerCase()))
-})
+    secondSearch = (secondSearch && JSON.stringify(recipe.listTagAppliance[i]).toLowerCase().includes(tag.trim().toLowerCase()))
+}
 listTagUstensils.pop();
-listTagUstensils.forEach(function(tag){
+for(let i; i<listTagUstensils.length ;i++){
     tag = getUstensil(tag);
-    secondSearch = (secondSearch && JSON.stringify(recipe.ustensils).toLowerCase().includes(tag.trim().toLowerCase()))
-})
+    secondSearch = (secondSearch && JSON.stringify(recipe.listTagUstensils[i]).toLowerCase().includes(tag.trim().toLowerCase()))
+}
     }
     return (firstSearch && secondSearch) 
     }
@@ -118,48 +117,54 @@ async  function filledAdvancedSearchFields(arrayFromJson){
     var nodeListeUstensiles = document.querySelector("#listUstensiles");
     nodeListeUstensiles.innerHTML= "";
     
-
-
-    arrayFromJson.forEach(function(recipe){
-
-        var arrayIngredientsForOneRecipe = recipe.ingredients;
+for(let i=0; i< arrayFromJson.length ;i++){
+ 
+        var arrayIngredientsForOneRecipe = arrayFromJson[i].ingredients;
         //boucle pour eviter les doublons des ingredients
-        arrayIngredientsForOneRecipe.forEach(function(ingredient){
-            //condition qui test si l'ingredient n'existe pas deja
-            if(isIngredientNotInNode(nodeListeIngredients, ingredient)){ 
+        for(let j =0; j< arrayIngredientsForOneRecipe.length;j++){
+                    //condition qui test si l'ingredient n'existe pas deja
+            if(isIngredientNotInNode(nodeListeIngredients, arrayIngredientsForOneRecipe[j])){ 
               //recupere la valeur de l'input pour afficher que les ingredients concernés
-                if(ingredient.ingredient.toLowerCase().includes(document.querySelector("#nameIngredients").value.toLowerCase())){
-                    nodeListeIngredients.innerHTML+= `<div class="ingredient">`+ingredient.ingredient +`</div>`    
+                if(arrayIngredientsForOneRecipe[j].ingredient.toLowerCase().includes(document.querySelector("#nameIngredients").value.toLowerCase())){
+                    nodeListeIngredients.innerHTML+= `<div class="ingredient">`+arrayIngredientsForOneRecipe[j].ingredient +`</div>`    
                 }
            }     
-        })
+        }
         
-        var arrayFromJsonUstensils = recipe.ustensils;
-        arrayFromJsonUstensils.forEach(function(ustensils){
-      //condition qui fait appel a la function qui test si l'ustensils est dans la liste
-        if(isInustensilsNotInNode(nodeListeUstensiles, ustensils)){
+        var arrayFromJsonUstensils = arrayFromJson[i].ustensils;
+         //boucle pour eviter les doublons
+        for(let k =0; k<arrayFromJsonUstensils.length;k++){
+      //condition qui fait appel a la function qui test si l'ustensil est dans la liste
+        if(isInustensilsNotInNode(nodeListeUstensiles, arrayFromJsonUstensils[k])){
          //recupere la valeur de l'input pour afficher que les ustensiles concernés   
-            if(ustensils.toLowerCase().includes(document.querySelector("#nameUstensiles").value.toLowerCase())){
-            nodeListeUstensiles.innerHTML+= `<div class="ustensils">`+ustensils +`</div>`  
+            if(arrayFromJsonUstensils[k].toLowerCase().includes(document.querySelector("#nameUstensiles").value.toLowerCase())){
+            nodeListeUstensiles.innerHTML+= `<div class="ustensils">`+arrayFromJsonUstensils[k] +`</div>`  
         }}
-         })
+         }
    
 //condition qui fait appel a la function qui test si l'appareil est dans la liste
-    if( isApplianceNotInNode(nodeListeAppareil, recipe.appliance)){
-        if(recipe.appliance.toLowerCase().includes(document.querySelector("#nameAppareil").value.toLowerCase())){
-        nodeListeAppareil.innerHTML+= `<div class="appliance">` + recipe.appliance +`</div>`
+    if( isApplianceNotInNode(nodeListeAppareil, arrayFromJson[i].appliance)){
+        if(arrayFromJson[i].appliance.toLowerCase().includes(document.querySelector("#nameAppareil").value.toLowerCase())){
+        nodeListeAppareil.innerHTML+= `<div class="appliance">` + arrayFromJson[i].appliance +`</div>`
     }}
   
 
     
-})
+}
     // recupere noeud pour event au click sur le mot
     var nodeIngredientDiv = document.querySelectorAll(".ingredient");
-    nodeIngredientDiv.forEach(element=> element.addEventListener("click", getCliked))
-    var nodeUstensilsDiv = document.querySelectorAll(".ustensils");
-    nodeUstensilsDiv.forEach(element=> element.addEventListener("click", getCliked))
+    for (let i=0; i< nodeIngredientDiv.length;i++){
+        nodeIngredientDiv[i].addEventListener("click", getCliked)
+    }
+     var nodeUstensilsDiv = document.querySelectorAll(".ustensils");
+     for (let i=0; i< nodeUstensilsDiv.length;i++){
+        nodeUstensilsDiv[i].addEventListener("click", getCliked)
+     }
     var nodeAppliancesDiv = document.querySelectorAll(".appliance");
-    nodeAppliancesDiv.forEach(element=> element.addEventListener("click", getCliked))
+    for (let i=0; i< nodeAppliancesDiv.length;i++){
+        nodeAppliancesDiv[i].addEventListener("click", getCliked)
+     }
+    
     return 0
       } 
 // function qui demande si l'ingredient existe deja
@@ -208,17 +213,18 @@ return cardHtml
 function buildDisplayOfIngredients (recipe){
     var ingredients="<ul>";
 //boucle
-    recipe.ingredients.forEach(function(ingredient){
-    ingredients += "<li> <span class='nameIngredient'> "+ ingredient.ingredient + `</span>`    // ajout quantity 
-    if(ingredient.quantity){
-        ingredients  += ":" +" "+  ingredient.quantity  ;
+for (let i=0;i <recipe.ingredients.length;i++){
+   
+    ingredients += "<li> <span class='nameIngredient'> "+ recipe.ingredients[i].ingredient + `</span>`    // ajout quantity 
+    if(recipe.ingredients[i].quantity){
+        ingredients  += ":" +" "+  recipe.ingredients[i].quantity  ;
     }
     //ajout de unit
-    if( ingredient.unit){
-    ingredients  +=  " "+ingredient.unit   ;
+    if( recipe.ingredients[i].unit){
+    ingredients  +=  " "+recipe.ingredients[i].unit   ;
     }
     ingredients  += "</li>"
-})
+}
 ingredients += "</ul>" 
 
 return ingredients
@@ -322,11 +328,20 @@ function appear(targetEventTitle){
  function setEventOnAdvancedSearchLists(){
 // recupere noeud pour event au click sur le mot
 var nodeIngredientDiv = document.querySelectorAll(".ingredient");
-nodeIngredientDiv.forEach(element=> element.addEventListener("click", getCliked))
+for (let i =0;i< nodeIngredientDiv.length;i++){
+    nodeIngredientDiv[i].addEventListener("click", getCliked)
+}
+
 var nodeUstensilsDiv = document.querySelectorAll(".ustensils");
-nodeUstensilsDiv.forEach(element=> element.addEventListener("click", getCliked))
+for (let i =0;i< nodeUstensilsDiv.length;i++){
+    nodeUstensilsDiv[i].addEventListener("click", getCliked)
+}
+
 var nodeAppliancesDiv = document.querySelectorAll(".appliance");
-nodeAppliancesDiv.forEach(element=> element.addEventListener("click", getCliked))
+for (let i =0;i< nodeAppliancesDiv.length;i++){
+    nodeAppliancesDiv[i].addEventListener("click", getCliked)
+}
+
   }
 
 // function qui demande si l'ingredient existe deja de la recherche avancée
@@ -413,7 +428,9 @@ var nodeTagUstensils = document.querySelector("#tagUstensiles")
 
 function addEventCardRecipe(){
   var nodecard = document.querySelectorAll(".card");
-nodecard.forEach(recipe => recipe.addEventListener("click", selectRecipe));
+  for (let i=0; i<nodecard.length;i++ ){
+    nodecard[i].addEventListener("click", selectRecipe)
+  }
 }
 function selectRecipe(e){
     var node = e.target;
@@ -428,7 +445,10 @@ node = node.parentNode;
 //close du tag
 function addEventCloseTag(){
 var nodeClose = document.querySelectorAll(".close");
-nodeClose.forEach(icon =>icon.addEventListener("click", closeTag));
+for(let i =0 ; i< nodeClose.length; i++){
+    nodeClose[i].addEventListener("click", closeTag)
+}
+
 }
 function closeTag(e){
     e.preventDefault();
