@@ -3,62 +3,23 @@ export async function displayRecipes(){
 // appel de la function from json
 var arrayFromJson =  await getRecipesFromJson(); 
 
-var nodeCards = document.querySelector(".cards");
 for (let i = 0; i < arrayFromJson.length; i++){
-    //test si la session storage existe
- var noSessionStorage =  false;   
-if(sessionStorage.getItem("valueSearch")){
- //recupere la clé de la session storage et met la string en minuscule
-  var valueSearch = sessionStorage.getItem("valueSearch").toLowerCase();
-} else{
-    noSessionStorage =  true;   
-}
-    
-  //condition du search - met en minuscule la recherche et recherche dans une chaine de caractere - transforme l'array des ingredients en chaine de caractere
-if(noSessionStorage ===  true|| arrayFromJson[i].name.toLowerCase().includes(valueSearch)|| valueSearch === "" || arrayFromJson[i].description.toLowerCase().includes(valueSearch) || JSON.stringify(arrayFromJson[i].ingredients).toLowerCase().includes(valueSearch) ) {
-
-    var sourceImg = "https://source.unsplash.com/collection/4466406/480x480?sig="+i+"&client_id=hXJZfm926ewJ7LxaoHzwVxiR7cyTnkdu3Vidn6Ojdew";
-//affichage des ingredients
-    var timing = arrayFromJson[i].time;
-    var ingredients="<ul>";
-    for(let j = 0; j<arrayFromJson[i].ingredients.length; j++){
-    ingredients += "<li> <span class='nameIngredient'> "+ arrayFromJson[i].ingredients[j].ingredient + `</span>`    // ajout quantity 
-    if(arrayFromJson[i].ingredients[j].quantity){
-        ingredients  += ":" +" "+  arrayFromJson[i].ingredients[j].quantity  ;
-    }
-    //ajout de unit
-    if( arrayFromJson[i].ingredients[j].unit){
-    ingredients  +=  " "+ arrayFromJson[i].ingredients[j].unit   ;
-    }
-    ingredients  += "</li>"
-}
-ingredients += "</ul>" 
-
-    var instruction=arrayFromJson[i].description;
-   
-
-    var titreRecette= arrayFromJson[i].name;
-nodeCards.innerHTML+= `<div class="card">
-<img class="card-img-top" src=`+sourceImg+` alt="Card image cap">
-<div class="card-body">
-    <div class="firstPartieCard"> 
-        <div class="recipesTitle"> `+titreRecette+`</div>
-        <div class="timing">  <i class="far fa-clock"> </i> &nbsp; `+timing +` min </div>
-    </div>
-    <div class="secondPartieCard onePartieCard">
-     <div class="ingredients">`+ ingredients +`
-     </div>
-     <div class="instruction">`+troncInstruction(instruction)+`</div>
-    </div> 
-</div>
-</div>
-`
+  var valueSearch = document.querySelector("#inputSearch").value.toLowerCase();
+  var recipe = arrayFromJson[i];
+     //condition du search - met en minuscule la recherche et recherche dans une chaine de caractere - transforme l'array des ingredients en chaine de caractere
+if(isSearchInRecipe(recipe, valueSearch)) {
+    buildCard(recipe)
 }}
+var nodeCards = document.querySelector(".cards");
 //affichage du message d'erreur
 if( nodeCards.innerHTML==="" ){
-nodeCards.innerHTML+= 'Aucune recette ne correspond à votre critère.... vous pouvez chercher "tartes aux pommes", "poissons", etc.'
+    nodeCards.innerHTML+= 'Aucune recette ne correspond à votre critère.... vous pouvez chercher "tartes aux pommes", "poissons", etc.'
 }
 return 0;
+}
+//fonction qui verifie si la recherche est dans la recette
+function isSearchInRecipe(recipe, valueSearch){
+    return (recipe.name.toLowerCase().includes(valueSearch)|| valueSearch === "" || recipe.description.toLowerCase().includes(valueSearch) || JSON.stringify(recipe.ingredients).toLowerCase().includes(valueSearch))
 }
 /*---------- fonction qui recupere le json----------*/
 async function getRecipesFromJson() {
@@ -86,7 +47,47 @@ nodeCards.innerHTML="";
 displayRecipes()
 }
 }
-
+function buildCard(recipe){
+    var nodeCards = document.querySelector(".cards");
+     //arrondi un nmbre au hasard entre 0 et 1 * 1000
+     var number = Math.floor(Math.random() * 1000) ;
+    var sourceImg = "https://source.unsplash.com/collection/4466406/480x480?sig="+number +"&client_id=hXJZfm926ewJ7LxaoHzwVxiR7cyTnkdu3Vidn6Ojdew";
+    //affichage des ingredients
+        var timing = recipe.time;
+        var ingredients="<ul>";
+        for(let j = 0; j<recipe.ingredients.length; j++){
+        ingredients += "<li> <span class='nameIngredient'> "+ recipe.ingredients[j].ingredient + `</span>`    // ajout quantity 
+        if(recipe.ingredients[j].quantity){
+            ingredients  += ":" +" "+  recipe.ingredients[j].quantity  ;
+        }
+        //ajout de unit
+        if( recipe.ingredients[j].unit){
+        ingredients  +=  " "+ recipe.ingredients[j].unit   ;
+        }
+        ingredients  += "</li>"
+    }
+    ingredients += "</ul>" 
+    
+        var instruction=recipe.description;
+       
+    
+        var titreRecette= recipe.name;
+    nodeCards.innerHTML+= `<div class="card">
+    <img class="card-img-top" src=`+sourceImg+` alt="Card image cap">
+    <div class="card-body">
+        <div class="firstPartieCard"> 
+            <div class="recipesTitle"> `+titreRecette+`</div>
+            <div class="timing">  <i class="far fa-clock"> </i> &nbsp; `+timing +` min </div>
+        </div>
+        <div class="secondPartieCard onePartieCard">
+         <div class="ingredients">`+ ingredients +`
+         </div>
+         <div class="instruction">`+troncInstruction(instruction)+`</div>
+        </div> 
+    </div>
+    </div>
+    `
+}
 /*------- tronc du paragraphe-------*/
 function troncInstruction(text){
 var numberletter = 140;
