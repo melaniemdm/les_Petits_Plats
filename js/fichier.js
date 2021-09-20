@@ -55,7 +55,7 @@ function checkSearchString(recipe){
     var nodeTagAppliance = document.querySelector("#tagAppliance")
     var nodeTagUstensils = document.querySelector("#tagUstensiles")
     //condition si noeud tag est vide
-    if (nodeTagIngredient.innerHTML==="" && nodeTagAppliance.innerHTML==="" && nodeTagUstensils.innerHTML===""){
+    if (nodeTagIngredient && nodeTagAppliance && nodeTagUstensils && nodeTagIngredient.innerHTML==="" && nodeTagAppliance.innerHTML==="" && nodeTagUstensils.innerHTML===""){
     var secondSearch = true;
     }else{
        var secondSearch =  true;
@@ -110,35 +110,47 @@ async  function filledAdvancedSearchFields(arrayFromJson){
 
     //recherche avancée des ingrédients
     var nodeListeIngredients = document.querySelector("#listIngredients");
-    nodeListeIngredients.innerHTML= ""
+    nodeListeIngredients.innerHTML= "";
     //recherche avancée des appareil
     var nodeListeAppareil = document.querySelector("#listAppareil");
-    nodeListeAppareil.innerHTML= ""
+    nodeListeAppareil.innerHTML= "";
     //recherche avancée des ustensiles
     var nodeListeUstensiles = document.querySelector("#listUstensiles");
     nodeListeUstensiles.innerHTML= "";
     
+
+
     arrayFromJson.forEach(function(recipe){
+
         var arrayIngredientsForOneRecipe = recipe.ingredients;
         //boucle pour eviter les doublons des ingredients
         arrayIngredientsForOneRecipe.forEach(function(ingredient){
             //condition qui test si l'ingredient n'existe pas deja
             if(isIngredientNotInNode(nodeListeIngredients, ingredient)){ 
-                   nodeListeIngredients.innerHTML+= `<div class="ingredient">`+ingredient.ingredient +`</div>`    
-            }     
+              //recupere la valeur de l'input pour afficher que les ingredients concernés
+                if(ingredient.ingredient.toLowerCase().includes(document.querySelector("#nameIngredients").value.toLowerCase())){
+                    nodeListeIngredients.innerHTML+= `<div class="ingredient">`+ingredient.ingredient +`</div>`    
+                }
+           }     
         })
         
         var arrayFromJsonUstensils = recipe.ustensils;
         arrayFromJsonUstensils.forEach(function(ustensils){
       //condition qui fait appel a la function qui test si l'ustensils est dans la liste
         if(isInustensilsNotInNode(nodeListeUstensiles, ustensils)){
+         //recupere la valeur de l'input pour afficher que les ustensiles concernés   
+            if(ustensils.toLowerCase().includes(document.querySelector("#nameUstensiles").value.toLowerCase())){
             nodeListeUstensiles.innerHTML+= `<div class="ustensils">`+ustensils +`</div>`  
-        }
+        }}
          })
+   
 //condition qui fait appel a la function qui test si l'appareil est dans la liste
-    if( isApplianceNotInNode(nodeListeAppareil, recipe)){
-        nodeListeAppareil.innerHTML+= `<div class="appliance">` +recipe.appliance +`</div>`
-    }
+    if( isApplianceNotInNode(nodeListeAppareil, recipe.appliance)){
+        if(recipe.appliance.toLowerCase().includes(document.querySelector("#nameAppareil").value.toLowerCase())){
+        nodeListeAppareil.innerHTML+= `<div class="appliance">` + recipe.appliance +`</div>`
+    }}
+  
+
     
 })
     // recupere noeud pour event au click sur le mot
@@ -159,8 +171,8 @@ function isInustensilsNotInNode(nodeListeUstensiles, ustensils){
     return  (nodeListeUstensiles.innerHTML.toLowerCase().includes(ustensils.toLowerCase())=== false)
    }
    // function qui demande si l'appareil existe deja
-   function isApplianceNotInNode(nodeListeAppareil, recipe){
-       return  ( nodeListeAppareil.innerHTML.toLowerCase().includes(recipe.appliance.toLowerCase())=== false)
+   function isApplianceNotInNode(nodeListeAppareil, appliance){
+       return  ( nodeListeAppareil.innerHTML.toLowerCase().includes(appliance.toLowerCase())=== false)
       }
 
 
@@ -294,37 +306,15 @@ function appear(targetEventTitle){
   nodeInputSearchAppareil.addEventListener("keyup", updateListIngredients)
   //mise a jour liste des ingredients
  async function updateListIngredients(){
-      var nodeListeIngredientsAdvanced = document.querySelector("#listIngredients")
-      var nodeListeUstensilesAdvanced = document.querySelector("#listUstensiles")
-      var nodeListeAppareilAdvanced = document.querySelector("#listAppareil")
-      
-      //vide la liste
-      nodeListeIngredientsAdvanced.innerHTML= "";
-      nodeListeUstensilesAdvanced.innerHTML= "";
-      nodeListeAppareilAdvanced.innerHTML= "";
-      //recuperation du json
-      var arrayFromJsonAdvanced =  await getRecipesFromJson();  
-       var filterArrayAdvanced = arrayFromJsonAdvanced.filter(checkSearchString);
-          //tableau des recettes filtrées
-      filterArrayAdvanced.forEach(function(recipe){
-var arrayIngredientsOfOneRecipes = recipe.ingredients;
-var arrayUstensilesOfOneRecipes = recipe.ustensils;
-var arrayAppareilOfOneRecipes = recipe.appliance;
 
-arrayIngredientsOfOneRecipes.forEach(function(ingredient){
-//Condition recherche avancée
-if(isIngredientNotInNodeAd(nodeListeIngredientsAdvanced,ingredient)){
-    nodeListeIngredientsAdvanced.innerHTML+= `<div class="ingredient">` +ingredient.ingredient+`</div>`
-   }})
-arrayUstensilesOfOneRecipes.forEach(function(ustensil){
-    //Condition recherche avancée
-    if(isInustensilsNotInNodeAd(nodeListeUstensilesAdvanced, ustensil)){
-        nodeListeUstensilesAdvanced.innerHTML+= `<div class="ustensils">` +ustensil+`</div>`
-    }})
-            //Condition recherche avancée
-        if(isApplianceNotInNodeAd(arrayAppareilOfOneRecipes)){
-            nodeListeAppareilAdvanced.innerHTML+= `<div class="appliance">` +arrayAppareilOfOneRecipes+`</div>`
-        }})
+            //recuperation du json
+      var arrayFromJsonAdvanced =  await getRecipesFromJson(); 
+     
+     //recettes filtrées 
+       var filterArrayAdvanced = arrayFromJsonAdvanced.filter(checkSearchString);
+        //appel de fonction qui rempli la recherche avancée
+      filledAdvancedSearchFields(filterArrayAdvanced) 
+
         //appel de la fonction
     setEventOnAdvancedSearchLists()
   }
