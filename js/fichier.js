@@ -8,7 +8,10 @@ var nodeCards = document.querySelector(".cards");
 //condition de recherche
 if(isResearchInRecipes(arrayFromJson)){
     //filtre de l'array des recettes - appel de la condition du filtre - si true stock la recette
-    var filterArray = arrayFromJson.filter(checkSearchString);
+
+
+
+    var filterArray = filterRecipes(arrayFromJson);
     //appel fonction qui remplit les champs de la recherche avancée
     filledAdvancedSearchFields(filterArray)
     //appel function qui ajout l'event pour fermer le tag
@@ -25,6 +28,18 @@ if(isResearchInRecipes(arrayFromJson)){
     nodeCards.innerHTML+= 'Aucune recette ne correspond à votre critère.... vous pouvez chercher "tartes aux pommes", "poissons", etc.'
 }
 return 0;
+}
+
+function filterRecipes(arrayFromJson){
+    // create array vide
+    var arrayFilter= new Array();
+   for(let i=0; i< arrayFromJson.length;i++){
+       if(checkSearchString(arrayFromJson[i])){
+           //ajoute la nouvelle recette dans le tableau
+  arrayFilter.push(arrayFromJson[i])
+       }
+   } 
+   return arrayFilter;
 }
 
 /*---------- fonction qui recupere le json----------*/
@@ -318,7 +333,7 @@ function appear(targetEventTitle){
       var arrayFromJsonAdvanced =  await getRecipesFromJson(); 
      
      //recettes filtrées 
-       var filterArrayAdvanced = arrayFromJsonAdvanced.filter(checkSearchString);
+       var filterArrayAdvanced = filterRecipes(arrayFromJsonAdvanced);
         //appel de fonction qui rempli la recherche avancée
       filledAdvancedSearchFields(filterArrayAdvanced) 
 
