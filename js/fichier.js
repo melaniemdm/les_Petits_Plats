@@ -45,7 +45,6 @@ if( nodeCards.innerHTML==="" ){
 return 0;
 }
 
-
 function displayTagIngredientAdvanced(e){
     console.log(e.target)
 }
@@ -80,8 +79,9 @@ return ustensilFiltered
 //parcours la liste des appareils
 function listAppliance(recipe){
     var applianceFiltered = "";
-    if(document.querySelector("#listAppareil").innerHTML.toLowerCase().includes(recipe.appliance.toLowerCase())===false){
-    applianceFiltered += `<div class ="applianceAdvanced">`+recipe.appliance+ `</div>`;     
+    var appliance = recipe.appliance;
+    if(document.querySelector("#listAppareil").innerHTML.toLowerCase().includes(appliance.toLowerCase())===false){
+    applianceFiltered += `<div class ="applianceAdvanced">`+appliance+ `</div>`;     
     }
 return applianceFiltered
 }
@@ -110,9 +110,16 @@ function rechargeRecipes(e){
 var nodeCards= document.querySelector(".cards");
 //recupere la value de l'input
 var textOfSearch = document.querySelector("#inputSearch").value;
-if(textOfSearch.length>=3){
+if(textOfSearch.length>=3 || textOfSearch ===""){
    //vider la page
 nodeCards.innerHTML=""; 
+//vide le noeud des liste pour recharge ceux ci avec les elements filtrés
+var nodeNameIngredient = document.querySelector("#listIngredients");
+nodeNameIngredient.innerHTML="";
+var nodeNameAppliance = document.querySelector("#listAppareil");
+nodeNameAppliance.innerHTML="";
+var nodeNameUstensil = document.querySelector("#listUstensiles");
+nodeNameUstensil.innerHTML="";
 //affichage des cards grace à l'appel de la fonction
 displayRecipes()
 }
@@ -171,23 +178,7 @@ return text
 };
 
 var nodeInputSearch = document.querySelector("#inputSearch");
-nodeInputSearch.addEventListener("keyup", startSearch);
+nodeInputSearch.addEventListener("keyup", rechargeRecipes);
 
-/*--------recuperation de la valeur de l'input-------*/
-function startSearch(event){
-    var nodeCards= document.querySelector(".cards");
-    var textOfSearch = event.target.value;
-       if(textOfSearch.length>=3){
-        //vider la page dans tous les cas
-    nodeCards.innerHTML=""; 
-    //recharge la page dans tous les cas
-     displayRecipes()     
-    }else if (textOfSearch ===""){
-//vider la page dans tous les cas
-nodeCards.innerHTML=""; 
-//recharge la page dans tous les cas
- displayRecipes()   
-    }
-};
 
 
