@@ -113,6 +113,11 @@ function startSearch(event){
     nodeCards.innerHTML=""; 
     //recharge la page dans tous les cas
      displayRecipes()     
+    }else if (textOfSearch ===""){
+//vider la page dans tous les cas
+nodeCards.innerHTML=""; 
+//recharge la page dans tous les cas
+ displayRecipes()   
     }
 };
 
