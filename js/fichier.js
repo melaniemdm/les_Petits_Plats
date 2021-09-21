@@ -2,7 +2,7 @@
 export async function displayRecipes(){
 // appel de la function from json
 var arrayFromJson =  await getRecipesFromJson(); 
-
+//boucle qui parcours le tableau json
 for (let i = 0; i < arrayFromJson.length; i++){
   var valueSearch = document.querySelector("#inputSearch").value.toLowerCase();
   var recipe = arrayFromJson[i];
@@ -19,7 +19,8 @@ return 0;
 }
 //fonction qui verifie si la recherche est dans la recette
 function isSearchInRecipe(recipe, valueSearch){
-    return (recipe.name.toLowerCase().includes(valueSearch)|| valueSearch === "" || recipe.description.toLowerCase().includes(valueSearch) || JSON.stringify(recipe.ingredients).toLowerCase().includes(valueSearch))
+    var firstSearch = (recipe.name.toLowerCase().includes(valueSearch)|| valueSearch === "" || recipe.description.toLowerCase().includes(valueSearch) || JSON.stringify(recipe.ingredients).toLowerCase().includes(valueSearch));
+    return firstSearch
 }
 /*---------- fonction qui recupere le json----------*/
 async function getRecipesFromJson() {
@@ -46,7 +47,9 @@ nodeCards.innerHTML="";
 //affichage des cards grace à l'appel de la fonction
 displayRecipes()
 }
+return 0
 }
+//construction card
 function buildCard(recipe){
     var nodeCards = document.querySelector(".cards");
      //arrondi un nmbre au hasard entre 0 et 1 * 1000
@@ -106,17 +109,11 @@ function startSearch(event){
     var nodeCards= document.querySelector(".cards");
     var textOfSearch = event.target.value;
        if(textOfSearch.length>=3){
-           
-      //session storage
-    sessionStorage.setItem("valueSearch", textOfSearch) 
-                 
-    }else{
-        sessionStorage.setItem("valueSearch", "")   
-           }
-    //vider la page dans tous les cas
+        //vider la page dans tous les cas
     nodeCards.innerHTML=""; 
-   //recharge la page dans tous les cas
-    displayRecipes()   
+    //recharge la page dans tous les cas
+     displayRecipes()     
+    }
 };
 
 
