@@ -44,15 +44,21 @@ if( nodeCards.innerHTML==="" ){
 }
 return 0;
 }
-
+//selectionne un element de la liste
 function displayTagIngredientAdvanced(e){
-    console.log(e.target)
+    var ingredientTag = e.target.innerHTML
+    var nodeTagIngredient = document.querySelector("#tagIngredient")
+    nodeTagIngredient.innerHTML = ingredientTag; 
 }
 function displayUstensilAdvanced(e){
-    console.log(e.target)
+    var ustensilTag = e.target.innerHTML
+    var nodeTagUstensil = document.querySelector("#tagUstensiles")
+    nodeTagUstensil.innerHTML = ustensilTag; 
 }
 function displayApplianceAdvanced(e){
-    console.log(e.target)
+    var applianceTag = e.target.innerHTML
+    var nodeTagAppliance = document.querySelector("#tagAppliance")
+    nodeTagAppliance.innerHTML = applianceTag; 
 }
 
 function listIngredient(recipe){
@@ -60,7 +66,7 @@ function listIngredient(recipe){
     //parcours du tableau des ingedients filtrés
 for(let i=0; i<recipe.ingredients.length;i++){
     var ingredient = recipe.ingredients[i].ingredient;
-    if(document.querySelector("#listIngredients").innerHTML.toLowerCase().includes(ingredient.toLowerCase())=== false){
+    if(document.querySelector("#listIngredients").innerHTML.toLowerCase().includes(ingredient.toLowerCase())=== false && ingredient.toLowerCase().includes(nameIngredients.value.toLowerCase())){
 ingredientFiltered += `<div class ="ingredientAdvanced">`+ingredient + `</div>`;
     }}
 return ingredientFiltered
@@ -174,11 +180,21 @@ if (text.length > numberletter ){
 return text.substring(0,numberletter) +"...";
 }else{
 return text
-}
-};
-
+}};
+//event sur les noeuds de l'input
 var nodeInputSearch = document.querySelector("#inputSearch");
 nodeInputSearch.addEventListener("keyup", rechargeRecipes);
 
+var nodeInputIngredient = document.querySelector("#nameIngredients")
+nodeInputIngredient.addEventListener("keyup", filterSecondSearch)
+
+var nodeInputAppliance= document.querySelector("#nameAppareil")
+nodeInputAppliance.addEventListener("keyup", filterSecondSearch)
 
 
+
+function filterSecondSearch(e){
+    rechargeRecipes(e)
+        }
+
+      
