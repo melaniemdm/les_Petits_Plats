@@ -10,6 +10,7 @@ for (let i = 0; i < arrayFromJson.length; i++){
 if(isSearchInRecipe(recipe, valueSearch)) {
 var stockIngredientFiltres= listIngredient(recipe);
 var nodeNameIngredient = document.querySelector("#listIngredients");
+
 //met les ingredients dans le noeud
 nodeNameIngredient.innerHTML += stockIngredientFiltres;
 
@@ -59,23 +60,29 @@ function listIngredient(recipe){
     var ingredientFiltered = "";
     //parcours du tableau des ingedients filtrés
 for(let i=0; i<recipe.ingredients.length;i++){
- ingredientFiltered += `<div class ="ingredientAdvanced">`+recipe.ingredients[i].ingredient+ `</div>`;
-}
+    var ingredient = recipe.ingredients[i].ingredient;
+    if(document.querySelector("#listIngredients").innerHTML.toLowerCase().includes(ingredient.toLowerCase())=== false){
+ingredientFiltered += `<div class ="ingredientAdvanced">`+ingredient + `</div>`;
+    }}
 return ingredientFiltered
 }
 function listUstensil(recipe){
     var ustensilFiltered = "";
     //parcours du tableau des ustensils filtrés
 for(let i=0; i<recipe.ustensils.length;i++){
-    ustensilFiltered += `<div class ="ustensilAdvanced">`+recipe.ustensils[i]+ `</div>`;
+    var ustensil = recipe.ustensils[i];
+    if(document.querySelector("#listUstensiles").innerHTML.toLowerCase().includes(ustensil.toLowerCase())=== false){
+ ustensilFiltered += `<div class ="ustensilAdvanced">`+ustensil+ `</div>`;       
+    }
 }
 return ustensilFiltered
 }
 //parcours la liste des appareils
 function listAppliance(recipe){
     var applianceFiltered = "";
-        applianceFiltered += `<div class ="applianceAdvanced">`+recipe.appliance+ `</div>`;
-
+    if(document.querySelector("#listAppareil").innerHTML.toLowerCase().includes(recipe.appliance.toLowerCase())===false){
+    applianceFiltered += `<div class ="applianceAdvanced">`+recipe.appliance+ `</div>`;     
+    }
 return applianceFiltered
 }
 
