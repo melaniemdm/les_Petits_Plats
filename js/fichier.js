@@ -48,17 +48,17 @@ return 0;
 function displayTagIngredientAdvanced(e){
     var ingredientTag = e.target.innerHTML
     var nodeTagIngredient = document.querySelector("#tagIngredient")
-    nodeTagIngredient.innerHTML = ingredientTag; 
+    nodeTagIngredient.innerHTML =  `<div class="cardTag">`+ ingredientTag + `<div class="close"> <i class="fa fa-times-circle-o"></i></div></div>`; 
 }
 function displayUstensilAdvanced(e){
     var ustensilTag = e.target.innerHTML
     var nodeTagUstensil = document.querySelector("#tagUstensiles")
-    nodeTagUstensil.innerHTML = ustensilTag; 
+    nodeTagUstensil.innerHTML = `<div class="cardTag">`+ ustensilTag  + `<div class="close"> <i class="fa fa-times-circle-o"></i></div></div>`; 
 }
 function displayApplianceAdvanced(e){
     var applianceTag = e.target.innerHTML
     var nodeTagAppliance = document.querySelector("#tagAppliance")
-    nodeTagAppliance.innerHTML = applianceTag; 
+    nodeTagAppliance.innerHTML = `<div class="cardTag">` + applianceTag + `<div class="close"> <i class="fa fa-times-circle-o"></i></div></div>`; 
 }
 
 function listIngredient(recipe){
