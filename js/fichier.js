@@ -8,8 +8,34 @@ for (let i = 0; i < arrayFromJson.length; i++){
   var recipe = arrayFromJson[i];
      //condition du search - met en minuscule la recherche et recherche dans une chaine de caractere - transforme l'array des ingredients en chaine de caractere
 if(isSearchInRecipe(recipe, valueSearch)) {
-    buildCard(recipe)
+var stockIngredientFiltres= listIngredient(recipe);
+var nodeNameIngredient = document.querySelector("#listIngredients");
+//met les ingredients dans le noeud
+nodeNameIngredient.innerHTML += stockIngredientFiltres;
+
+
+var stockUstensilFiltres= listUstensil(recipe);
+var nodeNameUstensil = document.querySelector("#listUstensiles");
+//met les ustensils dans le noeud
+nodeNameUstensil.innerHTML += stockUstensilFiltres;
+
+var stockApplianceFiltres= listAppliance(recipe);
+var nodeNameAppliance = document.querySelector("#listAppareil");
+//met les ustensils dans le noeud
+nodeNameAppliance.innerHTML += stockApplianceFiltres;
+
+buildCard(recipe);
 }}
+//event pour mettre dans la console l'ingredient cliqué
+var nodeIngredientAdvanced = document.querySelectorAll(".ingredientAdvanced")
+nodeIngredientAdvanced.forEach(ingredient=> ingredient.addEventListener("click", displayTagIngredientAdvanced))
+//event pour mettre dans la console l'ustensil cliqué
+var nodeUstensilAdvanced = document.querySelectorAll(".ustensilAdvanced")
+nodeUstensilAdvanced.forEach(ustensil=> ustensil.addEventListener("click", displayUstensilAdvanced))
+//event pour mettre dans la console l'appareil cliqué
+var nodeAppareilAdvanced = document.querySelectorAll(".applianceAdvanced")
+nodeAppareilAdvanced.forEach(appliance=> appliance.addEventListener("click", displayApplianceAdvanced))
+
 var nodeCards = document.querySelector(".cards");
 //affichage du message d'erreur
 if( nodeCards.innerHTML==="" ){
@@ -17,6 +43,42 @@ if( nodeCards.innerHTML==="" ){
 }
 return 0;
 }
+
+
+function displayTagIngredientAdvanced(e){
+    console.log(e.target)
+}
+function displayUstensilAdvanced(e){
+    console.log(e.target)
+}
+function displayApplianceAdvanced(e){
+    console.log(e.target)
+}
+
+function listIngredient(recipe){
+    var ingredientFiltered = "";
+    //parcours du tableau des ingedients filtrés
+for(let i=0; i<recipe.ingredients.length;i++){
+ ingredientFiltered += `<div class ="ingredientAdvanced">`+recipe.ingredients[i].ingredient+ `</div>`;
+}
+return ingredientFiltered
+}
+function listUstensil(recipe){
+    var ustensilFiltered = "";
+    //parcours du tableau des ustensils filtrés
+for(let i=0; i<recipe.ustensils.length;i++){
+    ustensilFiltered += `<div class ="ustensilAdvanced">`+recipe.ustensils[i]+ `</div>`;
+}
+return ustensilFiltered
+}
+//parcours la liste des appareils
+function listAppliance(recipe){
+    var applianceFiltered = "";
+        applianceFiltered += `<div class ="applianceAdvanced">`+recipe.appliance+ `</div>`;
+
+return applianceFiltered
+}
+
 //fonction qui verifie si la recherche est dans la recette
 function isSearchInRecipe(recipe, valueSearch){
     var firstSearch = (recipe.name.toLowerCase().includes(valueSearch)|| valueSearch === "" || recipe.description.toLowerCase().includes(valueSearch) || JSON.stringify(recipe.ingredients).toLowerCase().includes(valueSearch));
