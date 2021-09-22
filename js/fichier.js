@@ -329,19 +329,6 @@ var nodeAppliancesDiv = document.querySelectorAll(".appliance");
 nodeAppliancesDiv.forEach(element=> element.addEventListener("click", getCliked))
   }
 
-// function qui demande si l'ingredient existe deja de la recherche avancée
-function isIngredientNotInNodeAd( ingredient){
-    return (ingredient.ingredient.toLowerCase().includes(nodeInputSearchIngredient.value.toLowerCase()) && nodeListeIngredientsAdvanced.innerHTML.toLowerCase().includes(ingredient.ingredient.toLowerCase())=== false)
-   }
-// function qui demande si l'ustensils existe deja de la recherche avancée
-function isInustensilsNotInNodeAd(ustensil){
- return  (ustensil.toLowerCase().includes(nodeInputSearchUstensiles.value.toLowerCase()) && nodeListeUstensilesAdvanced.innerHTML.toLowerCase().includes(ustensil.toLowerCase())=== false)
-}
-// function qui demande si l'appareil existe deja de la recherche avancée
-function isApplianceNotInNodeAd(arrayAppareilOfOneRecipes){
-    return  ( arrayAppareilOfOneRecipes.toLowerCase().includes(nodeInputSearchAppareil.value.toLowerCase()) && nodeListeAppareilAdvanced.innerHTML.toLowerCase().includes(arrayAppareilOfOneRecipes.toLowerCase())=== false)
-   }
-
 //recuperer mot cliké
 function getCliked(e){
     e.preventDefault();
