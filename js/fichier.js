@@ -3,9 +3,9 @@ export async function displayRecipes(){
 // appel de la function from json
 var arrayFromJson =  await getRecipesFromJson(); 
 //boucle qui parcours le tableau json
-for (let i = 0; i < arrayFromJson.length; i++){
+arrayFromJson.forEach(function(array){
   var valueSearch = document.querySelector("#inputSearch").value.toLowerCase();
-  var recipe = arrayFromJson[i];
+  var recipe = array;
      //condition du search - met en minuscule la recherche et recherche dans une chaine de caractere - transforme l'array des ingredients en chaine de caractere
 if(isSearchInRecipe(recipe, valueSearch)) {
 var stockIngredientFiltres= listIngredient(recipe);
@@ -22,7 +22,7 @@ var nodeNameAppliance = document.querySelector("#listAppareil");
 //met les ustensils dans le noeud
 nodeNameAppliance.innerHTML += stockApplianceFiltres;
 buildCard(recipe);
-}}
+}})
 //event pour mettre dans la console l'ingredient cliqué
 var nodeIngredientAdvanced = document.querySelectorAll(".ingredientAdvanced")
 nodeIngredientAdvanced.forEach(ingredient=> ingredient.addEventListener("click", displayTagIngredientAdvanced))
@@ -68,22 +68,24 @@ function displayApplianceAdvanced(e){
 function listIngredient(recipe){
     var ingredientFiltered = "";
     //parcours du tableau des ingedients filtrés
-for(let i=0; i<recipe.ingredients.length;i++){
-    var ingredient = recipe.ingredients[i].ingredient;
+    recipe.ingredients.forEach(function(ingredient){
+var ingredient = ingredient.ingredient;
     if(document.querySelector("#listIngredients").innerHTML.toLowerCase().includes(ingredient.toLowerCase())=== false && ingredient.toLowerCase().includes(nameIngredients.value.toLowerCase())){
 ingredientFiltered += `<div class ="ingredientAdvanced">`+ingredient + `</div>`;
-    }}
+    }
+    }) 
+
 return ingredientFiltered
 }
 function listUstensil(recipe){
     var ustensilFiltered = "";
     //parcours du tableau des ustensils filtrés
-for(let i=0; i<recipe.ustensils.length;i++){
-    var ustensil = recipe.ustensils[i];
+    recipe.ustensils.forEach(function(ustensil){
+  var ustensil = ustensil;
     if(document.querySelector("#listUstensiles").innerHTML.toLowerCase().includes(ustensil.toLowerCase())=== false){
  ustensilFiltered += `<div class ="ustensilAdvanced">`+ustensil+ `</div>`;       
     }
-}
+    })
 return ustensilFiltered
 }
 //parcours la liste des appareils
@@ -115,13 +117,14 @@ function isSearchInRecipe(recipe, valueSearch){
        var valueTagIngredient = rightTagIngredient.split('<div class="close"> <i class="fa fa-times-circle-o" aria-hidden="true"></i></div></div>')[0].trim().toLowerCase() 
        //recupere le tableau des ingredients
        var arrayIngredient = recipe.ingredients;
-
-for(let i = 0 ;i< arrayIngredient.length;i++){
-var ingredient = arrayIngredient[i].ingredient.toLowerCase().trim();
-//compare la l'ingredient de la liste avec le tag
-if(ingredient=== valueTagIngredient){
-    secondSearchIngredient = true 
-}}   }
+       arrayIngredient.forEach(function(ingredient){
+        var ingredient = ingredient.ingredient.toLowerCase().trim();
+        //compare la l'ingredient de la liste avec le tag
+        if(ingredient=== valueTagIngredient){
+            secondSearchIngredient = true 
+        }
+       })
+  }
 //recupere l'élément ustensil
 if(rightTagUstensil){
     secondSearchUstensil = false;
@@ -129,12 +132,13 @@ if(rightTagUstensil){
    //recupere le tableau des ustensils
    var arrayUstensil = recipe.ustensils;
 
-for(let i = 0 ;i< arrayUstensil.length;i++){
-var ustensil = arrayUstensil[i].toLowerCase().trim();
+   arrayUstensil.forEach(function(ustensil){
+var ustensil = ustensil.toLowerCase().trim();
 //compare la l'ingredient de la liste avec le tag
 if(ustensil=== valueTagUstensil){
 secondSearchUstensil = true 
-}}   }
+}   })
+   }
 //recupere l'élément appliance
 if(rightTagAppliance){
     secondSearchAppliance = false;
