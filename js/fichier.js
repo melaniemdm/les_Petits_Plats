@@ -127,8 +127,8 @@ async  function filledAdvancedSearchFields(arrayFromJson){
     var nodeListeIngredients = document.querySelector("#listIngredients");
     nodeListeIngredients.innerHTML= "";
     //recherche avancée des appareil
-    var nodeListeAppareil = document.querySelector("#listAppareil");
-    nodeListeAppareil.innerHTML= "";
+    var nodeListeAppliance = document.querySelector("#listAppliance");
+    nodeListeAppliance.innerHTML= "";
     //recherche avancée des ustensiles
     var nodeListeUstensiles = document.querySelector("#listUstensiles");
     nodeListeUstensiles.innerHTML= "";
@@ -159,9 +159,9 @@ for(let i=0; i< arrayFromJson.length ;i++){
          }
    
 //condition qui fait appel a la function qui test si l'appareil est dans la liste
-    if( isApplianceNotInNode(nodeListeAppareil, arrayFromJson[i].appliance)){
-        if(arrayFromJson[i].appliance.toLowerCase().includes(document.querySelector("#nameAppareil").value.toLowerCase())){
-        nodeListeAppareil.innerHTML+= `<div class="appliance">` + arrayFromJson[i].appliance +`</div>`
+    if( isApplianceNotInNode(nodeListeAppliance, arrayFromJson[i].appliance)){
+        if(arrayFromJson[i].appliance.toLowerCase().includes(document.querySelector("#nameAppliance").value.toLowerCase())){
+        nodeListeAppliance.innerHTML+= `<div class="appliance">` + arrayFromJson[i].appliance +`</div>`
     }}
   
 
@@ -192,8 +192,8 @@ function isInustensilsNotInNode(nodeListeUstensiles, ustensils){
     return  (nodeListeUstensiles.innerHTML.toLowerCase().includes(ustensils.toLowerCase())=== false)
    }
    // function qui demande si l'appareil existe deja
-   function isApplianceNotInNode(nodeListeAppareil, appliance){
-       return  ( nodeListeAppareil.innerHTML.toLowerCase().includes(appliance.toLowerCase())=== false)
+   function isApplianceNotInNode(nodeListeAppliance, appliance){
+       return  ( nodeListeAppliance.innerHTML.toLowerCase().includes(appliance.toLowerCase())=== false)
       }
 
 
@@ -284,8 +284,8 @@ return text
 var nodeDisplayIngredients = document.querySelector("#displayIngredients")
 nodeDisplayIngredients.addEventListener("click", disappear)
 //appareil - btn
-var nodeDisplayAppareil = document.querySelector("#displayAppareil")
-nodeDisplayAppareil.addEventListener("click", disappear)
+var nodeDisplayAppliance = document.querySelector("#displayAppliance")
+nodeDisplayAppliance.addEventListener("click", disappear)
 //ustensiles - btn
 var nodeDisplayUstensiles = document.querySelector("#displayUstensiles")
 nodeDisplayUstensiles.addEventListener("click", disappear )
@@ -294,8 +294,8 @@ nodeDisplayUstensiles.addEventListener("click", disappear )
 var nodeSearchIngredients = document.querySelector("#searchIngredients")
 nodeSearchIngredients.style.visibility ="hidden";
 //appareil - recherche
-var nodeSearchAppareil = document.querySelector("#searchAppareil")
-nodeSearchAppareil.style.visibility ="hidden";
+var nodeSearchAppliance = document.querySelector("#searchAppliance")
+nodeSearchAppliance.style.visibility ="hidden";
 //ustensiles - recherche
 var nodeSearchUstensiles = document.querySelector("#searchUstensiles")
 nodeSearchUstensiles.style.visibility ="hidden";
@@ -324,8 +324,8 @@ function appear(targetEventTitle){
   
   var nodeInputSearchUstensiles = document.querySelector("#nameUstensiles")
   nodeInputSearchUstensiles.addEventListener("keyup", updateListIngredients)
-  var nodeInputSearchAppareil = document.querySelector("#nameAppareil")
-  nodeInputSearchAppareil.addEventListener("keyup", updateListIngredients)
+  var nodeInputSearchAppliance = document.querySelector("#nameAppliance")
+  nodeInputSearchAppliance.addEventListener("keyup", updateListIngredients)
   //mise a jour liste des ingredients
  async function updateListIngredients(){
 
@@ -408,10 +408,10 @@ function closeListIngredients(){
 }
 
 function closeListAppliance(){
-    var nodeSearchAppareilDisappear = document.querySelector("#searchAppareil")
-    nodeSearchAppareilDisappear.style.visibility="hidden";
-    var nodeDisplayAppareilDisappear = document.querySelector("#displayAppareil")
-    nodeDisplayAppareilDisappear.style.visibility="visible";
+    var nodeSearchApplianceDisappear = document.querySelector("#searchAppliance")
+    nodeSearchApplianceDisappear.style.visibility="hidden";
+    var nodeDisplayApplianceDisappear = document.querySelector("#displayAppliance")
+    nodeDisplayApplianceDisappear.style.visibility="visible";
 }
 
 function closeListUstensils(){
