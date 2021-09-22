@@ -18,7 +18,7 @@ var nodeNameUstensil = document.querySelector("#listUstensiles");
 //met les ustensils dans le noeud
 nodeNameUstensil.innerHTML += stockUstensilFiltres;
 var stockApplianceFiltres= listAppliance(recipe);
-var nodeNameAppliance = document.querySelector("#listAppareil");
+var nodeNameAppliance = document.querySelector("#listAppliance");
 //met les ustensils dans le noeud
 nodeNameAppliance.innerHTML += stockApplianceFiltres;
 buildCard(recipe);
@@ -30,8 +30,8 @@ nodeIngredientAdvanced.forEach(ingredient=> ingredient.addEventListener("click",
 var nodeUstensilAdvanced = document.querySelectorAll(".ustensilAdvanced")
 nodeUstensilAdvanced.forEach(ustensil=> ustensil.addEventListener("click", displayUstensilAdvanced))
 //event pour mettre dans la console l'appareil cliqué
-var nodeAppareilAdvanced = document.querySelectorAll(".applianceAdvanced")
-nodeAppareilAdvanced.forEach(appliance=> appliance.addEventListener("click", displayApplianceAdvanced))
+var nodeApplianceAdvanced = document.querySelectorAll(".applianceAdvanced")
+nodeApplianceAdvanced.forEach(appliance=> appliance.addEventListener("click", displayApplianceAdvanced))
 
 var nodeCards = document.querySelector(".cards");
  //appel fonction pour selectionner la card de la recette
@@ -92,7 +92,7 @@ return ustensilFiltered
 function listAppliance(recipe){
     var applianceFiltered = "";
     var appliance = recipe.appliance;
-    if(document.querySelector("#listAppareil").innerHTML.toLowerCase().includes(appliance.toLowerCase())===false){
+    if(document.querySelector("#listAppliance").innerHTML.toLowerCase().includes(appliance.toLowerCase())===false){
     applianceFiltered += `<div class ="applianceAdvanced">`+appliance+ `</div>`;     
     }
 return applianceFiltered
@@ -181,7 +181,7 @@ nodeCards.innerHTML="";
 //vide le noeud des liste pour recharge ceux ci avec les elements filtrés
 var nodeNameIngredient = document.querySelector("#listIngredients");
 nodeNameIngredient.innerHTML="";
-var nodeNameAppliance = document.querySelector("#listAppareil");
+var nodeNameAppliance = document.querySelector("#listAppliance");
 nodeNameAppliance.innerHTML="";
 var nodeNameUstensil = document.querySelector("#listUstensiles");
 nodeNameUstensil.innerHTML="";
@@ -249,8 +249,8 @@ return text
     var nodeDisplayIngredients = document.querySelector("#displayIngredients")
     nodeDisplayIngredients.addEventListener("click", disappear)
     //appareil - btn
-    var nodeDisplayAppareil = document.querySelector("#displayAppareil")
-    nodeDisplayAppareil.addEventListener("click", disappear)
+    var nodeDisplayAppliance = document.querySelector("#displayAppliance")
+    nodeDisplayAppliance.addEventListener("click", disappear)
     //ustensiles - btn
     var nodeDisplayUstensiles = document.querySelector("#displayUstensiles")
     nodeDisplayUstensiles.addEventListener("click", disappear )
@@ -259,8 +259,8 @@ return text
     var nodeSearchIngredients = document.querySelector("#searchIngredients")
     nodeSearchIngredients.style.visibility ="hidden";
     //appareil - recherche
-    var nodeSearchAppareil = document.querySelector("#searchAppareil")
-    nodeSearchAppareil.style.visibility ="hidden";
+    var nodeSearchAppliance = document.querySelector("#searchAppliance")
+    nodeSearchAppliance.style.visibility ="hidden";
     //ustensiles - recherche
     var nodeSearchUstensiles = document.querySelector("#searchUstensiles")
     nodeSearchUstensiles.style.visibility ="hidden";
@@ -291,7 +291,7 @@ nodeInputSearch.addEventListener("keyup", rechargeRecipes);
 var nodeInputIngredient = document.querySelector("#nameIngredients")
 nodeInputIngredient.addEventListener("keyup", filterSecondSearch)
 
-var nodeInputAppliance= document.querySelector("#nameAppareil")
+var nodeInputAppliance= document.querySelector("#nameAppliance")
 nodeInputAppliance.addEventListener("keyup", filterSecondSearch)
 
 var nodeInputUstensil= document.querySelector("#nameUstensiles")

@@ -149,7 +149,7 @@ li {
   line-height: 1.2;
 }
 
-#listIngredients, #listUstensiles, #listAppareil {
+#listIngredients, #listUstensiles, #listAppliance {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
 }/*# sourceMappingURL=petits_Plats_Style.css.map */
