@@ -34,6 +34,8 @@ var nodeAppareilAdvanced = document.querySelectorAll(".applianceAdvanced")
 nodeAppareilAdvanced.forEach(appliance=> appliance.addEventListener("click", displayApplianceAdvanced))
 
 var nodeCards = document.querySelector(".cards");
+ //appel fonction pour selectionner la card de la recette
+ addEventCardRecipe()
 //affichage du message d'erreur
 if( nodeCards.innerHTML==="" ){
     nodeCards.innerHTML+= 'Aucune recette ne correspond à votre critère.... vous pouvez chercher "tartes aux pommes", "poissons", etc.'
@@ -209,12 +211,12 @@ function buildCard(recipe){
         var instruction=recipe.description;
        
     
-        var titreRecette= recipe.name;
-    nodeCards.innerHTML+= `<div class="card">
+        var titleRecette= recipe.name;
+    nodeCards.innerHTML+= `<div class="card" title ="`+ titleRecette +`">
     <img class="card-img-top" src=`+sourceImg+` alt="Card image cap">
     <div class="card-body">
         <div class="firstPartieCard"> 
-            <div class="recipesTitle"> `+titreRecette+`</div>
+            <div class="recipesTitle"> `+titleRecette+`</div>
             <div class="timing">  <i class="far fa-clock"> </i> &nbsp; `+timing +` min </div>
         </div>
         <div class="secondPartieCard onePartieCard">
@@ -266,4 +268,17 @@ nodeToRemove.parentNode.removeChild(nodeToRemove)
 rechargeRecipes()
 return 0
 }
-
+//selection de la recette par l'utilisateur
+function addEventCardRecipe(){
+    var nodecard = document.querySelectorAll(".card");
+  nodecard.forEach(recipe => recipe.addEventListener("click", selectRecipe));
+  }
+  function selectRecipe(e){
+      var node = e.target;
+      while(node.className!= "card"){
+  node = node.parentNode;
+      }
+      //affiche ler nom de la recette selectionnée
+      var titleRecette = node.title;
+      console.log("cette recette est selectionnée :" + titleRecette)
+  }
