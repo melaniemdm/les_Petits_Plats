@@ -248,6 +248,8 @@ nodeInputIngredient.addEventListener("keyup", filterSecondSearch)
 var nodeInputAppliance= document.querySelector("#nameAppareil")
 nodeInputAppliance.addEventListener("keyup", filterSecondSearch)
 
+var nodeInputUstensil= document.querySelector("#nameUstensiles")
+nodeInputUstensil.addEventListener("keyup", filterSecondSearch)
 
 //recharge recipe 
 function filterSecondSearch(e){
