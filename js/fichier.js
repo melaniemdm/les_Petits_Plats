@@ -49,16 +49,19 @@ function displayTagIngredientAdvanced(e){
     var ingredientTag = e.target.innerHTML
     var nodeTagIngredient = document.querySelector("#tagIngredient")
     nodeTagIngredient.innerHTML =  `<div class="cardTag">`+ ingredientTag + `<div class="close"> <i class="fa fa-times-circle-o"></i></div></div>`; 
+    eventCloseTag()
 }
 function displayUstensilAdvanced(e){
     var ustensilTag = e.target.innerHTML
     var nodeTagUstensil = document.querySelector("#tagUstensiles")
-    nodeTagUstensil.innerHTML = `<div class="cardTag">`+ ustensilTag  + `<div class="close"> <i class="fa fa-times-circle-o"></i></div></div>`; 
+    nodeTagUstensil.innerHTML = `<div class="cardTag">`+ ustensilTag  + `<div class="close"> <i class="fa fa-times-circle-o"></i></div></div>`;
+    eventCloseTag() 
 }
 function displayApplianceAdvanced(e){
     var applianceTag = e.target.innerHTML
     var nodeTagAppliance = document.querySelector("#tagAppliance")
     nodeTagAppliance.innerHTML = `<div class="cardTag">` + applianceTag + `<div class="close"> <i class="fa fa-times-circle-o"></i></div></div>`; 
+    eventCloseTag()
 }
 
 function listIngredient(recipe){
@@ -196,5 +199,15 @@ nodeInputAppliance.addEventListener("keyup", filterSecondSearch)
 function filterSecondSearch(e){
     rechargeRecipes(e)
         }
+        //event sur closeTag
+function eventCloseTag(){
+var nodeCloseTag = document.querySelectorAll(".close"); 
+nodeCloseTag.forEach(close=> close.addEventListener("click", closeTag));
+}
 
-      
+//close du tag
+function closeTag(e){
+var nodeToRemove = e.target.parentNode.parentNode
+nodeToRemove.parentNode.removeChild(nodeToRemove)
+
+}
