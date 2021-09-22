@@ -98,7 +98,28 @@ return applianceFiltered
 //fonction qui verifie si la recherche est dans la recette
 function isSearchInRecipe(recipe, valueSearch){
     var firstSearch = (recipe.name.toLowerCase().includes(valueSearch)|| valueSearch === "" || recipe.description.toLowerCase().includes(valueSearch) || JSON.stringify(recipe.ingredients).toLowerCase().includes(valueSearch));
-    return firstSearch
+    var secondSearch = true;
+    var nodeTagIngredient = document.querySelector("#tagIngredient");
+    //split la partie de gauche
+    var rightTag = nodeTagIngredient.innerHTML.split('<div class="cardTag">')[1]
+    //recupere l'élément
+    if(rightTag){
+        secondSearch = false;
+       var valueTag = rightTag.split('<div class="close"> <i class="fa fa-times-circle-o" aria-hidden="true"></i></div></div>')[0].trim().toLowerCase() 
+       //recupere le tableau des ingredients
+       var arrayIngredient = recipe.ingredients;
+for(let i = 0 ;i< arrayIngredient.length;i++){
+var ingredient = arrayIngredient[i].ingredient.toLowerCase().trim();
+//compare la l'ingredient de la liste avec le tag
+if(ingredient=== valueTag){
+    secondSearch = true 
+}
+}
+    }
+  
+    console.log(valueTag)
+   // <div class="cardTag">Lait de coco<div class="close"> <i class="fa fa-times-circle-o" aria-hidden="true"></i></div></div>
+    return (firstSearch && secondSearch )
 }
 /*---------- fonction qui recupere le json----------*/
 async function getRecipesFromJson() {
