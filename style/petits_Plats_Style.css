@@ -96,7 +96,7 @@ form.search::after {
   filter: brightness(1.75);
 }
 
-#nameAppareil {
+#nameAppliance {
   width: 250px;
   text-decoration: none;
   border: none;
@@ -104,27 +104,27 @@ form.search::after {
   transition-duration: 0.3s;
 }
 
-#searchAppareil:hover input {
+#searchAppliance:hover input {
   background-color: #157347;
   transition-duration: 0.3s;
 }
 
-#searchAppareil {
+#searchAppliance {
   position: absolute;
   top: 167px;
   left: 190px;
   z-index: 1;
   width: 660px;
 }
-#searchAppareil input::-moz-placeholder {
+#searchAppliance input::-moz-placeholder {
   color: #157347;
   filter: brightness(1.75);
 }
-#searchAppareil input:-ms-input-placeholder {
+#searchAppliance input:-ms-input-placeholder {
   color: #157347;
   filter: brightness(1.75);
 }
-#searchAppareil input::placeholder {
+#searchAppliance input::placeholder {
   color: #157347;
   filter: brightness(1.75);
 }
@@ -167,7 +167,7 @@ form.search::after {
   grid-template-columns: 1fr 1fr 1fr;
 }
 
-#listAppareil, #listIngredients, #listUstensiles {
+#listAppliance, #listIngredients, #listUstensiles {
   font-size: 16px;
 }
 
