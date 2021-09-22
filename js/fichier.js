@@ -13,18 +13,14 @@ var nodeNameIngredient = document.querySelector("#listIngredients");
 
 //met les ingredients dans le noeud
 nodeNameIngredient.innerHTML += stockIngredientFiltres;
-
-
 var stockUstensilFiltres= listUstensil(recipe);
 var nodeNameUstensil = document.querySelector("#listUstensiles");
 //met les ustensils dans le noeud
 nodeNameUstensil.innerHTML += stockUstensilFiltres;
-
 var stockApplianceFiltres= listAppliance(recipe);
 var nodeNameAppliance = document.querySelector("#listAppareil");
 //met les ustensils dans le noeud
 nodeNameAppliance.innerHTML += stockApplianceFiltres;
-
 buildCard(recipe);
 }}
 //event pour mettre dans la console l'ingredient cliqué
@@ -50,18 +46,21 @@ function displayTagIngredientAdvanced(e){
     var nodeTagIngredient = document.querySelector("#tagIngredient")
     nodeTagIngredient.innerHTML =  `<div class="cardTag">`+ ingredientTag + `<div class="close"> <i class="fa fa-times-circle-o"></i></div></div>`; 
     eventCloseTag()
+    rechargeRecipes()
 }
 function displayUstensilAdvanced(e){
     var ustensilTag = e.target.innerHTML
     var nodeTagUstensil = document.querySelector("#tagUstensiles")
     nodeTagUstensil.innerHTML = `<div class="cardTag">`+ ustensilTag  + `<div class="close"> <i class="fa fa-times-circle-o"></i></div></div>`;
     eventCloseTag() 
+    rechargeRecipes()
 }
 function displayApplianceAdvanced(e){
     var applianceTag = e.target.innerHTML
     var nodeTagAppliance = document.querySelector("#tagAppliance")
     nodeTagAppliance.innerHTML = `<div class="cardTag">` + applianceTag + `<div class="close"> <i class="fa fa-times-circle-o"></i></div></div>`; 
     eventCloseTag()
+    rechargeRecipes()
 }
 
 function listIngredient(recipe){
@@ -98,28 +97,55 @@ return applianceFiltered
 //fonction qui verifie si la recherche est dans la recette
 function isSearchInRecipe(recipe, valueSearch){
     var firstSearch = (recipe.name.toLowerCase().includes(valueSearch)|| valueSearch === "" || recipe.description.toLowerCase().includes(valueSearch) || JSON.stringify(recipe.ingredients).toLowerCase().includes(valueSearch));
-    var secondSearch = true;
+    var secondSearchIngredient = true;
+    var secondSearchUstensil = true;
+    var secondSearchAppliance = true;
     var nodeTagIngredient = document.querySelector("#tagIngredient");
+    var nodeTagUstensil = document.querySelector("#tagUstensiles");
+    var nodeTagAppliance = document.querySelector("#tagAppliance");
     //split la partie de gauche
-    var rightTag = nodeTagIngredient.innerHTML.split('<div class="cardTag">')[1]
-    //recupere l'élément
-    if(rightTag){
-        secondSearch = false;
-       var valueTag = rightTag.split('<div class="close"> <i class="fa fa-times-circle-o" aria-hidden="true"></i></div></div>')[0].trim().toLowerCase() 
+    var rightTagIngredient = nodeTagIngredient.innerHTML.split('<div class="cardTag">')[1];
+    var rightTagUstensil = nodeTagUstensil.innerHTML.split('<div class="cardTag">')[1];
+    var rightTagAppliance = nodeTagAppliance.innerHTML.split('<div class="cardTag">')[1];
+    //recupere l'élément ingredient
+    if(rightTagIngredient){
+        secondSearchIngredient = false;
+       var valueTagIngredient = rightTagIngredient.split('<div class="close"> <i class="fa fa-times-circle-o" aria-hidden="true"></i></div></div>')[0].trim().toLowerCase() 
        //recupere le tableau des ingredients
        var arrayIngredient = recipe.ingredients;
+
 for(let i = 0 ;i< arrayIngredient.length;i++){
 var ingredient = arrayIngredient[i].ingredient.toLowerCase().trim();
 //compare la l'ingredient de la liste avec le tag
-if(ingredient=== valueTag){
-    secondSearch = true 
-}
-}
-    }
-  
-    console.log(valueTag)
-   // <div class="cardTag">Lait de coco<div class="close"> <i class="fa fa-times-circle-o" aria-hidden="true"></i></div></div>
-    return (firstSearch && secondSearch )
+if(ingredient=== valueTagIngredient){
+    secondSearchIngredient = true 
+}}   }
+//recupere l'élément ustensil
+if(rightTagUstensil){
+    secondSearchUstensil = false;
+   var valueTagUstensil = rightTagUstensil.split('<div class="close"> <i class="fa fa-times-circle-o" aria-hidden="true"></i></div></div>')[0].trim().toLowerCase() 
+   //recupere le tableau des ustensils
+   var arrayUstensil = recipe.ustensils;
+
+for(let i = 0 ;i< arrayUstensil.length;i++){
+var ustensil = arrayUstensil[i].toLowerCase().trim();
+//compare la l'ingredient de la liste avec le tag
+if(ustensil=== valueTagUstensil){
+secondSearchUstensil = true 
+}}   }
+//recupere l'élément appliance
+if(rightTagAppliance){
+    secondSearchAppliance = false;
+   var valueTagAppliance = rightTagAppliance.split('<div class="close"> <i class="fa fa-times-circle-o" aria-hidden="true"></i></div></div>')[0].trim().toLowerCase() 
+   //recupere le tableau des ustensils
+   var appliance = recipe.appliance.toLowerCase().trim();
+//compare la l'ingredient de la liste avec le tag
+if(appliance=== valueTagAppliance){
+    secondSearchAppliance = true 
+}  }
+
+
+       return (firstSearch && secondSearchIngredient && secondSearchUstensil && secondSearchAppliance )
 }
 /*---------- fonction qui recupere le json----------*/
 async function getRecipesFromJson() {
@@ -135,8 +161,11 @@ nodeSearch.addEventListener("click", rechargeRecipes);
 
 function rechargeRecipes(e){
     //empeche le comportement par default du chargement
+    //test l'existence de e
+    if(e){
     e.preventDefault();
     e.stopImmediatePropagation();
+    }
 var nodeCards= document.querySelector(".cards");
 //recupere la value de l'input
 var textOfSearch = document.querySelector("#inputSearch").value;
@@ -195,7 +224,9 @@ function buildCard(recipe){
         </div> 
     </div>
     </div>
+ 
     `
+    return 0
 }
 /*------- tronc du paragraphe-------*/
 function troncInstruction(text){
@@ -216,19 +247,23 @@ var nodeInputAppliance= document.querySelector("#nameAppareil")
 nodeInputAppliance.addEventListener("keyup", filterSecondSearch)
 
 
-
+//recharge recipe 
 function filterSecondSearch(e){
     rechargeRecipes(e)
+    return 0
         }
         //event sur closeTag
 function eventCloseTag(){
 var nodeCloseTag = document.querySelectorAll(".close"); 
 nodeCloseTag.forEach(close=> close.addEventListener("click", closeTag));
+return 0
 }
 
 //close du tag
 function closeTag(e){
 var nodeToRemove = e.target.parentNode.parentNode
 nodeToRemove.parentNode.removeChild(nodeToRemove)
-
+rechargeRecipes()
+return 0
 }
+
