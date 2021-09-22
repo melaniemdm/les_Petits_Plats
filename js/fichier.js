@@ -238,6 +238,46 @@ return text.substring(0,numberletter) +"...";
 }else{
 return text
 }};
+/*------- recherche avancée-------*/
+    
+    //ingredients - btn
+    var nodeDisplayIngredients = document.querySelector("#displayIngredients")
+    nodeDisplayIngredients.addEventListener("click", disappear)
+    //appareil - btn
+    var nodeDisplayAppareil = document.querySelector("#displayAppareil")
+    nodeDisplayAppareil.addEventListener("click", disappear)
+    //ustensiles - btn
+    var nodeDisplayUstensiles = document.querySelector("#displayUstensiles")
+    nodeDisplayUstensiles.addEventListener("click", disappear )
+    
+    //ingredients - recherche
+    var nodeSearchIngredients = document.querySelector("#searchIngredients")
+    nodeSearchIngredients.style.visibility ="hidden";
+    //appareil - recherche
+    var nodeSearchAppareil = document.querySelector("#searchAppareil")
+    nodeSearchAppareil.style.visibility ="hidden";
+    //ustensiles - recherche
+    var nodeSearchUstensiles = document.querySelector("#searchUstensiles")
+    nodeSearchUstensiles.style.visibility ="hidden";
+    
+    
+    //fonction de disparation de la recherche avancée
+    function disappear(e){
+        //ingredients - appareil - ustensiles
+        var targetEventTitle = e.target.title;
+        console.log(targetEventTitle)
+        var nodeDisappear = document.querySelector("#display" + targetEventTitle)
+        if(nodeDisappear){
+        nodeDisappear.style.visibility ="hidden";    
+        }
+        appear(targetEventTitle)
+    }
+    //fonction qui fait apparaitre la recherche avancée
+    function appear(targetEventTitle){
+        //ingredients - appareil - ustensiles
+        var disappearSearchIngredients = document.querySelector("#search"+ targetEventTitle )
+        disappearSearchIngredients.style.visibility ="visible";
+       }
 //event sur les noeuds de l'input
 var nodeInputSearch = document.querySelector("#inputSearch");
 nodeInputSearch.addEventListener("keyup", rechargeRecipes);
