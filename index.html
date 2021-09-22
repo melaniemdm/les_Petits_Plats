@@ -6,7 +6,8 @@
     <!--pour l'encodage, caracteres speciaux-->
     <meta charset="utf-8" />
     <!--lien bootstrap-->
-    <link rel="stylesheet" href="https://melaniemdm.github.io/oc_librairies/bootstrap-5.1.0-dist/css/bootstrap.min.css"  crossorigin="anonymous">
+    <link rel="stylesheet" href="https://melaniemdm.github.io/oc_librairies/bootstrap-5.1.0-dist/css/bootstrap.min.css"
+        crossorigin="anonymous">
     <!--lien vers le fichier css-->
     <link rel="stylesheet" href="style/petits_Plats_Style.css" />
     <!--lien vers les icones font awesome-->
@@ -16,52 +17,61 @@
     <link
         href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
         rel="stylesheet" /> -->
-    
+
     <!--pour devtool et compatibilité responsive-->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-        <title>Les-Petits-Plats</title>
+
+    <title>Les-Petits-Plats</title>
     <!--titre de l'onglet-->
 </head>
 
 <body>
     <div class="logo_lesPetitsPlats"><a href="index.html">
-    <img alt="les petits plats" src="logo.png" ></a>
-   </div>
+            <img alt="les petits plats" src="logo.png"></a>
+    </div>
     <!--rechercher tous-->
     <form class="search">
-      <input type="text" placeholder="Search.." name="search" id="inputSearch">
-      <button type="submit"><i id="search" class="fa fa-search"></i></button>
+        <input type="text" placeholder="Search.." name="search" id="inputSearch">
+        <button type="submit"><i id="search" class="fa fa-search"></i></button>
     </form>
-     <!--Btn recherche -->
-    <button type="button" class="btn btn-primary btn-lg" id="displayIngredients" title="Ingredients">Ingredients <i class="fa fa-angle-down"></i></button>
-    <button type="button" class="btn btn-success btn-lg" id="displayAppliance" title="Appliance">Appareil <i class="fa fa-angle-down"></i></button>
-    <button type="button" class="btn btn-danger btn-lg" id="displayUstensiles" title="Ustensiles">Ustensiles <i class="fa fa-angle-down"></i></button>
+    <!--Btn recherche -->
+    <button type="button" class="btn btn-primary btn-lg" id="displayIngredients" title="Ingredients">Ingredients <i
+            class="fa fa-angle-down"></i></button>
+    <button type="button" class="btn btn-success btn-lg" id="displayAppliance" title="Appliance">Appareil <i
+            class="fa fa-angle-down"></i></button>
+    <button type="button" class="btn btn-danger btn-lg" id="displayUstensiles" title="Ustensiles">Ustensiles <i
+            class="fa fa-angle-down"></i></button>
 
-    <button type="button" class="btn btn-primary btn-lg" id="searchIngredients"> <input type="text" id="nameIngredients" name="searchIngredients" required
-        minlength="4" maxlength="50" size="10" placeholder="Recherche un ingrédient"><i class="fa fa-angle-up"></i>
-        <div id="listIngredients"> </div></button>
-        <button type="button" class="btn btn-success btn-lg" id="searchAppliance" title="Appliance"><input type="text" id="nameAppliance" name="searchAppliance" required
-            minlength="4" maxlength="50" size="10" placeholder="Recherche un ingrédient"><i class="fa fa-angle-up"></i>
-            <div id="listAppliance"> </div></button>
+    <button type="button" class="btn btn-primary btn-lg" id="searchIngredients"> <input type="text" id="nameIngredients"
+            name="searchIngredients" required minlength="4" maxlength="50" size="10"
+            placeholder="Recherche un ingrédient"><i class="fa fa-angle-up"></i>
+        <div id="listIngredients"> </div>
+    </button>
+    <button type="button" class="btn btn-success btn-lg" id="searchAppliance" title="Appliance"><input type="text"
+            id="nameAppliance" name="searchAppliance" required minlength="4" maxlength="50" size="10"
+            placeholder="Recherche un ingrédient"><i class="fa fa-angle-up"></i>
+        <div id="listAppliance"> </div>
+    </button>
 
-    <button type="button" class="btn btn-danger btn-lg" id="searchUstensiles" >  <input type="text" id="nameUstensiles" name="searchUstensiles" required
-        minlength="4" maxlength="50" size="10" placeholder="Recherche un ustensiles"><i class="fa fa-angle-up"></i>
-        <div id="listUstensiles"> </div></button>
-   
+    <button type="button" class="btn btn-danger btn-lg" id="searchUstensiles"> <input type="text" id="nameUstensiles"
+            name="searchUstensiles" required minlength="4" maxlength="50" size="10"
+            placeholder="Recherche un ustensiles"><i class="fa fa-angle-up"></i>
+        <div id="listUstensiles"> </div>
+    </button>
+
 
     <button type="button" class="btn btn-primary btn-sm" id="tagIngredient"></button>
-    <button type="button" class="btn btn-success btn-sm" id="tagAppliance" ></button>
+    <button type="button" class="btn btn-success btn-sm" id="tagAppliance"></button>
     <button type="button" class="btn btn-danger btn-sm" id="tagUstensiles"></button>
-  <!--card des recettes-->
+    <!--card des recettes-->
     <div class="cards row row-cols-12 "></div>
-    
 
-<!-- appel du fichier js ---->
-<script type="module" src="js/fichier.js"></script>
 
-<script type="module"> import{displayRecipes} from "./js/fichier.js"
-let useDisplayRecipes = await displayRecipes();  </script>        
+    <!-- appel du fichier js ---->
+    <script type="module" src="js/fichier.js"></script>
+
+    <script type="module"> import { displayRecipes } from "./js/fichier.js"
+        let useDisplayRecipes = await displayRecipes();</script>
 </body>
 
 </html>
