@@ -58,8 +58,111 @@ form.search::after {
 
 /*---------------Btn--------*/
 .btn {
+  width: 300px;
   margin-left: 15px;
   margin-right: 15px;
+}
+
+#nameIngredients {
+  width: 250px;
+  text-decoration: none;
+  border: none;
+  background-color: #0d6efd;
+  transition-duration: 0.3s;
+}
+
+#searchIngredients:hover input {
+  background-color: #0b5ed7;
+  transition-duration: 0.3s;
+}
+
+#searchIngredients {
+  position: absolute;
+  top: 167px;
+  left: 10px;
+  z-index: 1;
+  width: 660px;
+}
+#searchIngredients input::-moz-placeholder {
+  color: #0b5ed7;
+  filter: brightness(1.75);
+}
+#searchIngredients input:-ms-input-placeholder {
+  color: #0b5ed7;
+  filter: brightness(1.75);
+}
+#searchIngredients input::placeholder {
+  color: #0b5ed7;
+  filter: brightness(1.75);
+}
+#searchIngredients .card-img-top {
+  height: 170px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+#searchAppliance {
+  position: absolute;
+  top: 167px;
+  left: 190px;
+  z-index: 1;
+  width: 660px;
+}
+#searchAppliance input::-moz-placeholder {
+  color: #157347;
+  filter: brightness(1.75);
+}
+#searchAppliance input:-ms-input-placeholder {
+  color: #157347;
+  filter: brightness(1.75);
+}
+#searchAppliance input::placeholder {
+  color: #157347;
+  filter: brightness(1.75);
+}
+
+#nameUstensiles {
+  width: 250px;
+  text-decoration: none;
+  border: none;
+  background-color: #dc3545;
+  transition-duration: 0.3s;
+}
+
+#searchUstensiles:hover input {
+  background-color: #bb2d3b;
+  transition-duration: 0.3s;
+}
+
+#searchUstensiles {
+  position: absolute;
+  top: 167px;
+  left: 480px;
+  z-index: 1;
+  width: 660px;
+}
+#searchUstensiles input::-moz-placeholder {
+  color: #bb2d3b;
+  filter: brightness(1.75);
+}
+#searchUstensiles input:-ms-input-placeholder {
+  color: #bb2d3b;
+  filter: brightness(1.75);
+}
+#searchUstensiles input::placeholder {
+  color: #bb2d3b;
+  filter: brightness(1.75);
+}
+
+#listIngredients {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+#listAppliance,
+#listIngredients,
+#listUstensiles {
+  font-size: 16px;
 }
 
 /*---------------card recette--------*/
@@ -78,8 +181,6 @@ form.search::after {
 
 .card-img-top {
   height: 170px;
-  -o-object-fit: cover;
-     object-fit: cover;
 }
 
 .card-body {
@@ -149,4 +250,15 @@ form.search::after {
 
 li {
   line-height: 1.2;
+}
+
+#tagIngredient,
+#tagAppliance,
+#tagUstensiles {
+  visibility: hidden;
+}
+
+.cardTag {
+  display: flex;
+  justify-content: space-around;
 }/*# sourceMappingURL=petits_Plats_Style.css.map */
