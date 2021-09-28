@@ -42,7 +42,7 @@ function filterRecipes(arrayFromJson) {
 
 /*---------- fonction qui recupere le json----------*/
 async function getRecipesFromJson() {
-    let url = "http://127.0.0.1:5500/json/recipes.json";
+    let url = "https://melaniemdm.github.io/les_Petits_Plats/json/recipes.json";
     let rep = await fetch(url, { method: "GET" });
     let reponse = await rep.json();
     let arrayRecipes = reponse["recipes"];
