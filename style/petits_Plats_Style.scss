@@ -146,6 +146,9 @@ form.search::after {
   padding-right: 0;
   overflow: hidden;
 }
+.card img{
+  object-fit: cover;
+}
 .card-img-top {
   height: 170px;
 }

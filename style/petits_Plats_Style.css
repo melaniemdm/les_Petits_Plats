@@ -179,6 +179,11 @@ form.search::after {
   overflow: hidden;
 }
 
+.card img {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
 .card-img-top {
   height: 170px;
 }
