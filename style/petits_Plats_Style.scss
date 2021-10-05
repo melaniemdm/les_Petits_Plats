@@ -72,7 +72,7 @@ form.search::after {
 }
 /*---------------Btn--------*/
 .btn {
-  width: 300px;
+  //width: 300px;
   margin-left: 15px;
   margin-right: 15px;
 }
@@ -85,6 +85,16 @@ form.search::after {
 .fa-angle-down{
   padding-left: 40px;
 }
+/*---------------card tag--------*/
+#tagIngredients, #tagAppliance, #tagUstensiles{
+width: auto;
+height: 36px;
+}
+.close{
+  padding-left: 15px;
+}
+
+
 #nameIngredients {
   width: 250px;
   text-decoration: none;
