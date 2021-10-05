@@ -94,6 +94,12 @@ form.search::after {
 #displayIngredients, #displayAppliance, #displayUstensiles {
   width: 170px;
   height: 70px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.fa-angle-down {
+  padding-left: 40px;
 }
 
 #nameIngredients {
