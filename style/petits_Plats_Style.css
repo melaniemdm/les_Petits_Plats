@@ -270,6 +270,7 @@ form.search::after {
   justify-content: flex-end;
   align-items: center;
   flex-wrap: nowrap;
+  width: 130px;
 }
 
 .ingredients {
@@ -296,6 +297,7 @@ form.search::after {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  width: 210px;
 }
 
 .nameIngredient {

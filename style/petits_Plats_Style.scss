@@ -220,6 +220,7 @@ height: 36px;
   justify-content: flex-end;
   align-items: center;
   flex-wrap: nowrap;
+  width: 130px;
 }
 
 .ingredients {
@@ -244,6 +245,7 @@ height: 36px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  width: 210px;
 }
 .nameIngredient {
   font-weight: bold;
