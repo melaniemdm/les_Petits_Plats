@@ -252,7 +252,7 @@ form.search::after {
   grid-template-columns: 85fr 35fr;
   font-size: 15px;
   padding-top: 25px;
-  padding-bottom: 25px;
+  padding-bottom: 10px;
 }
 
 .secondPartieCard {
@@ -288,7 +288,9 @@ form.search::after {
   max-height: 120px;
   padding-left: 20px;
   font-size: 12px;
-  height: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 90px;
 }
 
 .recipesTitle {
