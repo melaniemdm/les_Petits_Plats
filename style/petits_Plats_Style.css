@@ -234,7 +234,7 @@ form.search::after {
 }
 
 .card-img-top {
-  height: 170px;
+  height: 176px;
 }
 
 .card-body {
@@ -274,7 +274,7 @@ form.search::after {
 
 .ingredients {
   font-family: "Open Sans", "Times New Roman", Times, serif;
-  max-height: 120px;
+  width: 150px;
   font-size: 11px;
 }
 .ingredients ul {

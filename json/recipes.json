@@ -16,7 +16,7 @@
             {
                 "ingredient" : "Crème de coco",
                 "quantity" : 2,
-                "unit" : "cuillères à soupe"
+                "unit" : "cuillères"
             },
             {
                 "ingredient" : "Sucre",
@@ -162,7 +162,7 @@
            {
                "ingredient": "Crème fraiche",
                "quantity": 2,
-               "unit": "cuillères à soupe"
+               "unit": "cuillères"
            },
            {
                "ingredient": "gruyère râpé",
@@ -172,7 +172,7 @@
            {
                 "ingredient": "Moutarde de Dijon",
                 "quantity": 1,
-                "unite": "cuillères à soupe"
+                "unite": "cuillères"
            }
         ],
         "time": 45,
@@ -449,12 +449,12 @@
             {
                 "ingredient": "Vinaigre de cidre",
                 "quantity": 1,
-                "unit":"cuillère à soupe"
+                "unit":"cuillère"
             },
             {
                 "ingredient": "huile d'olive",
                 "quantity": 2,
-                "unit": "cuillère à soupe"
+                "unit": "cuillère"
             }
         ],
         "time":40,
@@ -569,7 +569,7 @@
             {
                 "ingredient": "huile d'olives",
                 "quantity": 2,
-                "unit": "cuillère à soupe"
+                "unit": "cuillère "
             }
         ],
         "time": 45,
@@ -594,7 +594,7 @@
             {
                 "ingredient": "Jus de citron",
                 "quantity": 1,
-                "unit":"cuillères à soupe"
+                "unit":"cuillères"
             },
             {
                 "ingredient": "Glaçons",
@@ -695,7 +695,7 @@
             {
                 "ingredient": "huile d'olive",
                 "quantity": 1,
-                "unit": "cuillères à soupe"
+                "unit": "cuillères"
             }
         ],
         "time": 30,
@@ -735,7 +735,7 @@
             {
                 "ingredient": "Crème Fraiche",
                 "quantity" : 1,
-                "unit": "cuillères à soupe"
+                "unit": "cuillères"
             }
         ],
         "time": 30,
@@ -849,7 +849,7 @@
             {
                 "ingredient": "Mayonnaise",
                 "quantity": 2,
-                "unit": "cuillères à soupe"
+                "unit": "cuillères "
             }
         ],
         "time": 40,
@@ -939,7 +939,7 @@
             {
                 "ingredient": "Crème fraîche",
                 "quantity": 4,
-                "unit": "cuillère à soupe"
+                "unit": "cuillère"
             },
             {
                 "ingredient": "Vermicelles",
@@ -1145,12 +1145,12 @@
             {
                 "ingredient": "Fromage blanc",
                 "quantity": 4,
-                "unit":"cuillères à soupe"
+                "unit":"cuillères "
             },
             {
                 "ingredient": "Jus de citron",
                 "quantity": 1,
-                "unit": "cuillères à soupe"
+                "unit": "cuillères"
             }
         ],
         "time": 5,
@@ -1207,7 +1207,7 @@
             {
                 "ingredient": "Crème fraîche",
                 "quantity": 2,
-                "unit":"cuillères à soupe"
+                "unit":"cuillères "
             },
             {
                 "ingredient": "Cumin",
@@ -1256,7 +1256,7 @@
             {
                 "ingredient": "Maïzena",
                 "quantity": 1,
-                "unit": "cuillères à soupe"
+                "unit": "cuillères "
             }
         ],
         "time": 35,
@@ -1678,7 +1678,7 @@
             {
                 "ingredient": "Miel",
                 "quantity": 2,
-                "unit": "cuillères à soupe"
+                "unit": "cuillères "
             }
         ],
         "time": 0,
