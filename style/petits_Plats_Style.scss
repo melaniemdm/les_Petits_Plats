@@ -165,6 +165,16 @@ height: 36px;
 #listIngredients {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap:5px;
+  
+}
+.ingredient, .appliance, .ustensils{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+ display:block;
+ text-align: left;
+ 
 }
 #listAppliance,
 #listIngredients,

@@ -344,7 +344,7 @@ function rechargeRecipes(e) {
 
 /*------- tronc du paragraphe de la card-------*/
 function troncInstruction(text) {
-    var numberletter = 140;
+    var numberletter = 138;
     if (text.length > numberletter) {
         return text.substring(0, numberletter) + "...";
     } else {
