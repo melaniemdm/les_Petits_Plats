@@ -545,7 +545,7 @@ function closeTag(e) {
     e.preventDefault();
     e.stopImmediatePropagation();
     var nodeCloseTag = e.target.parentNode.parentNode;
-    var nodeCloseTagParent = nodeCloseTag.parentNode
+    var nodeCloseTagParent = nodeCloseTag.parentNode;
     nodeCloseTagParent.removeChild(nodeCloseTag);
     
     if(nodeCloseTagParent.innerHTML === ""){
