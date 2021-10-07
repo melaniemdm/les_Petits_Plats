@@ -155,7 +155,7 @@ form.search::after {
   top: 167px;
   left: 190px;
   z-index: 1;
-  width: 660px;
+  width: auto;
 }
 #searchAppliance input::-moz-placeholder {
   color: #157347;
@@ -188,7 +188,7 @@ form.search::after {
   top: 167px;
   left: 480px;
   z-index: 1;
-  width: 660px;
+  width: auto;
 }
 #searchUstensiles input::-moz-placeholder {
   color: #bb2d3b;
