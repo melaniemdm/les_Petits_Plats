@@ -366,13 +366,13 @@ nodeDisplayUstensiles.addEventListener("click", disappear);
 
 //ingredients - recherche
 var nodeSearchIngredients = document.querySelector("#searchIngredients");
-nodeSearchIngredients.style.visibility = "hidden";
+nodeSearchIngredients.style.display= "none";
 //appareil - recherche
 var nodeSearchAppliance = document.querySelector("#searchAppliance");
-nodeSearchAppliance.style.visibility = "hidden";
+nodeSearchAppliance.style.display= "none";
 //ustensiles - recherche
 var nodeSearchUstensiles = document.querySelector("#searchUstensiles");
-nodeSearchUstensiles.style.visibility = "hidden";
+nodeSearchUstensiles.style.display= "none";
 
 //fonction de disparation de la recherche avancée
 function disappear(e) {
@@ -380,7 +380,7 @@ function disappear(e) {
     var targetEventTitle = e.target.title;
     var nodeDisappear = document.querySelector("#display" + targetEventTitle);
     if (nodeDisappear) {
-        nodeDisappear.style.visibility = "hidden";
+        nodeDisappear.style.display= "none";
     }
     appear(targetEventTitle);
 }
@@ -390,7 +390,7 @@ function appear(targetEventTitle) {
     var disappearSearchIngredients = document.querySelector(
         "#search" + targetEventTitle
     );
-    disappearSearchIngredients.style.visibility = "visible";
+    disappearSearchIngredients.style.display= "block";
 }
 
 //ecouteur au keyup pour mettre a jour la liste

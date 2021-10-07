@@ -82,8 +82,13 @@ form.search::after {
   font-size: 15px;
   font-weight: bold;
 }
+
 .fa-angle-down{
   padding-left: 40px;
+}
+.filters{
+  display: flex;
+  background-color: red;
 }
 /*---------------card tag--------*/
 #tagIngredients, #tagAppliance, #tagUstensiles{
@@ -96,7 +101,6 @@ height: 36px;
   font-size: 17px;
   
 }
-
 
 #nameIngredients {
   width: 250px;
@@ -112,9 +116,7 @@ height: 36px;
   }
 }
 #searchIngredients {
-  position: absolute;
-  top: 167px;
-  left: 10px;
+  display: none;
   z-index: 1;
   width: 660px;
   input::placeholder {
@@ -127,7 +129,7 @@ height: 36px;
   }
 }
 #searchAppliance {
-  position: absolute;
+  display: none;
   top: 167px;
   left: 190px;
   z-index: 1;
@@ -151,10 +153,8 @@ height: 36px;
   }
 }
 #searchUstensiles {
-  position: absolute;
-  top: 167px;
-  left: 480px;
-  z-index: 1;
+  display: none;
+   z-index: 1;
   width: auto;
   input::placeholder {
     color: #bb2d3b;

@@ -101,6 +101,11 @@ form.search::after {
   padding-left: 40px;
 }
 
+.filters {
+  display: flex;
+  background-color: red;
+}
+
 /*---------------card tag--------*/
 #tagIngredients, #tagAppliance, #tagUstensiles {
   width: auto;
@@ -126,9 +131,7 @@ form.search::after {
 }
 
 #searchIngredients {
-  position: absolute;
-  top: 167px;
-  left: 10px;
+  display: none;
   z-index: 1;
   width: 660px;
 }
@@ -151,7 +154,7 @@ form.search::after {
 }
 
 #searchAppliance {
-  position: absolute;
+  display: none;
   top: 167px;
   left: 190px;
   z-index: 1;
@@ -184,9 +187,7 @@ form.search::after {
 }
 
 #searchUstensiles {
-  position: absolute;
-  top: 167px;
-  left: 480px;
+  display: none;
   z-index: 1;
   width: auto;
 }
