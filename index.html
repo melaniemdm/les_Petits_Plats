@@ -34,8 +34,16 @@
         <input type="text" placeholder="Rechercher un ingrédient, appareil, ustensiles ou une recette" name="search" id="inputSearch">
         <button type="submit"><i id="search" class="fa fa-search"></i>   </button>
     </form>
-    <!--Btn recherche -->
+    <!--Btn recherche & tag -->
+
+    <div class="tags">
+        <button type="button" class="btn btn-primary btn-sm" id="tagIngredient"></button>
+        <button type="button" class="btn btn-success btn-sm" id="tagAppliance"></button>
+        <button type="button" class="btn btn-danger btn-sm" id="tagUstensiles"></button>
+    </div>
+
     <div class="filters">
+        
     <button type="button" class="btn btn-primary btn-lg" id="displayIngredients" title="Ingredients">Ingredients <i
             class="fa fa-angle-down"></i></button>
  <div  class="btn btn-primary btn-lg" id="searchIngredients"> <input type="text" id="nameIngredients"
@@ -61,11 +69,7 @@
         <div id="listUstensiles"> </div>
     </div>
 </div>
-<div class="tags">
-    <button type="button" class="btn btn-primary btn-sm" id="tagIngredient"></button>
-    <button type="button" class="btn btn-success btn-sm" id="tagAppliance"></button>
-    <button type="button" class="btn btn-danger btn-sm" id="tagUstensiles"></button>
-</div>    
+    
     <!--card des recettes-->
     <div class="cards row row-cols-12 "></div>
 

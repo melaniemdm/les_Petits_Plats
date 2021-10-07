@@ -88,7 +88,9 @@ form.search::after {
 }
 .filters{
   display: flex;
- height: 100px;
+ position: absolute;
+ z-index: 1;
+ 
   }
 /*---------------card tag--------*/
 #tagIngredients, #tagAppliance, #tagUstensiles{
@@ -97,6 +99,7 @@ height: 36px;
 }
 .tags{
   display: flex;
+  margin-bottom: 15px;
 }
 .close{
   padding-left: 15px;
@@ -126,7 +129,6 @@ height: 36px;
   }
 }
 #searchIngredients {
-  position: absolute;
   display: none;
   z-index: 1;
   width: 660px;
@@ -140,7 +142,6 @@ height: 36px;
   }
 }
 #searchAppliance {
-  position: absolute;
   display: none;
   top: 167px;
   left: 190px;
@@ -165,7 +166,6 @@ height: 36px;
   }
 }
 #searchUstensiles {
-  position: absolute;
   display: none;
    z-index: 1;
   width: auto;
@@ -199,7 +199,7 @@ height: 36px;
 //position des cards recipes
 .cards {
   justify-content: center;
-  
+  margin-top: 130px;
 }
 .card {
   width: 380px;

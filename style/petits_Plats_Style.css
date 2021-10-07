@@ -103,7 +103,8 @@ form.search::after {
 
 .filters {
   display: flex;
-  height: 100px;
+  position: absolute;
+  z-index: 1;
 }
 
 /*---------------card tag--------*/
@@ -114,6 +115,7 @@ form.search::after {
 
 .tags {
   display: flex;
+  margin-bottom: 15px;
 }
 
 .close {
@@ -147,7 +149,6 @@ form.search::after {
 }
 
 #searchIngredients {
-  position: absolute;
   display: none;
   z-index: 1;
   width: 660px;
@@ -171,7 +172,6 @@ form.search::after {
 }
 
 #searchAppliance {
-  position: absolute;
   display: none;
   top: 167px;
   left: 190px;
@@ -205,7 +205,6 @@ form.search::after {
 }
 
 #searchUstensiles {
-  position: absolute;
   display: none;
   z-index: 1;
   width: auto;
@@ -246,6 +245,7 @@ form.search::after {
 /*---------------card recette--------*/
 .cards {
   justify-content: center;
+  margin-top: 130px;
 }
 
 .card {
