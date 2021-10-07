@@ -554,3 +554,12 @@ function closeTag(e) {
     //permet de recharger la page
     displayRecipes();
 }
+
+var nodeCloseListIngredient = document.querySelector("#closeListIngredient");
+nodeCloseListIngredient.addEventListener("click",closeListIngredients);
+
+var nodeCloseListAppliance = document.querySelector("#closeListAppliance");
+nodeCloseListAppliance.addEventListener("click",closeListAppliance);
+
+var nodeCloseListustensils = document.querySelector("#closeListUstensils");
+nodeCloseListustensils.addEventListener("click",closeListUstensils);
