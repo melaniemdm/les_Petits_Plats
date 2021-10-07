@@ -141,17 +141,33 @@ height: 36px;
     object-fit: cover;
   }
 }
+#searchAppliance:hover {
+  & input {
+    background-color: #157347;
+    transition-duration: 0.3s;
+  }
+}
 #searchAppliance {
   display: none;
-  top: 167px;
-  left: 190px;
   z-index: 1;
   width: auto;
-  input::placeholder {
+   input::placeholder {
     color: #157347;
     filter: brightness(1.75);
   }
+  .card-img-top{
+    height: 170px;
+    object-fit: cover;
+  }
 }
+#nameAppliance {
+  width: 250px;
+  text-decoration: none;
+  border: none;
+  background-color: #198754;
+  transition-duration: 0.3s;
+}
+
 #nameUstensiles {
   width: 250px;
   text-decoration: none;
