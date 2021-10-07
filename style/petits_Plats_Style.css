@@ -103,6 +103,7 @@ form.search::after {
 
 .filters {
   display: flex;
+  height: 100px;
 }
 
 /*---------------card tag--------*/
@@ -146,6 +147,7 @@ form.search::after {
 }
 
 #searchIngredients {
+  position: absolute;
   display: none;
   z-index: 1;
   width: 660px;
@@ -169,6 +171,7 @@ form.search::after {
 }
 
 #searchAppliance {
+  position: absolute;
   display: none;
   top: 167px;
   left: 190px;
@@ -202,6 +205,7 @@ form.search::after {
 }
 
 #searchUstensiles {
+  position: absolute;
   display: none;
   z-index: 1;
   width: auto;

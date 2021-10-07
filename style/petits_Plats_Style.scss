@@ -88,8 +88,8 @@ form.search::after {
 }
 .filters{
   display: flex;
-  
-}
+ height: 100px;
+  }
 /*---------------card tag--------*/
 #tagIngredients, #tagAppliance, #tagUstensiles{
 width: auto;
@@ -126,10 +126,11 @@ height: 36px;
   }
 }
 #searchIngredients {
+  position: absolute;
   display: none;
   z-index: 1;
   width: 660px;
-  input::placeholder {
+   input::placeholder {
     color: #0b5ed7;
     filter: brightness(1.75);
   }
@@ -139,6 +140,7 @@ height: 36px;
   }
 }
 #searchAppliance {
+  position: absolute;
   display: none;
   top: 167px;
   left: 190px;
@@ -163,6 +165,7 @@ height: 36px;
   }
 }
 #searchUstensiles {
+  position: absolute;
   display: none;
    z-index: 1;
   width: auto;
@@ -190,11 +193,13 @@ height: 36px;
 #listIngredients,
 #listUstensiles {
   font-size: 16px;
+
 }
 /*---------------card recette--------*/
 //position des cards recipes
 .cards {
   justify-content: center;
+  
 }
 .card {
   width: 380px;
