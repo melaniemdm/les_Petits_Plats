@@ -453,21 +453,21 @@ function getCliked(e) {
     if (isClickedWordNotInList(clikedWord)) {
     //gestion des tags
         if (e.target.className === "ingredient") {
-            nodeTagIngredient.style.visibility = "visible";
+            nodeTagIngredient.style.display = "block";
             nodeTagIngredient.innerHTML +=
         `<div class="cardTag">` +
         clikedWord +
         `<div class="close"> <i class="fa fa-times-circle-o"></i></div></div>`;
         }
         if (e.target.className === "appliance") {
-            nodeTagAppliance.style.visibility = "visible";
+            nodeTagAppliance.style.display = "block";
             nodeTagAppliance.innerHTML +=
         `<div class="cardTag">` +
         clikedWord +
         `<div class="close"> <i class="fa fa-times-circle-o"></i></div></div>`;
         }
         if (e.target.className === "ustensils") {
-            nodeTagUstensils.style.visibility = "visible";
+            nodeTagUstensils.style.display = "block";
             nodeTagUstensils.innerHTML +=
         `<div class="cardTag">` +
         clikedWord +
@@ -482,28 +482,28 @@ function getCliked(e) {
 function closeListIngredients() {
     var nodeSearchIngredientsDisappear =
     document.querySelector("#searchIngredients");
-    nodeSearchIngredientsDisappear.style.visibility = "hidden";
+    nodeSearchIngredientsDisappear.style.display = "none";
     var nodeDisplayIngredientsDisappear = document.querySelector(
         "#displayIngredients"
     );
-    nodeDisplayIngredientsDisappear.style.visibility = "visible";
+    nodeDisplayIngredientsDisappear.style.display = "block";
 }
 
 function closeListAppliance() {
     var nodeSearchApplianceDisappear = document.querySelector("#searchAppliance");
-    nodeSearchApplianceDisappear.style.visibility = "hidden";
+    nodeSearchApplianceDisappear.style.display = "none";
     var nodeDisplayApplianceDisappear =
     document.querySelector("#displayAppliance");
-    nodeDisplayApplianceDisappear.style.visibility = "visible";
+    nodeDisplayApplianceDisappear.style.display = "block";
 }
 
 function closeListUstensils() {
     var nodeSearchUstensilsDisappear =
     document.querySelector("#searchUstensiles");
-    nodeSearchUstensilsDisappear.style.visibility = "hidden";
+    nodeSearchUstensilsDisappear.style.display = "none";
     var nodeDisplayAUstensilsDisappear =
     document.querySelector("#displayUstensiles");
-    nodeDisplayAUstensilsDisappear.style.visibility = "visible";
+    nodeDisplayAUstensilsDisappear.style.display = "block";
 }
 //regarde si le mot cliké a deja été ajouté dans la liste des tags
 function isClickedWordNotInList(clikedWord) {

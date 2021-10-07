@@ -88,20 +88,30 @@ form.search::after {
 }
 .filters{
   display: flex;
-  background-color: red;
+  
 }
 /*---------------card tag--------*/
 #tagIngredients, #tagAppliance, #tagUstensiles{
 width: auto;
 height: 36px;
-
+}
+.tags{
+  display: flex;
 }
 .close{
   padding-left: 15px;
   font-size: 17px;
-  
-}
-
+  }
+  #tagIngredient,
+  #tagAppliance,
+  #tagUstensiles {
+    display:none;
+  }
+  .cardTag {
+    display: flex;
+    justify-content: space-around;
+  }
+  /*---------- filter btn----*/
 #nameIngredients {
   width: 250px;
   text-decoration: none;
@@ -266,12 +276,4 @@ li {
   line-height: 1.2;
 }
 
-#tagIngredient,
-#tagAppliance,
-#tagUstensiles {
-  visibility: hidden;
-}
-.cardTag {
-  display: flex;
-  justify-content: space-around;
-}
+
