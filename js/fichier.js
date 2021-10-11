@@ -526,10 +526,7 @@ function addEventCardRecipe() {
     }
 }
 function selectRecipe(e) {
-    var node = e.target;
-    while (node.className !== "card") {
-        node = node.parentNode;
-    }
+    var node = e.currentTarget;
     //affiche ler nom de la recette selectionnée
     var titleRecette = node.title;
     console.log("cette recette est selectionnée :" + titleRecette);
