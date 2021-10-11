@@ -93,8 +93,15 @@ form.search::after {
 #displayIngredients, #displayAppliance, #displayUstensiles {
   width: 170px;
   height: 70px;
-  font-size: 15px;
-  font-weight: bold;
+}
+
+.btnSearchBarContenair {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btnSearchBarTitle {
+  font-size: 17px;
 }
 
 .fa-angle-down {
