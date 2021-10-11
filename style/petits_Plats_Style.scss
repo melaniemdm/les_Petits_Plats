@@ -192,6 +192,7 @@ height: 36px;
 }
 // champs de recherche
 #listIngredients {
+
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-column-gap:5px;
@@ -209,7 +210,20 @@ height: 36px;
 #listIngredients,
 #listUstensiles {
   font-size: 16px;
+margin-left: 15px;
+}
 
+.searchBarContenair{
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin-top: 15px;
+ margin-bottom: 15px;
+ margin-right: 10px;
+ margin-left: 10px;
+}
+.closeList{
+  margin-top: 5px ;
 }
 /*---------------card recette--------*/
 //position des cards recipes

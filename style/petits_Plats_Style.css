@@ -256,6 +256,21 @@ form.search::after {
 #listIngredients,
 #listUstensiles {
   font-size: 16px;
+  margin-left: 15px;
+}
+
+.searchBarContenair {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.closeList {
+  margin-top: 5px;
 }
 
 /*---------------card recette--------*/
