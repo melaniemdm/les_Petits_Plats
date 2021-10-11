@@ -376,8 +376,9 @@ nodeSearchUstensiles.style.display= "none";
 
 //fonction de disparation de la recherche avancée
 function disappear(e) {
+    
     //ingredients - appareil - ustensiles
-    var targetEventTitle = e.target.title;
+    var targetEventTitle = e.currentTarget.title;
     var nodeDisappear = document.querySelector("#display" + targetEventTitle);
     if (nodeDisappear) {
         nodeDisappear.style.display= "none";
