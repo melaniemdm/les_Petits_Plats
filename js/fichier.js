@@ -561,3 +561,11 @@ nodeCloseListAppliance.addEventListener("click",closeListAppliance);
 
 var nodeCloseListustensils = document.querySelector("#closeListUstensils");
 nodeCloseListustensils.addEventListener("click",closeListUstensils);
+
+var nodeSearchBarContenair = document.querySelector(".searchBarContenair");
+nodeSearchBarContenair.addEventListener("click",blocComportement);
+
+function blocComportement(e){
+    e.preventDefault();
+    e.stopImmediatePropagation();
+}
