@@ -280,9 +280,9 @@ function buildRecipeCardHtml(recipe) {
         <div class="recipesTitle"> ` +
     titleRecette +
     `</div>
-        <div class="timing">  <i class="far fa-clock"> </i> &nbsp; ` +
+        <div class="timing">  <i class="far fa-clock iconClock"> </i> &nbsp; <div class="numberTiming">` +
     timing +
-    ` min </div>
+    ` </div> <div class="minTiming" >  min </div></div>
     </div>
     <div class="secondPartieCard onePartieCard">
      <div class="ingredients">` +
