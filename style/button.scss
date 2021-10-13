@@ -155,7 +155,12 @@
     font-size: 16px;
   margin-left: 15px;
   }
-  
+  #listAppliance, #listUstensiles {
+    display: grid;
+    grid-template-columns: 1fr ;
+   
+    grid-row-gap: 5px;
+  }
   .searchBarContenair{
     display: flex;
     justify-content: space-between;
