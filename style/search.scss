@@ -1,0 +1,54 @@
+
+/*---------------search------------*/
+* {
+    box-sizing: border-box;
+  }
+  input::placeholder {
+    color: #c7c7c7;
+  }
+  #search{
+    font-size: 30px;
+   
+  }
+  /* Style the search field */
+  form.search input[type="text"] {
+    padding: 10px;
+    font-size: 17px;
+    border: 1px solid $colorsearch;
+    float: left;
+    border-radius: 5px 0 0 5px;
+    height: 70px;
+    width: 95%;
+    background: $colorsearch;
+    margin-bottom: 20px;
+  }
+  
+  /* Style the submit button */
+  form.search button {
+    float: left;
+    border-radius: 0  5px 5px 0;
+    height: 70px;
+    width: 5%;
+    padding: 10px;
+    background: $colorsearch;
+    color: black;
+    font-size: 17px;
+    border: 1px solid $colorsearch;
+    border-left: none; /* Prevent double borders */
+    cursor: pointer;
+  }
+  
+  form.search button:hover {
+    background: #0b7dda;
+  }
+  
+  /* Clear floats */
+  form.search::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  .search {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
