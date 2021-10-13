@@ -36,6 +36,7 @@ form.search input[type=text] {
   width: 95%;
   background: #f1f1f1;
   margin-bottom: 20px;
+  color: black;
 }
 
 /* Style the submit button */
@@ -166,11 +167,6 @@ form.search::after {
   transition-duration: 0.3s;
 }
 
-input[type=text] {
-  outline-style: none;
-  color: white;
-}
-
 #searchIngredients:hover input {
   background-color: #3282f7;
   transition-duration: 0.3s;
@@ -234,6 +230,11 @@ input[type=text] {
   border: none;
   background-color: #68d9a4;
   transition-duration: 0.3s;
+}
+
+input[type=text] {
+  outline-style: none;
+  color: white;
 }
 
 #nameUstensiles {

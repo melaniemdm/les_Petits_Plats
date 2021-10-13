@@ -97,11 +97,6 @@
   transition-duration: 0.3s;
 }
 
-input[type=text] {
-  outline-style: none;
-  color: white;
-}
-
 #searchIngredients:hover input {
   background-color: #3282f7;
   transition-duration: 0.3s;
@@ -165,6 +160,11 @@ input[type=text] {
   border: none;
   background-color: #68d9a4;
   transition-duration: 0.3s;
+}
+
+input[type=text] {
+  outline-style: none;
+  color: white;
 }
 
 #nameUstensiles {
