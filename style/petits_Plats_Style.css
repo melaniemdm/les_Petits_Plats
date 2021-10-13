@@ -81,6 +81,36 @@ form.search::after {
   height: 70px;
 }
 
+.btn-success {
+  background-color: #68d9a4 !important;
+  border: none;
+  transition-duration: 0.3s !important;
+}
+.btn-success:hover {
+  background-color: #68d9a4 !important;
+  transition-duration: 0.3s !important;
+}
+
+.btn-danger {
+  background-color: #ed6454 !important;
+  border: none;
+  transition-duration: 0.3s !important;
+}
+.btn-danger:hover {
+  background-color: #ed6454 !important;
+  transition-duration: 0.3s !important;
+}
+
+.btn-primary {
+  background-color: #3282f7 !important;
+  border: none;
+  transition-duration: 0.3s !important;
+}
+.btn-primary:hover {
+  background-color: #3282f7 !important;
+  transition-duration: 0.3s !important;
+}
+
 .btnSearchBarContenair {
   display: flex;
   justify-content: space-between;
@@ -132,7 +162,7 @@ form.search::after {
   width: 250px;
   text-decoration: none;
   border: none;
-  background-color: #0d6efd;
+  background-color: #3282f7;
   transition-duration: 0.3s;
 }
 
@@ -142,66 +172,67 @@ input[type=text] {
 }
 
 #searchIngredients:hover input {
-  background-color: #0b5ed7;
+  background-color: #3282f7;
   transition-duration: 0.3s;
 }
 
 #searchIngredients {
+  background-color: #3282f7;
   display: none;
   z-index: 1;
   width: 660px;
 }
 #searchIngredients input::-moz-placeholder {
-  color: #0b5ed7;
+  color: #3282f7;
+  color: #4b91f8;
   filter: brightness(1.75);
 }
 #searchIngredients input:-ms-input-placeholder {
-  color: #0b5ed7;
+  color: #3282f7;
+  color: #4b91f8;
   filter: brightness(1.75);
 }
 #searchIngredients input::placeholder {
-  color: #0b5ed7;
+  color: #3282f7;
+  color: #4b91f8;
   filter: brightness(1.75);
 }
-#searchIngredients .card-img-top {
-  height: 170px;
-  -o-object-fit: cover;
-     object-fit: cover;
+#searchIngredients input {
+  transition-duration: 0.45s;
 }
 
 #searchAppliance:hover input {
-  background-color: #157347;
-  transition-duration: 0.3s;
+  background-color: #68d9a4;
+  transition-duration: 0.45s;
 }
 
 #searchAppliance {
+  background-color: #68d9a4;
   display: none;
   z-index: 1;
   width: auto;
 }
 #searchAppliance input::-moz-placeholder {
-  color: #157347;
+  color: #68d9a4;
   filter: brightness(1.75);
 }
 #searchAppliance input:-ms-input-placeholder {
-  color: #157347;
+  color: #68d9a4;
   filter: brightness(1.75);
 }
 #searchAppliance input::placeholder {
-  color: #157347;
+  color: #68d9a4;
   filter: brightness(1.75);
 }
-#searchAppliance .card-img-top {
-  height: 170px;
-  -o-object-fit: cover;
-     object-fit: cover;
+#searchAppliance input {
+  transition-duration: 0.45s;
 }
 
 #nameAppliance {
   width: 250px;
   text-decoration: none;
   border: none;
-  background-color: #198754;
+  background-color: #68d9a4;
   transition-duration: 0.3s;
 }
 
@@ -209,31 +240,39 @@ input[type=text] {
   width: 250px;
   text-decoration: none;
   border: none;
-  background-color: #dc3545;
+  background-color: #ed6454;
   transition-duration: 0.3s;
 }
 
-#searchUstensiles:hover input {
-  background-color: #bb2d3b;
+#searchUstensiles:hover {
+  background-color: #ed6454;
   transition-duration: 0.3s;
+}
+#searchUstensiles:hover input {
+  background-color: #ed6454;
+  transition-duration: 0.45s;
 }
 
 #searchUstensiles {
+  background-color: #ed6454;
   display: none;
   z-index: 1;
   width: auto;
 }
 #searchUstensiles input::-moz-placeholder {
-  color: #bb2d3b;
+  color: #ef796b;
   filter: brightness(1.75);
 }
 #searchUstensiles input:-ms-input-placeholder {
-  color: #bb2d3b;
+  color: #ef796b;
   filter: brightness(1.75);
 }
 #searchUstensiles input::placeholder {
-  color: #bb2d3b;
+  color: #ef796b;
   filter: brightness(1.75);
+}
+#searchUstensiles input {
+  transition-duration: 0.45s;
 }
 
 #listIngredients {
@@ -301,6 +340,8 @@ input[type=text] {
 
 .card-img-top {
   height: 176px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .card-body {

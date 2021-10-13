@@ -8,9 +8,37 @@
   #displayIngredients, #displayAppliance, #displayUstensiles{
     width: 170px;
     height: 70px;
-    
-   // font-weight: bold;
+      }
+   //modification des couleurs des boutons   
+  .btn-success{
+    background-color: $btnColorAppliance !important;
+    border:none;
+    transition-duration: $transitionDurationBtn !important;
+    &:hover{
+      background-color: $colorHoverInputAppliance !important;
+      transition-duration: $transitionDurationBtn !important;
+    }
   }
+.btn-danger{
+  background-color: $btnColorUstensils !important;
+  border:none;
+  transition-duration: $transitionDurationBtn !important;
+  &:hover{
+    background-color: $colorHoverInputUstensils !important;
+    transition-duration: $transitionDurationBtn !important;
+  }
+}
+.btn-primary{
+  background-color: $btnColorIngredient !important;
+  border:none;
+  transition-duration: $transitionDurationBtn !important;
+  &:hover{
+    background-color: $colorHoverInputIngredient !important;
+    transition-duration: $transitionDurationBtn !important;
+  }
+}
+
+
   .btnSearchBarContenair{
     display: flex;
     justify-content: space-between;
@@ -72,38 +100,38 @@
     }
   }
   #searchIngredients {
+    background-color: $btnColorIngredient;
     display: none;
     z-index: 1;
     width: 660px;
      input::placeholder {
       color: $colorHoverInputIngredient;
+      color: lighten($btnColorIngredient, 5);
       filter: brightness(1.75);
     }
-    .card-img-top{
-      height: 170px;
-      object-fit: cover;
-    }
+    & input{
+      transition-duration: $transitionDurationInput;
+}
   }
   #searchAppliance:hover {
     & input {
       background-color: $colorHoverInputAppliance;
-      transition-duration: $transitionDurationBtn;
+      transition-duration: $transitionDurationInput;
     }
   }
   #searchAppliance {
-   
+    background-color: $btnColorAppliance;
     display: none;
     z-index: 1;
     width: auto;
     input::placeholder {
       color: $colorHoverInputAppliance;
-      filter: brightness(1.75);
+                 filter: brightness(1.75);
     }
-    .card-img-top{
-      height: 170px;
-      object-fit: cover;
-    }
-  }
+     & input{
+      transition-duration: $transitionDurationInput;
+}}
+  
   #nameAppliance {
     width: 250px;
     text-decoration: none;
@@ -120,19 +148,25 @@
     transition-duration: $transitionDurationBtn;
   }
   #searchUstensiles:hover {
+    background-color: $colorHoverInputUstensils;
+    transition-duration: $transitionDurationBtn;
     & input {
       background-color: $colorHoverInputUstensils;
-      transition-duration: $transitionDurationBtn;
+           transition-duration: $transitionDurationInput;
     }
   }
   #searchUstensiles {
+    background-color: $btnColorUstensils;
     display: none;
      z-index: 1;
     width: auto;
     input::placeholder {
-      color: $colorHoverInputUstensils;
+      color: lighten($btnColorUstensils, 5);
       filter: brightness(1.75);
     }
+    & input{
+      transition-duration: $transitionDurationInput;
+}
   }
   // champs de recherche
   #listIngredients {
@@ -169,7 +203,7 @@
    margin-bottom: 15px;
    margin-right: 10px;
    margin-left: 10px;
-  }
+     }
   .closeList{
     margin-top: 5px ;
   }
