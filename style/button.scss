@@ -57,9 +57,11 @@
   
     }
   /*---------------card tag--------*/
-  #tagIngredients, #tagAppliance, #tagUstensiles{
+  #tagIngredient, #tagAppliance, #tagUstensiles{
   width: auto;
-  height: 36px;
+  height: auto;
+  min-height: 36px;
+  display:none;
   }
   .tags{
     display: flex;
@@ -69,11 +71,7 @@
     padding-left: 15px;
     font-size: 17px;
     }
-    #tagIngredient,
-    #tagAppliance,
-    #tagUstensiles {
-      display:none;
-    }
+   
     .cardTag {
       display: flex;
       justify-content: space-around;

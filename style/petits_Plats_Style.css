@@ -132,9 +132,11 @@ form.search::after {
 }
 
 /*---------------card tag--------*/
-#tagIngredients, #tagAppliance, #tagUstensiles {
+#tagIngredient, #tagAppliance, #tagUstensiles {
   width: auto;
-  height: 36px;
+  height: auto;
+  min-height: 36px;
+  display: none;
 }
 
 .tags {
@@ -145,12 +147,6 @@ form.search::after {
 .close {
   padding-left: 15px;
   font-size: 17px;
-}
-
-#tagIngredient,
-#tagAppliance,
-#tagUstensiles {
-  display: none;
 }
 
 .cardTag {
@@ -165,6 +161,11 @@ form.search::after {
   border: none;
   background-color: #3282f7;
   transition-duration: 0.3s;
+}
+
+input[type=text] {
+  outline-style: none;
+  color: white;
 }
 
 #searchIngredients:hover input {
@@ -230,11 +231,6 @@ form.search::after {
   border: none;
   background-color: #68d9a4;
   transition-duration: 0.3s;
-}
-
-input[type=text] {
-  outline-style: none;
-  color: white;
 }
 
 #nameUstensiles {
