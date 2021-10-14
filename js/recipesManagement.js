@@ -63,11 +63,11 @@ function checkSearchString(recipe) {
     var nodeInputValue = document.querySelector("#inputSearch").value;
     // variable qui stock la reponse la premiere recherche
     var firstSearch =
-    recipe.name.includes(nodeInputValue.toLowerCase()) ||
+    recipe.name.toLowerCase().includes(nodeInputValue.toLowerCase()) ||
     JSON.stringify(recipe.ingredients)
         .toLowerCase()
         .includes(nodeInputValue.toLowerCase()) ||
-    recipe.description.includes(nodeInputValue.toLowerCase());
+    recipe.description.toLowerCase().includes(nodeInputValue.toLowerCase());
     //noeuds des tags
     var nodeTagIngredient = document.querySelector("#tagIngredient");
     var nodeTagAppliance = document.querySelector("#tagAppliance");
