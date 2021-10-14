@@ -5,6 +5,8 @@
     margin-left: 15px;
     margin-right: 15px;
   }
+ 
+
   #displayIngredients, #displayAppliance, #displayUstensiles{
     width: 170px;
     height: 70px;
@@ -52,10 +54,8 @@
   .filters{
     display: flex;
   position: absolute;
- 
    z-index: 1;
-  
-    }
+   }
   /*---------------card tag--------*/
   #tagIngredient, #tagAppliance, #tagUstensiles{
   width: auto;
@@ -204,4 +204,8 @@
      }
   .closeList{
     margin-top: 5px ;
+  }
+
+  @media #{$small-down} {
+    
   }

@@ -3,6 +3,20 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
 
+
+/*création des breakpoints*/
+$small: 767px !default; /*vue mobile*/
+$medium: 1024px !default; /*vue tablette*/
+$large: 1365px !default; /*vue desktop*/
+
+/*création des variables media queries utilisant les breakpoints*/
+$small-up: "only screen and (min-width: #{$small})";
+$small-down: "only screen and (max-width: #{$small})";
+$medium-up: "only screen and (min-width: #{$medium})";
+$medium-down: "only screen and (max-width: #{$medium})";
+$large-up: "only screen and (min-width: #{$large})";
+$large-down: "only screen and (max-width: #{$large})";
+
 $colorsearch :#f1f1f1; 
 $btnColorIngredient: #3282f7;
 $colorHoverInputIngredient:#3282f7;

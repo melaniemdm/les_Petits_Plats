@@ -8,8 +8,8 @@
   }
   #search{
     font-size: 30px;
-   
-  }
+     }
+ 
   /* Style the search field */
  .search input[type="text"] {
     padding: 10px;
@@ -52,4 +52,42 @@
   .search {
     margin-left: 15px;
     margin-right: 15px;
+  }
+
+  @media #{$small-down} {
+    .search input[type="text"] {
+      padding: 0;
+      font-size: 12px;
+     // border: 1px solid $colorsearch;
+     // float: left;
+    //  border-radius: 5px 0 0 5px;
+    //  height: 70px;
+     width: 80%;
+    //  background: $colorsearch;
+   //   margin-bottom: 20px;
+   //   color: black;
+    }
+    .search button {
+     // float: left;
+     // border-radius: 0  5px 5px 0;
+     // height: 70px;
+      width: 15%;
+      padding: 12px;
+    //  background: $colorsearch;
+    //  color: black;
+      font-size: 10px;
+    //  border: 1px solid $colorsearch;
+     // border-left: none; /* Prevent double borders */
+     // cursor: pointer;
+    }
+    #search{
+      font-size: 15px;
+    }
+    .search {
+      display: flex;
+      justify-content: center;
+      width: 125%;
+      margin-left: 25px;
+      margin-right: 5px;
+    }
   }
