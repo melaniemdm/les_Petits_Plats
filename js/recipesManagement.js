@@ -329,8 +329,8 @@ nodeInputSearch.addEventListener("keyup", rechargeRecipes);
 //recharge les recettes au click
 function rechargeRecipes(e) {
     //empeche le comportement par default du chargement
-    e.preventDefault();
-    e.stopImmediatePropagation();
+    
+    blocComportement(e);
     var nodeCards = document.querySelector(".cards");
     //recupere la value de l'input
     var textOfSearch = document.querySelector("#inputSearch").value;

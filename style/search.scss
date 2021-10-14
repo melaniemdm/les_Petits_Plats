@@ -11,7 +11,7 @@
    
   }
   /* Style the search field */
-  form.search input[type="text"] {
+ .search input[type="text"] {
     padding: 10px;
     font-size: 17px;
     border: 1px solid $colorsearch;
@@ -25,7 +25,7 @@
   }
   
   /* Style the submit button */
-  form.search button {
+  .search button {
     float: left;
     border-radius: 0  5px 5px 0;
     height: 70px;
@@ -39,12 +39,12 @@
     cursor: pointer;
   }
   
-  form.search button:hover {
+  .search button:hover {
     background: #0b7dda;
   }
   
   /* Clear floats */
-  form.search::after {
+  .search::after {
     content: "";
     clear: both;
     display: table;
