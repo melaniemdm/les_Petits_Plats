@@ -10,6 +10,8 @@
   #displayIngredients, #displayAppliance, #displayUstensiles{
     width: 170px;
     height: 70px;
+    display: flex;
+    align-items: center;
       }
    //modification des couleurs des boutons   
   .btn-success{
