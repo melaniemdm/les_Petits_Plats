@@ -1,0 +1,60 @@
+
+//logo
+@media #{$small-down} {
+    .logo_lesPetitsPlats {
+      margin-left: 80px
+    }
+  }
+//search
+  @media #{$small-down} {
+    .search input[type="text"] {
+        font-size: 12px;
+          width: 80%;
+     margin-left: -35px;
+        }
+    .search button {
+           width: 15%;
+      padding: 12px;
+          font-size: 10px;
+        }
+    #search{
+      font-size: 15px;
+    }
+    .search {
+      display: flex;
+      justify-content: center;
+      width: 125%;
+      margin-left: 25px;
+      margin-right: 5px;
+    }
+  }
+  //button
+  @media #{$small-down} {
+    .filters{
+      flex-direction: column;
+      position: relative;
+     gap: 5px;
+    padding-left: 75px;
+    }
+    #displayIngredients, #displayAppliance, #displayUstensiles{
+      width: 300px;
+      height: 70px;
+        }
+    #listIngredients {
+          grid-template-columns: 1fr ;
+              }
+              #nameIngredients {
+                width: 100px;
+              }
+              #searchIngredients,#searchUstensiles, #searchAppliance {
+width: 300px;
+
+              }
+  }
+//cards
+  @media #{$small-down} {
+    .cards{
+      margin-right: -120px;
+      margin-top: -10px;
+    }
+  }

@@ -1,0 +1,31 @@
+
+@import "./variables.scss";
+@import "./search.scss";
+@import "./button.scss";
+@import "./cardRecipes.scss";
+@import "./responsive.scss";
+
+body{
+  margin-left: 100px;
+  margin-right: 100px;
+  margin-top: 20px;
+}
+@media #{$small-down} {
+  body{
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 10px;
+  }   
+}
+/*-------------logo------------------*/
+.logo_lesPetitsPlats {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  & img {
+    width: 280px;
+    height: 100px;
+    margin-bottom: 20px;
+  }
+}
+
