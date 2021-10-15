@@ -7,7 +7,7 @@ export async function displayRecipes() {
     //condition de recherche
     if (isResearchInRecipes(arrayFromJson)) {
     //filtre de l'array des recettes - appel de la condition du filtre - si true stock la recette
-
+        let bIsOneRecipeDisplayed = false;
         var filterArray = filterRecipes(arrayFromJson);
         //appel fonction qui remplit les champs de la recherche avancée
         filledAdvancedSearchFields(filterArray);
@@ -18,6 +18,11 @@ export async function displayRecipes() {
             // appel de fonction de construction pour afficher la card d'une recette
             var recipeCardHtml = buildRecipeCardHtml(filterArray[i]);
             nodeCards.innerHTML += recipeCardHtml;
+            bIsOneRecipeDisplayed = true;
+        }
+        if(bIsOneRecipeDisplayed === false){
+            nodeCards.innerHTML +=
+      'Aucune recette ne correspond à votre critère.... vous pouvez chercher "tartes aux pommes", "poissons", etc.';
         }
         //appel fonction pour selectionner la card de la recette
         addEventCardRecipe();
@@ -49,7 +54,7 @@ async function getRecipesFromJson() {
     return arrayRecipes;
 }
 
-//renvoie true ou false en regardant  - si la valeur cherché est incluse dans les recettes
+//renvoie true ou false en regardant  - si la valeur cherchée est incluse dans les recettes
 function isResearchInRecipes(arrayFromJson) {
     // valeur de l'input search
     var valueSearch = document.querySelector("#inputSearch").value.toLowerCase();
