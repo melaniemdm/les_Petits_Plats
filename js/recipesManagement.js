@@ -13,13 +13,15 @@ export async function displayRecipes() {
         filledAdvancedSearchFields(filterArray);
         //appel function qui ajout l'event pour fermer le tag
         addEventCloseTag();
+        let cards ="";
         //method qui parcours chaque recette
         for (let i = 0; i < filterArray.length; i++) {
             // appel de fonction de construction pour afficher la card d'une recette
             var recipeCardHtml = buildRecipeCardHtml(filterArray[i]);
-            nodeCards.innerHTML += recipeCardHtml;
+            cards += recipeCardHtml;
             bIsOneRecipeDisplayed = true;
         }
+        nodeCards.innerHTML=cards;
         if(bIsOneRecipeDisplayed === false){
             nodeCards.innerHTML +=
       'Aucune recette ne correspond à votre critère.... vous pouvez chercher "tartes aux pommes", "poissons", etc.';
