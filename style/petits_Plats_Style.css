@@ -164,7 +164,7 @@ input::placeholder {
 
 .cardTag {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 /*---------- filter btn----*/
@@ -451,6 +451,25 @@ li {
     margin-left: 80px;
   }
 }
+@media only screen and (max-width: 1024px) {
+  #search {
+    display: none;
+  }
+
+  .filters {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+  }
+
+  #listIngredients {
+    grid-template-columns: 1fr;
+  }
+
+  #searchIngredients {
+    width: 330px;
+  }
+}
 @media only screen and (max-width: 767px) {
   .search input[type=text] {
     font-size: 12px;
@@ -462,10 +481,6 @@ li {
     width: 15%;
     padding: 12px;
     font-size: 10px;
-  }
-
-  #search {
-    font-size: 15px;
   }
 
   .search {
@@ -499,6 +514,10 @@ li {
 
   #searchIngredients, #searchUstensiles, #searchAppliance {
     width: 300px;
+  }
+
+  .btnSearchBarContenair {
+    width: 100%;
   }
 }
 @media only screen and (max-width: 767px) {

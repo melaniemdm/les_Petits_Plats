@@ -89,7 +89,7 @@
 
 .cardTag {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 /*---------- filter btn----*/

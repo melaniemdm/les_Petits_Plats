@@ -41,7 +41,7 @@ function filterRecipes(arrayFromJson) {
     // create array vide
     var arrayFilter = new Array();
     for (let i = 0; i < arrayFromJson.length; i++) {
-        if (checkSearchString(arrayFromJson[i])) {
+        if (isSimpleAndAdvancedSearchInTheRecipe(arrayFromJson[i])) {
             //ajoute la nouvelle recette dans le tableau
             arrayFilter.push(arrayFromJson[i]);
         }
@@ -68,7 +68,7 @@ function isResearchInRecipes(arrayFromJson) {
 }
 
 /*-----------fonction qui retourne true ou false si la valeur de la recherche est presente ou pas dans la recette---*/
-function checkSearchString(recipe) {
+function isSimpleAndAdvancedSearchInTheRecipe(recipe) {
     var nodeInputValue = document.querySelector("#inputSearch").value;
     // variable qui stock true si la valeur recherchée est présente dans la recette au niveau de name ou ingrédient ou description
     var simpleSearch =
@@ -102,11 +102,11 @@ function checkSearchString(recipe) {
         for (let i = 0; i < listTagIngredient.length; i++) {
             //appel de la fonction qui recupere l'ingredient
             let tag = getIngredient(listTagIngredient[i]);
-
             advancedSearch =
         advancedSearch &&
         JSON.stringify(recipe.ingredients)
             .toLowerCase()
+            // .trim retire les espace avant et après
             .includes(tag.trim().toLowerCase());
         }
         listTagAppliance.pop();
@@ -498,7 +498,7 @@ function closeListIngredients() {
     var nodeDisplayIngredientsDisappear = document.querySelector(
         "#displayIngredients"
     );
-    nodeDisplayIngredientsDisappear.style.display = "block";
+    nodeDisplayIngredientsDisappear.style.display = "flex";
 }
 
 function closeListAppliance() {
@@ -506,7 +506,7 @@ function closeListAppliance() {
     nodeSearchApplianceDisappear.style.display = "none";
     var nodeDisplayApplianceDisappear =
     document.querySelector("#displayAppliance");
-    nodeDisplayApplianceDisappear.style.display = "block";
+    nodeDisplayApplianceDisappear.style.display = "flex";
 }
 
 function closeListUstensils() {
@@ -515,7 +515,7 @@ function closeListUstensils() {
     nodeSearchUstensilsDisappear.style.display = "none";
     var nodeDisplayAUstensilsDisappear =
     document.querySelector("#displayUstensiles");
-    nodeDisplayAUstensilsDisappear.style.display = "block";
+    nodeDisplayAUstensilsDisappear.style.display = "flex";
 }
 //regarde si le mot cliké a deja été ajouté dans la liste des tags
 function isClickedWordNotInList(clikedWord) {

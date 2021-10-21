@@ -6,6 +6,23 @@
     }
   }
 //search
+@media #{$medium-down} {
+  #search{
+    display: none;
+  }
+  .filters{
+        width: 80%;
+        display: flex;
+        justify-content: center;
+     
+  }
+  #listIngredients{
+    grid-template-columns: 1fr;
+      }
+      #searchIngredients{
+        width: 330px;
+      }
+}
   @media #{$small-down} {
     .search input[type="text"] {
         font-size: 12px;
@@ -17,9 +34,7 @@
       padding: 12px;
           font-size: 10px;
         }
-    #search{
-      font-size: 15px;
-    }
+   
     .search {
       display: flex;
       justify-content: center;
@@ -28,6 +43,7 @@
       margin-right: 5px;
     }
   }
+
   //button
   @media #{$small-down} {
     .filters{
@@ -50,6 +66,9 @@
 width: 300px;
 
               }
+    .btnSearchBarContenair{
+      width: 100%;
+    }          
   }
 //cards
   @media #{$small-down} {
