@@ -4,12 +4,13 @@ export async function displayRecipes() {
     var arrayFromJson = await getRecipesFromJson();
     var nodeCards = document.querySelector(".cards");
 
-    //condition de recherche
+    //condition pour lancer la recherche
     if (isResearchInRecipes(arrayFromJson)) {
-    //filtre de l'array des recettes - appel de la condition du filtre - si true stock la recette
+    //Boolean qui permet de gerer les mots techniques
         let bIsOneRecipeDisplayed = false;
+        //filtre de l'array des recettes - appel de la condition du filtre - si true stock la recette
         var filterArray = filterRecipes(arrayFromJson);
-        //appel fonction qui remplit les champs de la recherche avancée
+        //appel fonction qui met à jour les champs de la recherche avancée
         filledAdvancedSearchFields(filterArray);
         //appel function qui ajout l'event pour fermer le tag
         addEventCloseTag();
@@ -21,6 +22,7 @@ export async function displayRecipes() {
             cards += recipeCardHtml;
             bIsOneRecipeDisplayed = true;
         }
+        //met les cards dans le noeuds
         nodeCards.innerHTML=cards;
         if(bIsOneRecipeDisplayed === false){
             nodeCards.innerHTML +=
@@ -65,11 +67,11 @@ function isResearchInRecipes(arrayFromJson) {
     return jsonString.includes(valueSearch);
 }
 
-/*-----------fonction qui retourne true ou false si la valeur de la recherche est presente ou pas---*/
+/*-----------fonction qui retourne true ou false si la valeur de la recherche est presente ou pas dans la recette---*/
 function checkSearchString(recipe) {
     var nodeInputValue = document.querySelector("#inputSearch").value;
-    // variable qui stock la reponse la premiere recherche
-    var firstSearch =
+    // variable qui stock true si la valeur recherchée est présente dans la recette au niveau de name ou ingrédient ou description
+    var simpleSearch =
     recipe.name.toLowerCase().includes(nodeInputValue.toLowerCase()) ||
     JSON.stringify(recipe.ingredients)
         .toLowerCase()
@@ -79,8 +81,8 @@ function checkSearchString(recipe) {
     var nodeTagIngredient = document.querySelector("#tagIngredient");
     var nodeTagAppliance = document.querySelector("#tagAppliance");
     var nodeTagUstensils = document.querySelector("#tagUstensiles");
-    //condition si noeud tag est vide
-    var secondSearch = true;
+    //condition si le noeud tag n'est pas vide
+    var advancedSearch = true;
     if (!(
         nodeTagIngredient &&
     nodeTagAppliance &&
@@ -89,18 +91,20 @@ function checkSearchString(recipe) {
     nodeTagAppliance.innerHTML === "" &&
     nodeTagUstensils.innerHTML === ""
     ))  {
+        //recupere le code html en entier de la liste des tag - decoupe avec split sur la croix close
         var iconCloseTag = `<i class="fa fa-times-circle-o" aria-hidden="true"></i>`;
         var listTagIngredient = nodeTagIngredient.innerHTML.split(iconCloseTag);
         var listTagAppliance = nodeTagAppliance.innerHTML.split(iconCloseTag);
         var listTagUstensils = nodeTagUstensils.innerHTML.split(iconCloseTag);
-        //supprime le dernier element de la liste - supp ligne vide
+        //supprime le dernier element de la liste (espace) - supp ligne vide
         listTagIngredient.pop();
+        //pour chaque tag
         for (let i = 0; i < listTagIngredient.length; i++) {
             //appel de la fonction qui recupere l'ingredient
             let tag = getIngredient(listTagIngredient[i]);
 
-            secondSearch =
-        secondSearch &&
+            advancedSearch =
+        advancedSearch &&
         JSON.stringify(recipe.ingredients)
             .toLowerCase()
             .includes(tag.trim().toLowerCase());
@@ -108,8 +112,8 @@ function checkSearchString(recipe) {
         listTagAppliance.pop();
         for (let i = 0; i < listTagAppliance.length; i++) {
             let tag = getAppliance(listTagAppliance[i]);
-            secondSearch =
-        secondSearch &&
+            advancedSearch =
+        advancedSearch &&
         JSON.stringify(recipe.appliance)
             .toLowerCase()
             .includes(tag.trim().toLowerCase());
@@ -117,14 +121,14 @@ function checkSearchString(recipe) {
         listTagUstensils.pop();
         for (let i = 0; i < listTagUstensils.length; i++) {
             let tag = getUstensil(listTagUstensils[i]);
-            secondSearch =
-        secondSearch &&
+            advancedSearch =
+        advancedSearch &&
         JSON.stringify(recipe.ustensils)
             .toLowerCase()
             .includes(tag.trim().toLowerCase());
         }
     }
-    return firstSearch && secondSearch;
+    return simpleSearch && advancedSearch;
 }
 //function qui recupere l'ingredient
 function getAppliance(tag) {
