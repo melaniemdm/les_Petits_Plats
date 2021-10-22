@@ -447,8 +447,7 @@ function setEventOnAdvancedSearchLists() {
 
 //recuperer mot cliké
 function getCliked(e) {
-    e.preventDefault();
-    e.stopImmediatePropagation();
+    blocComportement(e);
     //cible de l'evenement cliké - mot cliké
     var clikedWord = e.target.innerHTML;
 
@@ -551,8 +550,7 @@ function addEventCloseTag() {
     }
 }
 function closeTag(e) {
-    e.preventDefault();
-    e.stopImmediatePropagation();
+    blocComportement(e);
     var nodeCloseTag = e.target.parentNode.parentNode;
     var nodeCloseTagParent = nodeCloseTag.parentNode;
     nodeCloseTagParent.removeChild(nodeCloseTag);
@@ -576,6 +574,7 @@ nodeCloseListustensils.addEventListener("click",closeListUstensils);
 var nodeSearchBarContenair = document.querySelector(".searchBarContenair");
 nodeSearchBarContenair.addEventListener("click",blocComportement);
 
+//function qui bloque le comportement par defaut
 function blocComportement(e){
     e.preventDefault();
     e.stopImmediatePropagation();
