@@ -41,7 +41,7 @@ function filterRecipes(arrayFromJson) {
     // create array vide
     var arrayFilter = new Array();
     for (let i = 0; i < arrayFromJson.length; i++) {
-        if (isSimpleAndAdvancedSearchInTheRecipe(arrayFromJson[i])) {
+        if (isSimpleSearchInTheRecipe(arrayFromJson[i]) && isAdvancedSearchInTheRecipe(arrayFromJson[i])) {
             //ajoute la nouvelle recette dans le tableau
             arrayFilter.push(arrayFromJson[i]);
         }
@@ -68,7 +68,7 @@ function isResearchInRecipes(arrayFromJson) {
 }
 
 /*-----------fonction qui retourne true ou false si la valeur de la recherche est presente ou pas dans la recette---*/
-function isSimpleAndAdvancedSearchInTheRecipe(recipe) {
+function isSimpleSearchInTheRecipe(recipe) {
     var nodeInputValue = document.querySelector("#inputSearch").value;
     // variable qui stock true si la valeur recherchée est présente dans la recette au niveau de name ou ingrédient ou description
     var simpleSearch =
@@ -77,19 +77,26 @@ function isSimpleAndAdvancedSearchInTheRecipe(recipe) {
         .toLowerCase()
         .includes(nodeInputValue.toLowerCase()) ||
     recipe.description.toLowerCase().includes(nodeInputValue.toLowerCase());
-    //noeuds des tags
+    
+   
+    return simpleSearch;
+}
+/*-----------fonction qui retourne true ou false si la valeur de la recherche advancée est presente ou pas dans la recette---*/
+function isAdvancedSearchInTheRecipe(recipe) {
+//noeuds des tags
     var nodeTagIngredient = document.querySelector("#tagIngredient");
     var nodeTagAppliance = document.querySelector("#tagAppliance");
     var nodeTagUstensils = document.querySelector("#tagUstensiles");
+
     //condition si le noeud tag n'est pas vide
     var advancedSearch = true;
     if (!(
         nodeTagIngredient &&
-    nodeTagAppliance &&
-    nodeTagUstensils &&
-    nodeTagIngredient.innerHTML === "" &&
-    nodeTagAppliance.innerHTML === "" &&
-    nodeTagUstensils.innerHTML === ""
+ nodeTagAppliance &&
+ nodeTagUstensils &&
+ nodeTagIngredient.innerHTML === "" &&
+ nodeTagAppliance.innerHTML === "" &&
+ nodeTagUstensils.innerHTML === ""
     ))  {
         //recupere le code html en entier de la liste des tag - decoupe avec split sur la croix close
         var iconCloseTag = `<i class="fa fa-times-circle-o" aria-hidden="true"></i>`;
@@ -103,33 +110,34 @@ function isSimpleAndAdvancedSearchInTheRecipe(recipe) {
             //appel de la fonction qui recupere l'ingredient
             let tag = getIngredient(listTagIngredient[i]);
             advancedSearch =
-        advancedSearch &&
-        JSON.stringify(recipe.ingredients)
-            .toLowerCase()
-            // .trim retire les espace avant et après
-            .includes(tag.trim().toLowerCase());
+     advancedSearch &&
+     JSON.stringify(recipe.ingredients)
+         .toLowerCase()
+         // .trim retire les espace avant et après
+         .includes(tag.trim().toLowerCase());
         }
         listTagAppliance.pop();
         for (let i = 0; i < listTagAppliance.length; i++) {
             let tag = getAppliance(listTagAppliance[i]);
             advancedSearch =
-        advancedSearch &&
-        JSON.stringify(recipe.appliance)
-            .toLowerCase()
-            .includes(tag.trim().toLowerCase());
+     advancedSearch &&
+     JSON.stringify(recipe.appliance)
+         .toLowerCase()
+         .includes(tag.trim().toLowerCase());
         }
         listTagUstensils.pop();
         for (let i = 0; i < listTagUstensils.length; i++) {
             let tag = getUstensil(listTagUstensils[i]);
             advancedSearch =
-        advancedSearch &&
-        JSON.stringify(recipe.ustensils)
-            .toLowerCase()
-            .includes(tag.trim().toLowerCase());
+     advancedSearch &&
+     JSON.stringify(recipe.ustensils)
+         .toLowerCase()
+         .includes(tag.trim().toLowerCase());
         }
     }
-    return simpleSearch && advancedSearch;
+    return advancedSearch;   
 }
+
 //function qui recupere l'ingredient
 function getAppliance(tag) {
     return splitTagSearchAvanced(tag);
