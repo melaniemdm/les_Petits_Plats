@@ -88,7 +88,7 @@ function isAdvancedSearchInTheRecipe(recipe) {
     var nodeTagAppliance = document.querySelector("#tagAppliance");
     var nodeTagUstensils = document.querySelector("#tagUstensiles");
 
-    //condition si le noeud tag n'est pas vide
+    //condition si le noeud tag existe et n'est pas vide
     var advancedSearch = true;
     if (!(
         nodeTagIngredient &&
@@ -98,57 +98,60 @@ function isAdvancedSearchInTheRecipe(recipe) {
  nodeTagAppliance.innerHTML === "" &&
  nodeTagUstensils.innerHTML === ""
     ))  {
-        //recupere le code html en entier de la liste des tag - decoupe avec split sur la croix close
-        var iconCloseTag = `<i class="fa fa-times-circle-o" aria-hidden="true"></i>`;
-        var listTagIngredient = nodeTagIngredient.innerHTML.split(iconCloseTag);
-        var listTagAppliance = nodeTagAppliance.innerHTML.split(iconCloseTag);
-        var listTagUstensils = nodeTagUstensils.innerHTML.split(iconCloseTag);
-        //supprime le dernier element de la liste (espace) - supp ligne vide
-        listTagIngredient.pop();
+
+        //recherche si le tag ingredient est dans la recette
+        let ingredientTagList = getTagList(nodeTagIngredient);
         //pour chaque tag
-        for (let i = 0; i < listTagIngredient.length; i++) {
+        for (let i = 0; i < ingredientTagList.length; i++) {
             //appel de la fonction qui recupere l'ingredient
-            let tag = getIngredient(listTagIngredient[i]);
+            let tag = ingredientTagList[i];
             advancedSearch =
      advancedSearch &&
      JSON.stringify(recipe.ingredients)
          .toLowerCase()
          // .trim retire les espace avant et après
-         .includes(tag.trim().toLowerCase());
+         .includes(tag.toLowerCase());
         }
-        listTagAppliance.pop();
-        for (let i = 0; i < listTagAppliance.length; i++) {
-            let tag = getAppliance(listTagAppliance[i]);
+
+        //recherche si le tag appareil est dans la recette
+        let applianceTagList = getTagList(nodeTagAppliance);
+        for (let i = 0; i < applianceTagList.length; i++) {
+            let tag = applianceTagList[i];
             advancedSearch =
      advancedSearch &&
      JSON.stringify(recipe.appliance)
          .toLowerCase()
-         .includes(tag.trim().toLowerCase());
+         .includes(tag.toLowerCase());
         }
-        listTagUstensils.pop();
-        for (let i = 0; i < listTagUstensils.length; i++) {
-            let tag = getUstensil(listTagUstensils[i]);
+
+        //recherche si le tag ustensil est dans la recette
+        let ustensilTagList = getTagList(nodeTagUstensils);        
+        for (let i = 0; i < ustensilTagList.length; i++) {
+            let tag = ustensilTagList[i];
             advancedSearch =
      advancedSearch &&
      JSON.stringify(recipe.ustensils)
          .toLowerCase()
-         .includes(tag.trim().toLowerCase());
+         .includes(tag.toLowerCase());
         }
     }
     return advancedSearch;   
 }
 
-//function qui recupere l'ingredient
-function getAppliance(tag) {
-    return splitTagSearchAvanced(tag);
-}
-//function qui recupere l'ingredient
-function getIngredient(tag) {
-    return splitTagSearchAvanced(tag);
-}
-//function qui recupere l'ingredient
-function getUstensil(tag) {
-    return splitTagSearchAvanced(tag);
+//fonction qui récupère la liste des tags affichés 
+function getTagList(nodeTag){
+    let tagArray = new Array();
+    var iconCloseTag = `<i class="fa fa-times-circle-o" aria-hidden="true"></i>`;
+    var listTag = nodeTag.innerHTML.split(iconCloseTag);
+    //supprime le dernier element de la liste (espace) - supp ligne vide
+    listTag.pop();
+    for (let i = 0; i < listTag.length; i++) {
+        //appel de la fonction qui recupere l'ingredient
+        let tag = splitTagSearchAvanced(listTag[i]).trim();
+        tagArray.push(tag);
+    }
+
+    return tagArray;
 }
 
 //fonction qui split le code qui mermet de recuperer l'ingredient  ou l'ustensil ou l'appareil
@@ -345,15 +348,15 @@ nodeSearch.addEventListener("click", rechargeRecipes);
 //ecouteur au keyup sur le champs recherche
 var nodeInputSearch = document.querySelector("#inputSearch");
 nodeInputSearch.addEventListener("keyup", rechargeRecipes);
-//recharge les recettes au click
+
+//recharge les recettes au click ou au keyup
 function rechargeRecipes(e) {
     //empeche le comportement par default du chargement
-    
     blocComportement(e);
     var nodeCards = document.querySelector(".cards");
     //recupere la value de l'input
     var textOfSearch = document.querySelector("#inputSearch").value;
-    if (textOfSearch.length >= 3) {
+    if (textOfSearch.length >= 3 || textOfSearch === "") {
     //vider la page
         nodeCards.innerHTML = "";
         //affichage des cards grace à l'appel de la fonction
@@ -530,11 +533,11 @@ function isClickedWordNotInList(clikedWord) {
     var nodeTagIngredient = document.querySelector("#tagIngredient");
     var nodeTagAppliance = document.querySelector("#tagAppliance");
     var nodeTagUstensils = document.querySelector("#tagUstensiles");
-    return (
-        (nodeTagIngredient.innerHTML.includes(clikedWord) ||
-      nodeTagAppliance.innerHTML.includes(clikedWord) ||
-      nodeTagUstensils.innerHTML.includes(clikedWord)) === false
-    );
+    let isWordIncludeInList = (nodeTagIngredient.innerHTML.includes(clikedWord) ||
+    nodeTagAppliance.innerHTML.includes(clikedWord) ||
+    nodeTagUstensils.innerHTML.includes(clikedWord));
+    let isWordNotInList = !isWordIncludeInList;
+    return isWordNotInList;
 }
 
 function addEventCardRecipe() {
@@ -559,9 +562,12 @@ function addEventCloseTag() {
 }
 function closeTag(e) {
     blocComportement(e);
-    var nodeCloseTag = e.target.parentNode.parentNode;
-    var nodeCloseTagParent = nodeCloseTag.parentNode;
-    nodeCloseTagParent.removeChild(nodeCloseTag);
+    let nodeClose = e.target;
+    while(nodeClose.className!=="cardTag"){
+        nodeClose = nodeClose.parentNode;
+    }
+    var nodeCloseTagParent = nodeClose.parentNode;
+    nodeCloseTagParent.removeChild(nodeClose);
     
     if(nodeCloseTagParent.innerHTML === ""){
         nodeCloseTagParent.style.display= "none";
