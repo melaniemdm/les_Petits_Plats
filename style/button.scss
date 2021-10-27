@@ -45,14 +45,17 @@
 
   .btnSearchBarContenair{
     display: flex;
+    align-items: center;
     justify-content: space-between;
+    width: 100%;
   }
   .btnSearchBarTitle{
     font-size: 17px;
   }
-  .fa-angle-down{
-    padding-left: 40px;
-  }
+  i.closeList{
+    font-size: 35px;
+    }
+   
   .filters{
     display: flex;
   position: absolute;
