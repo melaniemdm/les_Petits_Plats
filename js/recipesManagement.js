@@ -398,7 +398,10 @@ nodeSearchUstensiles.style.display= "none";
 
 //fonction de disparation de la recherche avancée
 function disappear(e) {
-    
+    //permet d'avoir une seule liste d'ouverte
+    closeListAppliance();
+    closeListIngredients();
+    closeListUstensils();
     //ingredients - appareil - ustensiles
     var targetEventTitle = e.currentTarget.title;
     var nodeDisappear = document.querySelector("#display" + targetEventTitle);
@@ -593,3 +596,4 @@ function blocComportement(e){
     e.preventDefault();
     e.stopImmediatePropagation();
 }
+
