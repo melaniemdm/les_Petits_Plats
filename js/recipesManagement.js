@@ -109,7 +109,6 @@ function isAdvancedSearchInTheRecipe(recipe) {
      advancedSearch &&
      JSON.stringify(recipe.ingredients)
          .toLowerCase()
-         // .trim retire les espace avant et après
          .includes(tag.toLowerCase());
         }
 
