@@ -90,14 +90,17 @@ function isAdvancedSearchInTheRecipe(recipe) {
 
     //condition si le noeud tag existe et n'est pas vide
     var advancedSearch = true;
-    if (!(
+    //s'il n'y a pas de tag = true sinon c'est false et on rentre dans le if
+    if (
         nodeTagIngredient &&
  nodeTagAppliance &&
  nodeTagUstensils &&
  nodeTagIngredient.innerHTML === "" &&
  nodeTagAppliance.innerHTML === "" &&
  nodeTagUstensils.innerHTML === ""
-    ))  {
+    ) {
+        advancedSearch = true;
+    } else {
 
         //recherche si le tag ingredient est dans la recette
         let ingredientTagList = getTagList(nodeTagIngredient);
