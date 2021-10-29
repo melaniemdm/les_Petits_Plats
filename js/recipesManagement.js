@@ -164,7 +164,7 @@ function splitTagSearchAvanced(tag) {
 }
 
 //remplit les champs de recherche avancée
-async function filledAdvancedSearchFields(arrayFromJson) {
+async function filledAdvancedSearchFields(recipesArray) {
     //recherche avancée des ingrédients
     var nodeListeIngredients = document.querySelector("#listIngredients");
     nodeListeIngredients.innerHTML = "";
@@ -175,8 +175,8 @@ async function filledAdvancedSearchFields(arrayFromJson) {
     var nodeListeUstensiles = document.querySelector("#listUstensiles");
     nodeListeUstensiles.innerHTML = "";
 
-    for (let i = 0; i < arrayFromJson.length; i++) {
-        var arrayIngredientsForOneRecipe = arrayFromJson[i].ingredients;
+    for (let i = 0; i < recipesArray.length; i++) {
+        var arrayIngredientsForOneRecipe = recipesArray[i].ingredients;
         //boucle pour eviter les doublons des ingredients
         for (let j = 0; j < arrayIngredientsForOneRecipe.length; j++) {
             //condition qui test si l'ingredient n'existe pas deja
@@ -202,7 +202,7 @@ async function filledAdvancedSearchFields(arrayFromJson) {
             }
         }
 
-        var arrayFromJsonUstensils = arrayFromJson[i].ustensils;
+        var arrayFromJsonUstensils = recipesArray[i].ustensils;
         //boucle pour eviter les doublons
         for (let k = 0; k < arrayFromJsonUstensils.length; k++) {
             //condition qui fait appel a la function qui test si l'ustensil est dans la liste
@@ -224,16 +224,16 @@ async function filledAdvancedSearchFields(arrayFromJson) {
         }
 
         //condition qui fait appel a la function qui test si l'appareil est dans la liste
-        if (isApplianceNotInNode(nodeListeAppliance, arrayFromJson[i].appliance)) {
+        if (isApplianceNotInNode(nodeListeAppliance, recipesArray[i].appliance)) {
             if (
-                arrayFromJson[i].appliance
+                recipesArray[i].appliance
                     .toLowerCase()
                     .includes(
                         document.querySelector("#nameAppliance").value.toLowerCase()
                     )
             ) {
                 nodeListeAppliance.innerHTML +=
-          `<div class="appliance">` + arrayFromJson[i].appliance + `</div>`;
+          `<div class="appliance">` + recipesArray[i].appliance + `</div>`;
             }
         }
     }
