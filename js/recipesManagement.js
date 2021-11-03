@@ -258,7 +258,7 @@ function isIngredientNotInNode(nodeListeIngredients, ingredient) {
     return (
         nodeListeIngredients.innerHTML
             .toLowerCase()
-            .includes(ingredient.ingredient.toLowerCase()) === false
+            .includes(">"+ingredient.ingredient.toLowerCase()+ "<") === false
     );
 }
 // function qui demande si l'ustensils existe deja
@@ -266,7 +266,7 @@ function isInustensilsNotInNode(nodeListeUstensiles, ustensils) {
     return (
         nodeListeUstensiles.innerHTML
             .toLowerCase()
-            .includes(ustensils.toLowerCase()) === false
+            .includes(">"+ ustensils.toLowerCase()+ "<") === false
     );
 }
 // function qui demande si l'appareil existe deja
@@ -274,7 +274,7 @@ function isApplianceNotInNode(nodeListeAppliance, appliance) {
     return (
         nodeListeAppliance.innerHTML
             .toLowerCase()
-            .includes(appliance.toLowerCase()) === false
+            .includes(">"+ appliance.toLowerCase()+ "<") === false
     );
 }
 
